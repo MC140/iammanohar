@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hold Your Horses! - Portfolio Loading...</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configure Tailwind for a clean font (Inter) and custom colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'background-dark': '#0B0F2A',
+                        'accent': '#6366f1', /* Indigo 500 */
+                        'accent-light': '#8b5cf6', /* Violet 500 */
+                        'text-primary': '#E0E7FF', /* Light Blue/Gray */
+                    },
+                    keyframes: {
+                        spin: {
+                          to: { transform: 'rotate(360deg)' },
+                        },
+                    },
+                    animation: {
+                        'spin-slow': 'spin 6s linear infinite',
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Apply the Inter font globally */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Subtle pulsating gradient background for a modern feel */
+        .animated-gradient {
+            background: linear-gradient(-45deg, #0B0F2A, #1C244A, #0B0F2A);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Hero Text Styling */
+        .hero-title {
+            text-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
+            line-height: 1; /* Tighter line height for large text */
+        }
+    </style>
+</head>
+<body class="animated-gradient text-text-primary min-h-screen flex flex-col items-center justify-center p-4">
+
+    <!-- Main Content Wrapper -->
+    <main class="max-w-4xl w-full text-center space-y-8 py-10 md:py-20">
+
+        <!-- Header -->
+        <header class="mb-10">
+            <!-- Icon/Branding Placeholder -->
+            <svg class="mx-auto w-12 h-12 text-accent mb-4 animate-spin-slow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.526.43.954.918 1.341 1.439z"></path>
+            </svg>
+            
+            <h1 class="text-5xl md:text-7xl font-extrabold hero-title text-white">
+                STILL IN BETA.
+            </h1>
+            <h2 class="text-xl md:text-3xl text-accent-light font-light mt-2">
+                We're currently debugging the "awesome" setting.
+            </h2>
+        </header>
+
+        <!-- Main Message -->
+        <section class="max-w-xl mx-auto p-6 bg-gray-800/50 rounded-2xl border border-gray-700/50 shadow-xl space-y-4">
+            <p class="text-gray-300 text-lg leading-relaxed">
+                If you need a professional portfolio right now, you came a little too early. Check back soon for my award-winning collection of work. Thanks for your patience (and good taste).
+            </p>
+        </section>
+
+        <!-- Notify Me Section (Simplified) -->
+        <section class="pt-6 max-w-lg mx-auto">
+            <p class="text-sm text-gray-400 mb-3">Want to be the first to know when it goes live?</p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-3">
+                <input id="email-input" type="email" placeholder="Your best email address" class="p-3 w-full sm:w-64 rounded-xl bg-gray-700/80 text-white placeholder-gray-400 border border-gray-600 focus:ring-accent focus:border-accent transition duration-300">
+                <button id="notify-button" onclick="handleNotification()" class="bg-accent hover:bg-indigo-600 text-white font-semibold py-3 px-6 rounded-xl shadow-lg transition duration-300 ease-in-out transform hover:scale-105 active:scale-95">
+                    Notify Me!
+                </button>
+            </div>
+            <p id="notification-message" class="text-sm text-green-400 mt-3 hidden"></p>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-auto py-4 text-center text-xs text-gray-500">
+        &copy; <span id="currentYear"></span> Manohar Chekka. All Rights Reserved.
+    </footer>
+
+    <script>
+        // Set current year dynamically
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Simple notification handler (since we don't have a backend to save the email)
+        function handleNotification() {
+            const emailInput = document.getElementById('email-input');
+            const messageElement = document.getElementById('notification-message');
+            const email = emailInput.value.trim();
+
+            if (email && email.includes('@')) {
+                // In a real application, you would send this email to a server
+                // For now, we just show a success message
+                messageElement.textContent = 'Awesome! I\\'ll shoot you an email when the portfolio is ready.';
+                messageElement.classList.remove('hidden');
+                emailInput.value = ''; // Clear the input
+                emailInput.disabled = true;
+                document.getElementById('notify-button').disabled = true;
+                document.getElementById('notify-button').textContent = 'Subscribed!';
+                document.getElementById('notify-button').classList.remove('bg-accent');
+                document.getElementById('notify-button').classList.add('bg-green-600');
+            } else {
+                messageElement.textContent = 'Please enter a valid email address.';
+                messageElement.classList.remove('hidden');
+                messageElement.classList.remove('text-green-400');
+                messageElement.classList.add('text-red-400');
+            }
+        }
+    </script>
+
+</body>
+</html>
