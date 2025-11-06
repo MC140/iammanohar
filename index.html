@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b132b" />
   <title>Manohar Chekka — Lead Data Engineering</title>
   <meta name="description" content="Lead — Data Engineering. Azure Databricks · Delta Lake · ADLS Gen2 · Synapse · ADF · PySpark · Governance." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,8 +18,10 @@
       --glass: rgba(255,255,255,0.06);
       --stroke: rgba(147,229,255,0.28);
       --ring: rgba(94,225,255,0.35);
+      --gap: 16px;
     }
-    *{box-sizing:border-box} html,body{height:100%}
+    *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       margin:0; color:var(--ink);
       background:
@@ -26,77 +29,123 @@
         linear-gradient(180deg, var(--bg2), var(--bg) 60%);
       font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
       -webkit-font-smoothing:antialiased;
-      padding:clamp(16px, 5vh, 52px);
+      padding:clamp(12px, 4vh, 52px);
     }
     .wrap{width:min(1100px, 92vw); margin:0 auto}
-    header{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:18px}
-    .brand{font-size:18px; font-weight:800; letter-spacing:.4px}
-    .nav a{color:var(--muted); text-decoration:none; margin-left:14px; font-weight:600}
-    .nav a:hover{color:var(--ink)}
 
+    /* Header */
+    header{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      margin-bottom:18px;
+    }
+    .brand{font-size:clamp(16px,2.2vw,18px); font-weight:800; letter-spacing:.4px}
+    .nav a{
+      color:var(--muted); text-decoration:none; font-weight:600;
+      padding:.6rem .8rem; border-radius:10px; display:inline-block;
+    }
+    .nav a:hover{color:var(--ink); background:rgba(255,255,255,.04)}
+    .nav{display:none}
+    .nav.open{display:block; position:absolute; top:64px; right:clamp(12px,4vw,32px); background:rgba(11,19,43,.98);
+      border:1px solid var(--stroke); border-radius:14px; padding:6px; z-index:30}
+    .nav.open a{display:block; min-width:200px}
+
+    /* Hamburger for mobile */
+    .menu-btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:44px; height:44px; border-radius:12px; border:1px solid var(--stroke);
+      background:var(--glass); color:var(--ink); cursor:pointer;
+    }
+    .menu-btn svg{width:22px; height:22px}
+    @media(min-width:980px){
+      .menu-btn{display:none}
+      .nav{display:flex; gap:4px; position:static}
+      .nav.open{display:flex; background:transparent; border:none; padding:0}
+      .nav a{padding:.5rem .7rem}
+    }
+
+    /* Hero */
     .hero{display:grid; gap:18px; grid-template-columns:1fr; margin-top:10px}
     @media(min-width:980px){ .hero{grid-template-columns:.95fr 1.05fr} }
-
-    h1{font-size:clamp(28px, 5vw, 56px); margin:0; line-height:1.05}
-    .role{font-weight:800; color:#d2f4ff; margin-top:4px}
-    .tag{color:var(--muted); font-size:clamp(14px, 2.1vw, 18px)}
+    h1{font-size:clamp(26px, 5vw, 56px); margin:0; line-height:1.05}
+    .role{font-weight:800; color:#d2f4ff; margin-top:6px; font-size:clamp(14px,2.2vw,18px)}
+    .tag{color:var(--muted); font-size:clamp(13px,2.1vw,17px); margin-top:4px}
     .accent{
-      height:2px; width:100%; margin:18px 0 8px;
+      height:2px; width:100%; margin:16px 0 8px;
       background:linear-gradient(90deg, var(--accent), var(--accent2));
       box-shadow:0 0 18px var(--ring);
       transform-origin:left; animation:sweep 1.1s ease .2s both
     }
     @keyframes sweep{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 
+    /* Panels */
     .panel{
       border-radius:18px; background:var(--glass);
       border:1px solid var(--stroke);
-      padding:16px; backdrop-filter: blur(10px);
+      padding:clamp(12px,2.4vw,16px); backdrop-filter: blur(10px);
       box-shadow:0 10px 40px rgba(0,0,0,.35), 0 0 0 4px rgba(94,225,255,.06) inset;
       opacity:0; transform:translateY(10px);
       transition: opacity .5s ease .05s, transform .5s ease .05s;
     }
     .panel.reveal{opacity:1; transform:translateY(0)}
 
-    .chips{display:flex; gap:8px; flex-wrap:wrap; margin-top:6px}
+    /* Chips */
+    .chips{display:flex; gap:8px; flex-wrap:wrap; margin-top:8px}
     .chip{
-      padding:7px 10px; border-radius:999px; border:1px solid var(--stroke);
+      padding:9px 12px; border-radius:999px; border:1px solid var(--stroke);
       color:#c9f2ff; background:rgba(147,229,255,.07);
       font-weight:600; font-size:12px; letter-spacing:.3px
     }
 
     section{margin-top:24px}
-    .sec-title{font-weight:800; letter-spacing:.4px; margin:0 0 10px 0}
+    .sec-title{font-weight:800; letter-spacing:.4px; margin:0 0 10px 0; font-size:clamp(14px,2.2vw,16px)}
+
+    /* Two-column blocks become single column on mobile */
     .grid2{display:grid; gap:12px}
     @media(min-width:780px){ .grid2{grid-template-columns:1fr 1fr} }
 
     /* Experience */
-    .exp{display:grid; gap:10px}
-    .rolecard{background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.06);
-      border-radius:14px; padding:12px}
-    .rolecard .t{font-weight:800}
-    .rolecard .w{font-size:12px; color:var(--muted)}
-    .rolecard ul{margin:8px 0 0 16px} .rolecard ul li{margin:6px 0}
+    .exp{display:grid; gap:12px}
+    .rolecard{
+      background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.06);
+      border-radius:14px; padding:clamp(12px,2.4vw,14px)
+    }
+    .rolecard .t{font-weight:800; font-size:clamp(14px,2.2vw,16px)}
+    .rolecard .w{font-size:12px; color:var(--muted); margin-top:2px}
+    .rolecard ul{margin:8px 0 0 18px; padding:0}
+    .rolecard ul li{margin:6px 0; line-height:1.5}
 
     /* Projects */
     .cards{display:grid; gap:12px}
     @media(min-width:980px){ .cards{grid-template-columns:1fr 1fr 1fr} }
     .card{border:1px solid rgba(255,255,255,.06); border-radius:14px; background:rgba(255,255,255,.04); padding:12px}
-    .card h4{margin:.1rem 0 .4rem; font-size:16px}
-    .card p{margin:0; color:#dfeeff; font-size:14px}
+    .card h4{margin:.1rem 0 .4rem; font-size:clamp(14px,2.2vw,16px)}
+    .card p{margin:0; color:#dfeeff; font-size:clamp(13px,2vw,14px)}
 
     /* Contact */
     .contact a{color:var(--accent)} .contact a:hover{text-decoration:underline}
 
-    footer{margin:20px 0 0 0; color:var(--muted); font-size:12px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px}
-    .links a{color:var(--muted); text-decoration:none; margin-right:12px} .links a:hover{color:var(--ink)}
+    /* Reduce motion preference */
+    @media (prefers-reduced-motion: reduce){
+      .accent{animation:none}
+      .panel{transition:none}
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
     <header>
       <div class="brand">manoharchekka</div>
-      <nav class="nav">
+
+      <!-- Mobile menu button -->
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation" aria-controls="siteNav" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+
+      <!-- Nav -->
+      <nav id="siteNav" class="nav" role="navigation">
         <a href="#about">About</a>
         <a href="#skills">Capabilities</a>
         <a href="#experience">Experience</a>
@@ -134,7 +183,7 @@
 
       <div class="panel" id="about">
         <div class="sec-title">About</div>
-        <p style="line-height:1.6; margin:0">
+        <p style="line-height:1.65; margin:0">
           I began in BI/ETL and dimensional modeling, then moved into Azure data engineering to scale pipelines and models.
           Over time, I standardized ingestion on Databricks + ADLS, shaped curated zones in Synapse, and automated delivery with ADF and Git-based CI/CD.
           I focus on governance (Purview, RLS/DRLS, Unity Catalog), performance (partitioning, Z-Order, CTAS/cache patterns), and cost-aware reliability.
@@ -193,10 +242,10 @@
 
     <section id="engagement" class="panel">
       <div class="sec-title">Community & Industry Engagement</div>
-      <ul style="margin:8px 0 0 16px; line-height:1.6">
+      <ul style="margin:8px 0 0 18px; line-height:1.6">
         <li>Active in the Microsoft ecosystem: engaged with product teams and public community channels around Azure data, Power BI, and Fabric.</li>
         <li>Regular participant in Fabric-focused events and webinars; shares practical feedback and patterns with peers.</li>
-        <li>Occasional contributor on public forums (e.g., Power BI Community, Stack Overflow) with an emphasis on production-grade, governed analytics.</li>
+        <li>Occasional contributor on public forums (e.g., Power BI Community, Stack Overflow) emphasizing governed, production-grade analytics.</li>
       </ul>
     </section>
 
@@ -205,15 +254,15 @@
       <p style="margin:0">Email: <a href="mailto:manoharch0698@gmail.com">manoharch0698@gmail.com</a></p>
     </section>
 
-    <footer>
+    <footer style="margin-top:24px; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; color:var(--muted); font-size:12px">
       <div>© <span id="year"></span> Manohar Chekka</div>
       <div class="links">
-        <a href="#about">About</a>
-        <a href="#skills">Capabilities</a>
-        <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#engagement">Engagement</a>
-        <a href="#contact">Contact</a>
+        <a class="nav_link" href="#about">About</a>
+        <a class="nav_link" href="#skills">Capabilities</a>
+        <a class="nav_link" href="#experience">Experience</a>
+        <a class="nav_link" href="#projects">Projects</a>
+        <a class="nav_link" href="#engagement">Engagement</a>
+        <a class="nav_link" href="#contact">Contact</a>
       </div>
     </footer>
   </div>
@@ -221,7 +270,18 @@
   <script>
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
-    // Smooth reveal on scroll
+
+    // Mobile nav toggle
+    const btn = document.getElementById('menuBtn');
+    const nav = document.getElementById('siteNav');
+    btn.addEventListener('click', ()=>{
+      const open = nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    // Close nav when a link is clicked (mobile)
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', ()=> nav.classList.remove('open')));
+
+    // Reveal on scroll
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('reveal'); });
     }, { threshold:.12 });
