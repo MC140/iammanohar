@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Manohar Chekka — Portfolio</title>
-  <meta name="description" content="Manohar Chekka — Data Engineering · Analytics · AI" />
+  <title>Manohar Chekka — Lead Data Engineering</title>
+  <meta name="description" content="Lead — Data Engineering. Azure Databricks · Delta Lake · ADLS Gen2 · Synapse · ADF · PySpark · Governance." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -38,6 +38,7 @@
     @media(min-width:980px){ .hero{grid-template-columns:.95fr 1.05fr} }
 
     h1{font-size:clamp(28px, 5vw, 56px); margin:0; line-height:1.05}
+    .role{font-weight:800; color:#d2f4ff; margin-top:4px}
     .tag{color:var(--muted); font-size:clamp(14px, 2.1vw, 18px)}
     .accent{
       height:2px; width:100%; margin:18px 0 8px;
@@ -52,7 +53,7 @@
       border:1px solid var(--stroke);
       padding:16px; backdrop-filter: blur(10px);
       box-shadow:0 10px 40px rgba(0,0,0,.35), 0 0 0 4px rgba(94,225,255,.06) inset;
-      opacity:0; transform:translateY(8px);
+      opacity:0; transform:translateY(10px);
       transition: opacity .5s ease .05s, transform .5s ease .05s;
     }
     .panel.reveal{opacity:1; transform:translateY(0)}
@@ -67,21 +68,25 @@
     section{margin-top:24px}
     .sec-title{font-weight:800; letter-spacing:.4px; margin:0 0 10px 0}
     .grid2{display:grid; gap:12px}
-    @media(min-width:720px){ .grid2{grid-template-columns:1fr 1fr} }
+    @media(min-width:780px){ .grid2{grid-template-columns:1fr 1fr} }
 
     /* Experience */
     .exp{display:grid; gap:10px}
-    .role{background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.06);
+    .rolecard{background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.06);
       border-radius:14px; padding:12px}
-    .role .t{font-weight:800}
-    .role .w{font-size:12px; color:var(--muted)}
-    .role ul{margin:8px 0 0 16px} .role ul li{margin:6px 0}
+    .rolecard .t{font-weight:800}
+    .rolecard .w{font-size:12px; color:var(--muted)}
+    .rolecard ul{margin:8px 0 0 16px} .rolecard ul li{margin:6px 0}
 
     /* Projects */
     .cards{display:grid; gap:12px}
     @media(min-width:980px){ .cards{grid-template-columns:1fr 1fr 1fr} }
     .card{border:1px solid rgba(255,255,255,.06); border-radius:14px; background:rgba(255,255,255,.04); padding:12px}
-    .card a{color:var(--accent)} .card a:hover{text-decoration:underline}
+    .card h4{margin:.1rem 0 .4rem; font-size:16px}
+    .card p{margin:0; color:#dfeeff; font-size:14px}
+
+    /* Contact */
+    .contact a{color:var(--accent)} .contact a:hover{text-decoration:underline}
 
     footer{margin:20px 0 0 0; color:var(--muted); font-size:12px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px}
     .links a{color:var(--muted); text-decoration:none; margin-right:12px} .links a:hover{color:var(--ink)}
@@ -94,8 +99,9 @@
       <nav class="nav">
         <a href="#about">About</a>
         <a href="#skills">Capabilities</a>
-        <a href="#work">Work</a>
+        <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
+        <a href="#engagement">Engagement</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
@@ -103,113 +109,100 @@
     <section class="hero">
       <div>
         <h1>Manohar Chekka</h1>
-        <div class="tag">Data Engineering · Analytics · AI</div>
+        <div class="role">Lead — Data Engineering</div>
+        <div class="tag">I design governed, high-throughput ELT on Azure — Databricks → Delta Lake → Synapse — with clean models and automation.</div>
         <div class="accent"></div>
-
-        <div class="panel" id="about">
-          <div class="sec-title">About</div>
-          <div style="line-height:1.6">
-            Data engineer focused on scalable ELT, semantic models, and AI-assisted automation.
-            I design clean architectures, optimize performance, and ship executive-ready insights.
-          </div>
-        </div>
 
         <div class="panel" id="skills">
           <div class="sec-title">Capabilities</div>
           <div class="chips">
-            <span class="chip">Databricks</span>
-            <span class="chip">PySpark</span>
+            <span class="chip">Azure Databricks</span>
             <span class="chip">Delta Lake</span>
             <span class="chip">ADLS Gen2</span>
-            <span class="chip">Synapse</span>
-            <span class="chip">Power BI (DAX)</span>
-            <span class="chip">RLS / Governance</span>
-            <span class="chip">SQL</span>
-            <span class="chip">dbt</span>
-            <span class="chip">Azure</span>
+            <span class="chip">Synapse (Serverless & Dedicated)</span>
+            <span class="chip">ADF Orchestration</span>
+            <span class="chip">PySpark / Spark SQL</span>
+            <span class="chip">Data Modeling (Star/Dimensional)</span>
             <span class="chip">CI/CD (Git)</span>
-            <span class="chip">Python</span>
-            <span class="chip">APIs</span>
+            <span class="chip">Purview</span>
+            <span class="chip">RLS / DRLS</span>
             <span class="chip">Unity Catalog</span>
+            <span class="chip">APIs</span>
           </div>
         </div>
       </div>
 
-      <div class="panel" id="work">
-        <div class="grid2">
-          <div>
-            <div class="sec-title">Experience (highlights)</div>
-            <div class="exp">
-              <div class="role">
-                <div class="t">Lead Data Engineer — Enterprise BI</div>
-                <div class="w">2019 — Present</div>
-                <ul>
-                  <li>Built bank-scale ELT on Databricks + Delta Lake with strong SLAs.</li>
-                  <li>Designed centralized semantic models and Power BI governance/RLS.</li>
-                  <li>Drove CI/CD, performance tuning, and cost-efficient data products.</li>
-                </ul>
-              </div>
-              <div class="role">
-                <div class="t">Data Analytics / AI Enablement</div>
-                <div class="w">Ongoing</div>
-                <ul>
-                  <li>Operationalized analytics with KPI scorecards and curated marts.</li>
-                  <li>Automated pipelines, telemetry, and lineage for compliance.</li>
-                  <li>Mentored teams on best practices and migration to Power BI.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+      <div class="panel" id="about">
+        <div class="sec-title">About</div>
+        <p style="line-height:1.6; margin:0">
+          I began in BI/ETL and dimensional modeling, then moved into Azure data engineering to scale pipelines and models.
+          Over time, I standardized ingestion on Databricks + ADLS, shaped curated zones in Synapse, and automated delivery with ADF and Git-based CI/CD.
+          I focus on governance (Purview, RLS/DRLS, Unity Catalog), performance (partitioning, Z-Order, CTAS/cache patterns), and cost-aware reliability.
+          Today, as a lead, I design end-to-end ELT on Azure and ship production-grade data products for analytics and decisioning.
+        </p>
+      </div>
+    </section>
 
-          <div>
-            <div class="sec-title">Selected Projects</div>
-            <div class="cards">
-              <div class="card">
-                <div style="font-weight:800">DeltaDesk — Delta Lake Desktop Query Tool</div>
-                <div style="color:var(--muted)">Desktop app to query ADLS Gen2 Delta tables via cloud compute; schema browser, CSV export.</div>
-              </div>
-              <div class="card">
-                <div style="font-weight:800">Power BI CoE — Centralized Semantic Models</div>
-                <div style="color:var(--muted)">Hub-and-spoke design, governance templates, RLS framework, performance patterns.</div>
-              </div>
-              <div class="card">
-                <div style="font-weight:800">Tableau → Power BI Migration</div>
-                <div style="color:var(--muted)">Automated conversions, LOD→DAX mapping, training modules, adoption analytics.</div>
-              </div>
-            </div>
-          </div>
+    <section id="experience" class="panel">
+      <div class="sec-title">Experience (highlights)</div>
+      <div class="exp">
+        <div class="rolecard">
+          <div class="t">Lead Data Engineer — Enterprise BI & Analytics</div>
+          <div class="w">2019 — Present</div>
+          <ul>
+            <li>Standardized ELT on Databricks/Delta Lake → Synapse; parameterized ADF pipelines and Git-based deployments.</li>
+            <li>Designed curated marts and semantic models with governed access (Purview, RLS/DRLS, Unity Catalog).</li>
+            <li>Performance & cost: partitioning, incremental strategies, cache/CTAS patterns, workload management.</li>
+          </ul>
+        </div>
+        <div class="rolecard">
+          <div class="t">Senior Data Engineer</div>
+          <div class="w">Prior</div>
+          <ul>
+            <li>Built curated models and optimized Spark/SQL jobs with monitoring/alerting and data quality checks.</li>
+            <li>Introduced lineage and access patterns for compliance and repeatable delivery.</li>
+          </ul>
+        </div>
+        <div class="rolecard">
+          <div class="t">BI/ETL Engineer (Early Career)</div>
+          <div class="w">Prior</div>
+          <ul>
+            <li>Dimensional modeling; SSIS/SSRS pipelines; performance-tuned reporting foundations.</li>
+          </ul>
         </div>
       </div>
     </section>
 
-    <section id="projects">
-      <div class="sec-title">More Work</div>
+    <section id="projects" class="panel">
+      <div class="sec-title">Selected Projects</div>
       <div class="cards">
         <div class="card">
-          <div style="font-weight:800">RLS Governance Toolkit</div>
-          <div style="color:var(--muted)">AD group strategy, row-level entitlements, service tickets, audit trail.</div>
+          <h4>Athena — Curated Zone on Azure</h4>
+          <p>Parameterized ingestion on Databricks; Delta schemas with partitioning/Z-Order; Synapse star models; governed access and refresh SLAs.</p>
         </div>
         <div class="card">
-          <div style="font-weight:800">Streaming Ingest PoC</div>
-          <div style="color:var(--muted)">Event-driven patterns with Delta Live Tables + lightweight Kafka.</div>
+          <h4>Governed Access Framework</h4>
+          <p>AD group strategy, RLS/DRLS patterns, Purview classification/lineage; deployment guardrails via CI/CD.</p>
         </div>
         <div class="card">
-          <div style="font-weight:800">Cost-Optimized Fabric/Synapse</div>
-          <div style="color:var(--muted)">Refresh/partition strategy, cache warming, workload management.</div>
+          <h4>Performance & Cost Optimization</h4>
+          <p>Incremental strategies, CTAS/cache patterns, workload management, telemetry for SLAs and cost control.</p>
         </div>
       </div>
     </section>
 
-    <section id="contact" class="panel" style="margin-top:18px">
+    <section id="engagement" class="panel">
+      <div class="sec-title">Community & Industry Engagement</div>
+      <ul style="margin:8px 0 0 16px; line-height:1.6">
+        <li>Active in the Microsoft ecosystem: engaged with product teams and public community channels around Azure data, Power BI, and Fabric.</li>
+        <li>Regular participant in Fabric-focused events and webinars; shares practical feedback and patterns with peers.</li>
+        <li>Occasional contributor on public forums (e.g., Power BI Community, Stack Overflow) with an emphasis on production-grade, governed analytics.</li>
+      </ul>
+    </section>
+
+    <section id="contact" class="panel contact">
       <div class="sec-title">Contact</div>
-      <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap">
-        <div>Email: <a href="mailto:hello@iammanohar.com" style="color:var(--accent)">hello@iammanohar.com</a></div>
-        <div class="links" style="margin-left:auto">
-          <!-- Add your real links when ready -->
-          <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
-          <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
-        </div>
-      </div>
+      <p style="margin:0">Email: <a href="mailto:manoharch0698@gmail.com">manoharch0698@gmail.com</a></p>
     </section>
 
     <footer>
@@ -217,8 +210,9 @@
       <div class="links">
         <a href="#about">About</a>
         <a href="#skills">Capabilities</a>
-        <a href="#work">Work</a>
+        <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
+        <a href="#engagement">Engagement</a>
         <a href="#contact">Contact</a>
       </div>
     </footer>
@@ -227,13 +221,11 @@
   <script>
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
-    // Reveal on scroll
+    // Smooth reveal on scroll
     const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e => {
-        if (e.isIntersecting) e.target.classList.add('reveal');
-      });
-    }, { threshold:.15 });
-    document.querySelectorAll('.panel,.card,.role').forEach(el => io.observe(el));
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('reveal'); });
+    }, { threshold:.12 });
+    document.querySelectorAll('.panel,.card,.rolecard').forEach(el => io.observe(el));
   </script>
 </body>
 </html>
