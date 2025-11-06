@@ -5,346 +5,261 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#0b132b" />
 <title>Manohar Chekka — Lead · Data Engineering</title>
-<meta name="description" content="Azure-first Lead Data Engineering — Databricks · Delta Lake · ADLS Gen2 · Synapse · ADF · PySpark · Governance." />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="description" content="Azure-first Lead Data Engineer. Databricks · Delta Lake · ADLS Gen2 · Synapse · ADF · PySpark · Governance." />
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
   --bg:#070b18; --bg2:#0b132b; --ink:#e9f3ff; --muted:#9db6cf;
-  --accent:#5ee1ff; --accent2:#93e5ff; --line:rgba(147,229,255,.28);
-  --glass:rgba(255,255,255,.06); --ring:rgba(94,225,255,.35);
-  --shadow:0 10px 40px rgba(0,0,0,.35), 0 0 0 4px rgba(94,225,255,.06) inset;
+  --b:#5ee1ff; --g:#7dfc9b; --o:#ffb36b; --line:rgba(147,229,255,.25);
+  --glass:rgba(255,255,255,.06); --shadow:0 12px 40px rgba(0,0,0,.35), 0 0 0 4px rgba(94,225,255,.06) inset;
 }
 *{box-sizing:border-box} html,body{height:100%}
 body{
   margin:0;color:var(--ink);
   background:
-    radial-gradient(1100px 600px at 120% -20%, rgba(94,225,255,.12), transparent 60%),
+    radial-gradient(1000px 600px at 120% -20%, rgba(94,225,255,.12), transparent 60%),
     linear-gradient(180deg,var(--bg2),var(--bg) 60%);
   font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
   -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
 }
-
-/* Animated background canvas (data mesh) */
-#bgCanvas{position:fixed; inset:0; z-index:-1}
-
-/* Layout */
-.wrap{width:min(1100px, 92vw); margin:0 auto; padding:clamp(12px,4vh,52px)}
-header{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:12px}
-.brand{font-weight:800; letter-spacing:.4px; font-size:clamp(16px,2.2vw,18px)}
+.wrap{width:min(1100px,92vw); margin:0 auto; padding:clamp(12px,4vh,48px)}
+/* Header */
+header{display:flex; align-items:center; justify-content:space-between; gap:10px}
+.brand{font-weight:800; letter-spacing:.4px}
 .menu a{color:var(--muted); text-decoration:none; font-weight:600; padding:.6rem .7rem; border-radius:10px}
 .menu a:hover{color:var(--ink); background:rgba(255,255,255,.05)}
 .menu{display:none}
-.burger{
-  width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--glass);
-  display:inline-flex;align-items:center;justify-content:center;color:var(--ink);cursor:pointer;
-}
+.burger{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--glass);color:var(--ink);display:inline-flex;align-items:center;justify-content:center}
 .burger svg{width:22px;height:22px}
 .fly{display:none;position:fixed;right:12px;top:64px;background:rgba(11,19,43,.98);border:1px solid var(--line);border-radius:14px;padding:6px;z-index:50}
 .fly a{display:block;min-width:200px;color:var(--muted);text-decoration:none;font-weight:600;padding:.6rem .7rem;border-radius:10px}
 .fly a:hover{color:var(--ink);background:rgba(255,255,255,.05)}
 .fly.open{display:block}
-@media(min-width:980px){ .burger{display:none} .menu{display:flex; gap:4px} .fly{display:none !important} }
+@media(min-width:980px){ .burger{display:none} .menu{display:flex; gap:4px} .fly{display:none!important} }
 
-/* Sections */
-.section{display:grid; gap:14px; margin:26px 0}
-@media(min-width:980px){ .section{grid-template-columns:.85fr 1.15fr; align-items:start} }
-
-.h1{font-size:clamp(28px,5vw,56px); font-weight:800; line-height:1.02; margin:0}
+/* HERO — 3 stages */
+.hero{margin-top:18px}
+.h1{font-size:clamp(28px,5.2vw,56px); margin:0; font-weight:800; line-height:1.02}
 .role{font-weight:800; color:#d2f4ff; margin-top:6px}
 .tag{color:var(--muted); margin-top:6px}
-.rule{height:2px; width:100%; margin:14px 0 8px;
-  background:linear-gradient(90deg, var(--accent), var(--accent2));
-  box-shadow:0 0 18px var(--ring); transform-origin:left;
-  animation:sweep 1.1s ease .2s both}
-@keyframes sweep{from{transform:scaleX(0)} to{transform:scaleX(1)}}
+.rule{height:2px;margin:14px 0 16px;background:linear-gradient(90deg,var(--b),#93e5ff); box-shadow:0 0 18px rgba(94,225,255,.35); transform-origin:left; animation:sweep 1.1s ease .2s both}
+@keyframes sweep{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 
-/* Panels */
-.panel{
-  border:1px solid var(--line); background:var(--glass); border-radius:18px;
-  padding:14px; backdrop-filter: blur(10px); box-shadow:var(--shadow);
-  opacity:0; transform:translateY(8px); transition:opacity .5s ease, transform .5s ease;
+.stages{display:grid; gap:12px}
+@media(min-width:980px){ .stages{grid-template-columns:1fr 1fr 1fr} }
+
+.stage{
+  border:1px solid var(--line); background:var(--glass); border-radius:18px; padding:12px;
+  box-shadow:var(--shadow); min-height:280px; position:relative; overflow:hidden;
 }
-.reveal{opacity:1; transform:none}
+.stage:before{content:""; position:absolute; inset:0; border-radius:18px; pointer-events:none}
+.stage.b:before{box-shadow:0 0 0 2px rgba(94,225,255,.35) inset}
+.stage.g:before{box-shadow:0 0 0 2px rgba(125,252,155,.35) inset}
+.stage.o:before{box-shadow:0 0 0 2px rgba(255,179,107,.35) inset}
+.stage h3{margin:0 0 8px; font-size:16px; letter-spacing:.6px}
+.hblue{color:var(--b)} .hgreen{color:var(--g)} .horange{color:var(--o)}
 
+/* Ingestion terminal */
+.term{font-family: ui-monospace, Menlo, Consolas, monospace; font-size:12px; line-height:1.5; white-space:pre-wrap; color:#c3f0ff; height:215px; overflow:auto; padding-right:6px}
+.term::-webkit-scrollbar{height:6px;width:6px} .term::-webkit-scrollbar-thumb{background:rgba(147,229,255,.3); border-radius:6px}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--b);display:inline-block;margin-right:6px;box-shadow:0 0 10px rgba(94,225,255,.7);animation:pulse 1.2s infinite}
+@keyframes pulse{50%{transform:scale(.8);opacity:.7}}
+
+/* Transform — radial graph + progress */
+.graph{height:215px; display:grid; place-items:center}
+#radial{width:100%; height:100%}
+.progress{position:absolute; left:12px; right:12px; bottom:12px; height:10px; border:1px solid rgba(125,252,155,.35); border-radius:999px; overflow:hidden}
+.progress > i{display:block; height:100%; width:0%; background:linear-gradient(90deg,#5ef6a4,#a7ffcf); box-shadow:0 0 14px rgba(125,252,155,.6); transition:width .35s ease}
+
+/* Load — delta card */
+.delta{height:215px; display:grid; gap:8px; align-content:start}
+.logo{width:60px; height:60px}
+.linelabel{font-size:12px; color:#cfefff; opacity:.9}
+.status{margin-top:6px; font-size:12px; color:#dfefff; opacity:.95}
+.ellipsis:after{content:""; display:inline-block; width:1ch; text-align:left; animation:ellipsis 1.6s steps(4,end) infinite}
+@keyframes ellipsis{0%{content:""}25%{content:"."}50%{content:".."}75%{content:"..."}}
+
+/* CTA */
+.cta{display:inline-flex; align-items:center; gap:10px; margin-top:16px; padding:12px 16px; border-radius:14px;
+     border:1px solid rgba(147,229,255,.4); background:rgba(255,255,255,.06); color:#b9ffcb; font-weight:800; text-decoration:none}
+.cta:hover{transform:translateY(-1px)}
+.eta{margin-top:10px; color:#8fb2c9; font-size:12px}
+
+/* Generic panels/sections below */
+.section{margin-top:26px}
+.panel{border:1px solid var(--line); background:var(--glass); border-radius:18px; padding:14px; box-shadow:var(--shadow); opacity:0; transform:translateY(8px); transition:opacity .5s, transform .5s}
+.reveal{opacity:1; transform:none}
 .subttl{font-weight:800; margin-bottom:6px; letter-spacing:.3px}
 .p{color:var(--ink); opacity:.95; line-height:1.65; margin:0}
-
-/* Chips */
-.chips{display:flex; gap:8px; flex-wrap:wrap; margin-top:8px}
-.chip{
-  padding:8px 12px; border-radius:999px; border:1px solid var(--line);
-  color:#c9f2ff; background:rgba(147,229,255,.08); font-weight:600; font-size:12px;
-  transform:translateZ(0);
-}
-.chip:hover{box-shadow:0 0 12px rgba(94,225,255,.45)}
-.chip:active{transform:scale(.98)}
-
-/* Experience */
-.exp{display:grid; gap:12px}
-.card{border:1px solid var(--line); border-radius:14px; background:rgba(255,255,255,.04); padding:12px}
-.card .t{font-weight:800}
-.card .w{font-size:12px; color:var(--muted); margin-top:2px}
-.card ul{margin:8px 0 0 18px; padding:0}
-.card li{margin:6px 0; line-height:1.55}
-
-/* Projects grid */
 .grid{display:grid; gap:12px}
-@media(min-width:980px){ .grid{grid-template-columns:1fr 1fr 1fr} }
-.tile{border:1px solid var(--line); border-radius:14px; background:rgba(255,255,255,.04); padding:12px}
-.tile h4{margin:.1rem 0 .3rem; font-size:16px}
-.tile p{margin:0; color:#dfeeff; font-size:14px}
+@media(min-width:980px){ .grid.cols-3{grid-template-columns:1fr 1fr 1fr} }
+.card{border:1px solid var(--line); border-radius:14px; background:rgba(255,255,255,.04); padding:12px}
+.card h4{margin:.1rem 0 .35rem; font-size:16px}
 
-/* Data pipeline SVG */
-.pipe{
-  border:1px solid var(--line); border-radius:18px; overflow:hidden; position:relative;
-  background:rgba(255,255,255,.03); box-shadow:var(--shadow)
-}
-.pipe svg{display:block; width:100%; height:auto}
-.flow{
-  stroke: url(#grad); stroke-width:3; fill:none; stroke-linecap:round;
-  stroke-dasharray: 12 10; animation: dash 2.2s linear infinite
-}
-@keyframes dash{ to{ stroke-dashoffset: -220 } }
-
-/* Typing log */
-.terminal{
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-  background:rgba(2,6,20,.5); border:1px solid var(--line); border-radius:12px; padding:10px;
-  box-shadow:var(--shadow); min-height:120px; position:relative;
-}
-.term-bar{position:absolute; top:6px; right:10px; font-size:10px; color:#8ecae6; opacity:.8}
-.cursor{display:inline-block; width:8px; height:1.1em; background:#8ee7ff; vertical-align:-.2em; margin-left:2px; animation:blink 1s steps(1) infinite}
-@keyframes blink{50%{opacity:.1}}
-
-/* Footer */
-footer{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; color:#86a8c3; padding:22px 0 8px}
-footer a{color:#9fdcff; text-decoration:none} footer a:hover{text-decoration:underline}
-
-/* Reduce motion */
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce){
   .rule{animation:none}
-  .flow{animation:none}
-  .panel{transition:none}
 }
 </style>
 </head>
 <body>
-<canvas id="bgCanvas" aria-hidden="true"></canvas>
-
 <div class="wrap">
-  <!-- Header -->
+  <!-- HEADER -->
   <header>
     <div class="brand">manoharchekka</div>
     <button class="burger" id="burger" aria-controls="fly" aria-expanded="false" aria-label="Open navigation">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M8 18h12"/></svg>
     </button>
     <nav class="menu" aria-label="Primary">
-      <a href="#about">About</a>
-      <a href="#skills">Capabilities</a>
-      <a href="#exp">Experience</a>
-      <a href="#proj">Projects</a>
-      <a href="#engage">Engagement</a>
-      <a href="#contact">Contact</a>
+      <a href="#about">About</a><a href="#skills">Capabilities</a><a href="#exp">Experience</a><a href="#proj">Projects</a><a href="#engage">Engagement</a><a href="#contact">Contact</a>
     </nav>
-    <nav id="fly" class="fly" role="dialog" aria-modal="true" aria-label="Mobile menu">
-      <a href="#about">About</a>
-      <a href="#skills">Capabilities</a>
-      <a href="#exp">Experience</a>
-      <a href="#proj">Projects</a>
-      <a href="#engage">Engagement</a>
-      <a href="#contact">Contact</a>
+    <nav id="fly" class="fly" role="dialog" aria-modal="true" aria-label="Mobile Menu">
+      <a href="#about">About</a><a href="#skills">Capabilities</a><a href="#exp">Experience</a><a href="#proj">Projects</a><a href="#engage">Engagement</a><a href="#contact">Contact</a>
     </nav>
   </header>
 
   <!-- HERO -->
-  <section class="section" id="home" style="margin-top:14px">
-    <div>
-      <h1 class="h1">Manohar Chekka</h1>
-      <div class="role">Lead · Data Engineering</div>
-      <p class="tag">Governed, high-throughput ELT on Azure — Databricks → Delta Lake → Synapse — with clean models and automation.</p>
-      <div class="rule"></div>
+  <section class="hero" id="home">
+    <h1 class="h1">Manohar Chekka</h1>
+    <div class="role">Lead · Data Engineering</div>
+    <p class="tag">Live data stream: <strong>Ingestion</strong> · <strong>Transform</strong> · <strong>Load</strong> (Azure — Databricks → Delta Lake → Synapse)</p>
+    <div class="rule"></div>
+
+    <div class="stages">
+      <!-- INGEST -->
+      <div class="stage b">
+        <h3 class="hblue">INGESTION</h3>
+        <div class="term" id="ingestTerm">
+          <span class="dot"></span>[14:35:21] ADF > trigger nightly_ingest (business_date=utc_today)
+        </div>
+      </div>
+
+      <!-- TRANSFORM -->
+      <div class="stage g">
+        <h3 class="hgreen">TRANSFORM</h3>
+        <div class="graph">
+          <!-- rotating radial nodes -->
+          <svg id="radial" viewBox="0 0 260 180" aria-hidden="true">
+            <defs>
+              <linearGradient id="gg" x1="0" x2="1"><stop offset="0%" stop-color="#7dfc9b"/><stop offset="100%" stop-color="#baffd1"/></linearGradient>
+              <filter id="glow"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            </defs>
+            <g transform="translate(130,90)">
+              <circle r="30" fill="none" stroke="rgba(125,252,155,.35)" />
+              <g id="orbit" filter="url(#glow)">
+                <!-- spokes -->
+                <g stroke="url(#gg)" stroke-width="2" opacity=".8">
+                  <line x1="0" y1="-60" x2="0" y2="-30"/>
+                  <line x1="52" y1="-30" x2="26" y2="-15"/>
+                  <line x1="52" y1="30" x2="26" y2="15"/>
+                  <line x1="0" y1="60" x2="0" y2="30"/>
+                  <line x1="-52" y1="30" x2="-26" y2="15"/>
+                  <line x1="-52" y1="-30" x2="-26" y2="-15"/>
+                </g>
+                <!-- nodes -->
+                <g fill="#cffff1">
+                  <circle cx="0" cy="-60" r="4"/><circle cx="52" cy="-30" r="4"/><circle cx="52" cy="30" r="4"/>
+                  <circle cx="0" cy="60" r="4"/><circle cx="-52" cy="30" r="4"/><circle cx="-52" cy="-30" r="4"/>
+                </g>
+                <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="14s" repeatCount="indefinite"/>
+              </g>
+              <text y="5" text-anchor="middle" font-size="12" fill="#e6fff4" font-weight="700">Spark Cluster</text>
+            </g>
+          </svg>
+        </div>
+        <div class="progress"><i id="prog"></i></div>
+      </div>
+
+      <!-- LOAD -->
+      <div class="stage o">
+        <h3 class="horange">LOAD</h3>
+        <div class="delta">
+          <!-- abstract delta-ish logo -->
+          <svg class="logo" viewBox="0 0 64 64" aria-hidden="true">
+            <defs><linearGradient id="bb" x1="0" x2="1"><stop offset="0%" stop-color="#5ee1ff"/><stop offset="100%" stop-color="#93e5ff"/></linearGradient></defs>
+            <path d="M32 8 L55 50 H9 Z" fill="url(#bb)" opacity=".95"/>
+            <circle cx="32" cy="42" r="6" fill="#0b132b"/>
+          </svg>
+          <div class="linelabel"><strong>Destination:</strong> SynapseDW_analytics</div>
+          <div class="linelabel"><strong>Table:</strong> curated.fact_sessions</div>
+          <div class="status">Status: Appending to Delta Lake<span class="ellipsis"></span></div>
+        </div>
+      </div>
     </div>
 
-    <!-- Data pipeline animation -->
-    <div class="pipe panel reveal" role="img" aria-label="Animated data pipeline">
-      <svg viewBox="0 0 800 220" preserveAspectRatio="xMidYMid meet">
-        <defs>
-          <linearGradient id="grad" x1="0" x2="1">
-            <stop offset="0%" stop-color="#5ee1ff"/><stop offset="100%" stop-color="#93e5ff"/>
-          </linearGradient>
-          <filter id="glow"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-        </defs>
-        <!-- Stages -->
-        <g fill="none" stroke="rgba(147,229,255,.35)">
-          <rect x="24" y="40"  width="120" height="60" rx="10"/><!-- Source -->
-          <rect x="208" y="40" width="140" height="60" rx="10"/><!-- Ingest -->
-          <rect x="408" y="40" width="140" height="60" rx="10"/><!-- Curated -->
-          <rect x="608" y="40" width="168" height="60" rx="10"/><!-- Serve -->
-        </g>
-        <g fill="#dff7ff" font-size="12" font-weight="600">
-          <text x="36"  y="75">ADLS Gen2</text>
-          <text x="222" y="75">Databricks (ELT)</text>
-          <text x="426" y="75">Delta Lake</text>
-          <text x="626" y="75">Synapse / BI</text>
-        </g>
-        <!-- Flow -->
-        <path class="flow" filter="url(#glow)"
-              d="M144,70 C176,70 176,70 208,70
-                 M348,70 C378,70 378,70 408,70
-                 M548,70 C578,70 578,70 608,70" />
-        <!-- Packets -->
-        <circle r="4" fill="#9feaff">
-          <animateMotion dur="2.8s" repeatCount="indefinite" path="M144,70 C176,70 176,70 208,70"/>
-        </circle>
-        <circle r="4" fill="#9feaff">
-          <animateMotion dur="2.8s" repeatCount="indefinite" path="M348,70 C378,70 378,70 408,70"/>
-        </circle>
-        <circle r="4" fill="#9feaff">
-          <animateMotion dur="2.8s" repeatCount="indefinite" path="M548,70 C578,70 578,70 608,70"/>
-        </circle>
-      </svg>
+    <a class="cta" href="#about">VIEW PROCESSED DATA (LAUNCH PORTFOLIO)</a>
+    <div class="eta">ETA: As soon as the hamsters get more coffee. Follow the stream for updates.</div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <div class="panel reveal">
+      <div class="subttl">About</div>
+      <p class="p">I began in BI/ETL and dimensional modeling, then moved into Azure data engineering to scale pipelines and models. I standardize ingestion on Databricks + ADLS, shape curated zones in Synapse, and automate delivery with ADF and Git-based CI/CD. Governance (Purview, RLS/DRLS, Unity Catalog), performance (partitioning, Z-Order, CTAS/cache), and cost-aware reliability are my defaults.</p>
     </div>
   </section>
 
   <!-- CAPABILITIES -->
-  <section class="section" id="skills">
-    <div>
-      <div class="subttl">Capabilities</div>
-      <p class="p" style="margin-top:6px">
-        Azure Databricks · Delta Lake · ADLS Gen2 · Synapse (Serverless & Dedicated) · ADF · PySpark/Spark SQL ·
-        Star/Dimensional Modeling · CI/CD (Git) · Purview · RLS/DRLS · Unity Catalog · APIs
-      </p>
-      <div class="chips">
-        <span class="chip">Pipeline Design</span><span class="chip">Governance</span><span class="chip">Cost & Performance</span>
-        <span class="chip">Automation</span><span class="chip">Modeling</span><span class="chip">Observability</span>
-      </div>
-    </div>
-
-    <!-- Auto-typing terminal (fake data job logs) -->
-    <div class="panel reveal terminal">
-      <div class="term-bar">job: nightly_ingest · cluster: dbx-prod · status: running</div>
-      <div id="termText"></div><span class="cursor" aria-hidden="true"></span>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section class="section" id="about">
-    <div>
-      <div class="subttl">About</div>
-      <p class="p">
-        I began in BI/ETL and dimensional modeling, then moved into Azure data engineering to scale pipelines and models.
-        Over time, I standardized ingestion on Databricks + ADLS, shaped curated zones in Synapse, and automated delivery with ADF and Git-based CI/CD.
-        I focus on governance (Purview, RLS/DRLS, Unity Catalog), performance (partitioning, Z-Order, CTAS/cache patterns), and cost-aware reliability.
-        Today, I lead end-to-end ELT on Azure and ship production-grade data products for analytics and decisioning.
-      </p>
-    </div>
-
+  <section id="skills" class="section">
     <div class="panel reveal">
-      <div class="subttl">Toolbox</div>
-      <div class="chips">
-        <span class="chip">Databricks</span><span class="chip">Delta Lake</span><span class="chip">Synapse</span>
-        <span class="chip">ADLS Gen2</span><span class="chip">ADF</span><span class="chip">PySpark</span>
-        <span class="chip">Spark SQL</span><span class="chip">Git CI/CD</span><span class="chip">Purview</span>
-        <span class="chip">Unity Catalog</span><span class="chip">APIs</span>
-      </div>
+      <div class="subttl">Capabilities</div>
+      <p class="p">Azure Databricks · Delta Lake · ADLS Gen2 · Synapse (Serverless & Dedicated) · ADF · PySpark/Spark SQL · Data Modeling (Star/Dimensional) · CI/CD (Git) · Purview · RLS/DRLS · Unity Catalog · APIs</p>
     </div>
   </section>
 
   <!-- EXPERIENCE -->
-  <section class="section" id="exp">
-    <div>
-      <div class="subttl">Experience (highlights)</div>
-      <p class="p">Concise, Azure-centered highlights—enough to convey scope and maturity.</p>
-    </div>
+  <section id="exp" class="section">
     <div class="panel reveal">
-      <div class="exp">
+      <div class="subttl">Experience (highlights)</div>
+      <div class="grid">
         <div class="card">
-          <div class="t">Lead Data Engineer — Enterprise BI & Analytics</div>
-          <div class="w">2019 — Present</div>
-          <ul>
-            <li>Standardized ELT on Databricks/Delta Lake → Synapse; parameterized ADF pipelines and Git-based deployments.</li>
-            <li>Curated marts & semantic models with governed access (Purview, RLS/DRLS, Unity Catalog).</li>
-            <li>Performance & cost: partitioning, incremental strategies, CTAS/cache patterns, workload management.</li>
-          </ul>
+          <h4>Lead Data Engineer — Enterprise BI & Analytics</h4>
+          <p class="p">Standardized ELT on Databricks/Delta Lake → Synapse; parameterized ADF pipelines; governed curated marts (Purview, RLS/DRLS, Unity Catalog); incremental + CTAS/cache patterns for performance & cost.</p>
         </div>
         <div class="card">
-          <div class="t">Senior Data Engineer</div>
-          <div class="w">Prior</div>
-          <ul>
-            <li>Built curated models and optimized Spark/SQL jobs with monitoring/alerting and data quality checks.</li>
-            <li>Introduced lineage and access patterns for compliance and repeatable delivery.</li>
-          </ul>
+          <h4>Senior Data Engineer</h4>
+          <p class="p">Curated models, Spark/SQL optimization, monitoring & data quality, lineage and access patterns.</p>
         </div>
         <div class="card">
-          <div class="t">BI/ETL Engineer (Early Career)</div>
-          <div class="w">Prior</div>
-          <ul>
-            <li>Dimensional modeling; SSIS/SSRS pipelines; performance-tuned reporting foundations.</li>
-          </ul>
+          <h4>BI/ETL Engineer (Early Career)</h4>
+          <p class="p">Dimensional modeling; SSIS/SSRS pipelines; performance-tuned reporting foundations.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- PROJECTS -->
-  <section class="section" id="proj">
-    <div>
-      <div class="subttl">Selected Projects</div>
-      <p class="p">Representative Azure builds—governed, performant, and reliable.</p>
-    </div>
+  <section id="proj" class="section">
     <div class="panel reveal">
-      <div class="grid">
-        <div class="tile">
-          <h4>Athena — Curated Zone on Azure</h4>
-          <p>Parameterized ingestion on Databricks; Delta schemas with partitioning/Z-Order; Synapse star models; governed access and refresh SLAs.</p>
-        </div>
-        <div class="tile">
-          <h4>Governed Access Framework</h4>
-          <p>AD group strategy, RLS/DRLS patterns, Purview classification/lineage; CI/CD guardrails for consistent releases.</p>
-        </div>
-        <div class="tile">
-          <h4>Performance & Cost Optimization</h4>
-          <p>Incremental strategies, CTAS/cache patterns, workload management, telemetry for SLAs and cost control.</p>
-        </div>
+      <div class="subttl">Selected Projects</div>
+      <div class="grid cols-3">
+        <div class="card"><h4>Athena — Curated Zone</h4><p class="p">Parameterized ingestion; Delta schemas with partitioning/Z-Order; Synapse star models; governed access and refresh SLAs.</p></div>
+        <div class="card"><h4>Governed Access Framework</h4><p class="p">AD group strategy, RLS/DRLS patterns, Purview classification/lineage; CI/CD guardrails.</p></div>
+        <div class="card"><h4>Performance & Cost</h4><p class="p">Incremental strategies, CTAS/cache patterns, workload management, telemetry for SLAs.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ENGAGEMENT -->
-  <section class="section" id="engage">
-    <div>
+  <!-- ENGAGEMENT & CONTACT -->
+  <section id="engage" class="section">
+    <div class="panel reveal">
       <div class="subttl">Community & Industry Engagement</div>
-      <p class="p">Subtle, credible involvement—no hype.</p>
-    </div>
-    <div class="panel reveal">
-      <ul class="p" style="margin:0 0 0 18px;padding:0">
-        <li>Active in the Microsoft ecosystem; engaged with product teams and public channels across Azure data, Power BI, and Fabric.</li>
-        <li>Regular participant in Fabric-focused events and webinars; shares pragmatic feedback and patterns with peers.</li>
-        <li>Occasional contributor on public forums (e.g., Power BI Community, Stack Overflow) emphasizing governed, production-grade analytics.</li>
-      </ul>
+      <p class="p">Active in the Microsoft ecosystem; engaged with product teams and public channels around Azure data, Power BI, and Fabric. Regular participant in Fabric events; occasional contributor on public forums (Power BI Community, Stack Overflow) focused on governed, production-grade analytics.</p>
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section class="section" id="contact">
-    <div>
+  <section id="contact" class="section">
+    <div class="panel reveal">
       <div class="subttl">Contact</div>
-      <p class="p">Email is best for quick intros or collaboration.</p>
-    </div>
-    <div class="panel reveal">
-      <p class="p" style="margin:0">Email: <a href="mailto:manoharch0698@gmail.com" style="color:#9fdcff">manoharch0698@gmail.com</a></p>
+      <p class="p">Email: <a href="mailto:manoharch0698@gmail.com" style="color:#9fdcff">manoharch0698@gmail.com</a></p>
     </div>
   </section>
 
-  <footer>
+  <footer style="margin-top:18px;color:#8fb2c9;font-size:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
     <div>© <span id="year"></span> Manohar Chekka</div>
-    <div>
-      <a href="#about">About</a> · <a href="#skills">Capabilities</a> · <a href="#exp">Experience</a> · <a href="#proj">Projects</a> · <a href="#engage">Engagement</a> · <a href="#contact">Contact</a>
-    </div>
+    <div><a href="#about" style="color:#9fdcff;text-decoration:none">About</a> · <a href="#skills" style="color:#9fdcff;text-decoration:none">Capabilities</a> · <a href="#exp" style="color:#9fdcff;text-decoration:none">Experience</a> · <a href="#proj" style="color:#9fdcff;text-decoration:none">Projects</a> · <a href="#engage" style="color:#9fdcff;text-decoration:none">Engagement</a> · <a href="#contact" style="color:#9fdcff;text-decoration:none">Contact</a></div>
   </footer>
 </div>
 
@@ -353,87 +268,39 @@ footer a{color:#9fdcff; text-decoration:none} footer a:hover{text-decoration:und
 document.getElementById('year').textContent = new Date().getFullYear();
 
 /* Mobile nav */
-const b = document.getElementById('burger');
-const fly = document.getElementById('fly');
-b.addEventListener('click', () => {
-  const open = fly.classList.toggle('open');
-  b.setAttribute('aria-expanded', open ? 'true' : 'false');
-});
+const b = document.getElementById('burger'), fly = document.getElementById('fly');
+b.addEventListener('click', ()=>{ const open = fly.classList.toggle('open'); b.setAttribute('aria-expanded', open ? 'true':'false'); });
 fly.querySelectorAll('a').forEach(a => a.addEventListener('click', ()=> fly.classList.remove('open')));
 
 /* Reveal on scroll */
-const io = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('reveal'); io.unobserve(e.target); }});
-},{threshold:.14});
+const io = new IntersectionObserver((es)=> es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('reveal'); io.unobserve(e.target); }}), {threshold:.14});
 document.querySelectorAll('.panel').forEach(el=> io.observe(el));
 
-/* Auto-typing terminal lines (fake data logs) */
-const logs = [
-  "[00:12:01] ADF > Trigger: nightly_ingest (param: business_date=utc_today)",
-  "[00:12:02] Databricks > Starting job: bronze_ingest_v2 on cluster dbx-prod",
-  "[00:12:07] Delta Lake > MERGE INTO bronze.events ✅ 1.24M rows (dedup + watermark)",
-  "[00:12:13] Delta Lake > OPTIMIZE bronze.events ZORDER BY (event_date)",
-  "[00:12:24] Databricks > Transform to silver: sessions, customers",
-  "[00:12:46] Synapse > CTAS curated.fact_sessions (partitioned by month)",
-  "[00:12:58] Governance > Purview classify: PII=masked, lineage updated",
-  "[00:13:06] Quality > 38 tests passed · 0 failed · 0 warnings",
-  "[00:13:12] Deploy > semantic models refreshed · RLS/DRLS validated",
-  "[00:13:18] Done > ELT runtime 01:17 · SLA met"
+/* Ingestion log typer */
+const term = document.getElementById('ingestTerm');
+const lines = [
+  "[14:35:22] Databricks > start bronze_ingest_v2 on cluster dbx-prod",
+  "[14:35:27] Source: ADLS Gen2 (landing/events/*.json) · 1.24M rows",
+  "[14:35:31] Dedupe by event_id; watermark = 7 days",
+  "[14:35:36] Write → Delta (bronze.events) · mode=merge",
+  "[14:35:44] OPTIMIZE bronze.events ZORDER BY (event_date)",
+  "[14:35:51] ✓ bronze complete — moving to silver"
 ];
-const term = document.getElementById('termText');
-let li = 0, ci = 0, line = logs[0];
-function typeNext(){
-  if(li >= logs.length){ li = 0; term.innerHTML=""; }
-  if(ci <= line.length){
-    term.textContent = (term.textContent || "") + line.charAt(ci++);
-  }else{
-    term.textContent += "\n";
-    li++; ci = 0; line = logs[li] || logs[0];
+let li=0, ci=0, current=lines[0];
+function tick(){
+  if(li>=lines.length){ li=0; term.textContent = term.textContent.split('\n').slice(-4).join('\n') + '\n'; }
+  if(ci<=current.length){
+    term.textContent += current.charAt(ci++); term.scrollTop = term.scrollHeight;
+  } else {
+    term.textContent += "\n"; li++; ci=0; current = lines[li] || lines[0];
   }
 }
-setInterval(typeNext, 18);
+setInterval(tick, 18);
 
-/* Animated data mesh background */
-const canvas = document.getElementById('bgCanvas');
-const ctx = canvas.getContext('2d');
-let W, H, nodes=[];
-function resize(){
-  W = canvas.width = window.innerWidth;
-  H = canvas.height = window.innerHeight;
-  nodes = Array.from({length: Math.max(40, Math.min(110, Math.floor(W*H/18000)))}, () => ({
-    x: Math.random()*W, y: Math.random()*H,
-    vx: (Math.random()-.5)*0.45, vy: (Math.random()-.5)*0.45,
-    r: 1 + Math.random()*1.6
-  }));
-}
-function step(){
-  ctx.clearRect(0,0,W,H);
-  // draw edges
-  for(let i=0;i<nodes.length;i++){
-    const a=nodes[i];
-    for(let j=i+1;j<nodes.length;j++){
-      const b=nodes[j];
-      const dx=a.x-b.x, dy=a.y-b.y, d=dx*dx+dy*dy;
-      if(d< 110*110){
-        const alpha = 1 - (d/(110*110));
-        ctx.strokeStyle = `rgba(147,229,255,${0.18*alpha})`;
-        ctx.lineWidth = 1;
-        ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
-      }
-    }
-  }
-  // draw nodes
-  for(const n of nodes){
-    n.x += n.vx; n.y += n.vy;
-    if(n.x<0||n.x>W) n.vx*=-1;
-    if(n.y<0||n.y>H) n.vy*=-1;
-    ctx.fillStyle = 'rgba(159,234,255,.9)';
-    ctx.beginPath(); ctx.arc(n.x,n.y,n.r,0,Math.PI*2); ctx.fill();
-  }
-  requestAnimationFrame(step);
-}
-resize(); step();
-window.addEventListener('resize', resize);
+/* Transform progress bar */
+const prog = document.getElementById('prog');
+let p=0, dir=1;
+setInterval(()=>{ p += dir * (2 + Math.random()*3); if(p>100){p=100;dir=-1} if(p<5){p=5;dir=1} prog.style.width = p.toFixed(1)+'%'; }, 350);
 </script>
 </body>
 </html>
