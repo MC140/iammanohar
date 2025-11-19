@@ -1,440 +1,501 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  Github, 
-  Linkedin, 
-  Mail, 
-  ExternalLink, 
-  Download, 
-  ChevronDown, 
-  Code, 
-  Briefcase, 
-  User, 
-  Award,
-  Menu,
-  X,
-  Copy,
-  Check
-} from 'lucide-react';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manohar Chekka | Technical Lead & Data Architect</title>
+    <!-- Load Tailwind CSS from CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for background and font */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #020617; /* slate-950 */
+            color: #e2e8f0; /* slate-200 */
+            scroll-behavior: smooth;
+        }
+        /* Custom scrollbar to match dark theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e293b; /* slate-800 */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155; /* slate-700 */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #60a5fa; /* blue-400 */
+        }
+        .hero-gradient-text {
+            background-image: linear-gradient(to right, #60a5fa, #c084fc); /* blue-400 to purple-400 */
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-slate-950">
 
-/**
- * ==================================================================================
- * 🔧 CONFIGURATION SECTION - EDIT YOUR DETAILS HERE
- * ==================================================================================
- */
-const portfolioData = {
-  name: "Manohar Chekka",
-  role: "Technical Lead | Data Engineering & Cloud Architecture",
-  headline: "Driving data excellence with scalable Azure solutions and performance optimization—delivering measurable business impact (30% runtime reduction).",
-  location: "Toronto, Ontario, Canada",
-  email: "manohar.c@example.com", // <<<--- !!! UPDATE YOUR EMAIL HERE !!!
-  linkedinUrl: "https://www.linkedin.com/in/manohar-c-74a0b225a",
-  
-  about: "I am a results-focused Technical Leader with 7+ years of experience specializing in Data Engineering, BI, and ETL tools across both cloud (Azure, AWS, GCP) and on-premises environments. My core expertise lies in designing and implementing highly scalable data curation processes using modern tools like Databricks, Synapse, and PySpark. I am passionate about optimizing data pipelines, ensuring strict AML/Data Governance compliance, and translating complex data into strategic KPIs like CES and LEI that directly enhance customer experience and drive business alignment.",
-  
-  // "By The Numbers" - Hiring managers love quick stats
-  stats: [
-    { label: "Years Experience", value: "7+" },
-    { label: "Pipeline Runtime Reduced", value: "30%+" },
-    { label: "Cloud Platforms", value: "3 (Azure/AWS/GCP)" },
-    { label: "Strategic KPIs Developed", value: "CES & LEI" }
-  ],
-
-  skills: [
-    "Azure Data Factory (ADF)",
-    "Azure Databricks / Synapse",
-    "Python / PySpark / Pandas",
-    "SQL / Complex Queries",
-    "Data Modeling & Warehousing",
-    "Power BI / SSRS / DAX",
-    "Data Governance / AML Standards",
-    "Performance Optimization",
-    "ETL/ELT Pipeline Design",
-    "Team Leadership"
-  ],
-
-  experience: [
-    {
-      company: "Wipro",
-      role: "Technical Lead - Data Engineering",
-      period: "Mar 2025 - Present",
-      description: "Leading data-driven initiatives in a Technical Lead capacity, focusing on architecture, solution design, and mentoring to ensure high-quality and scalable data engineering practices."
-    },
-    {
-      company: "TD Bank",
-      role: "Data Engineer",
-      period: "Jun 2023 - Present",
-      description: "Key member of the Data as a Service team on the Athena platform (Databricks/Synapse). Developed robust ETL pipelines using Python/PySpark, achieving **>30% reduction in data pipeline runtime** through advanced performance optimization. Built critical customer-focused KPIs (CES & LEI) from the ground up and enforced strict Anti-Money Laundering (AML) standards."
-    },
-    {
-      company: "BYJU'S",
-      role: "Business Development Analyst",
-      period: "Jan 2019 - Aug 2021",
-      description: "Developed and managed ETL pipelines using Azure Data Factory (ADF) for data ingestion into Azure Data Lake and Synapse. Created essential accounting reports and dashboards using Power BI, optimizing SQL queries, and utilizing complex DAX functions for accurate financial reporting."
-    },
-    {
-      company: "Padmavati Hospitals",
-      role: "Administrative Manager / Database Admin",
-      period: "Mar 2017 - Jan 2021",
-      description: "Directed data-related operations and managed IT infrastructure/data analytics teams. Focused on supporting management decision-making with data insights and ensuring compliance with healthcare data standards."
-    }
-  ],
-
-  projects: [
-    {
-      title: "Customer Experience KPI Implementation (CES & LEI)",
-      tech: "Azure Databricks, PySpark, Data Modeling",
-      description: "Architected and built the Customer Effort Score (CES) and Legendary Experience Index (LEI) KPIs, providing actionable insights used by stakeholders to significantly enhance customer journey experiences."
-    },
-    {
-      title: "Athena Data Platform Performance Optimization",
-      tech: "Python, PySpark, Synapse Analytics",
-      description: "Spearheaded performance optimization techniques across core data pipelines, resulting in a quantifiable reduction of over 30% in overall pipeline execution runtime."
-    },
-    {
-      title: "Financial Reporting & BI Solution",
-      tech: "Power BI, DAX, Azure Data Factory, SQL",
-      description: "Designed and published comprehensive Year-to-Date, Month-to-Date, and Budget reports, leveraging optimized SQL and complex DAX queries to ensure data integrity and business accuracy."
-    }
-  ]
-};
-
-/**
- * ==================================================================================
- * 🎨 COMPONENT CODE (No need to edit below unless customizing design)
- * ==================================================================================
- */
-
-const Navigation = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const navLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' },
-  ];
-
-  return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-slate-900/90 backdrop-blur-md shadow-lg py-4' : 'bg-transparent py-6'}`}>
-      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        <a href="#" className="text-2xl font-bold text-white tracking-tighter">
-          MC<span className="text-blue-500">.</span>
-        </a>
-
-        {/* Desktop Nav */}
-        <div className="hidden md:flex space-x-8">
-          {navLinks.map((link) => (
-            <a key={link.name} href={link.href} className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
-              {link.name}
-            </a>
-          ))}
-          <a 
-            href={portfolioData.linkedinUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-4 py-2 text-sm font-medium bg-blue-600 hover:bg-blue-700 text-white rounded-full transition-all shadow-lg shadow-blue-500/20"
-          >
-            Connect on LinkedIn
-          </a>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-white">
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      {/* Mobile Nav */}
-      {isOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-slate-900 border-t border-slate-800 p-6 flex flex-col space-y-4 shadow-xl">
-          {navLinks.map((link) => (
-            <a 
-              key={link.name} 
-              href={link.href} 
-              onClick={() => setIsOpen(false)}
-              className="text-lg text-slate-300 hover:text-white"
-            >
-              {link.name}
-            </a>
-          ))}
-        </div>
-      )}
-    </nav>
-  );
-};
-
-const Hero = () => {
-  return (
-    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-slate-950">
-      {/* Background Gradients */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-[120px]" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-[120px]" />
-
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="max-w-4xl">
-          <div className="inline-block px-3 py-1 mb-6 border border-blue-500/30 rounded-full bg-blue-500/10 text-blue-400 text-sm font-medium animate-fade-in">
-            {portfolioData.role.split('|')[0].trim()}
-          </div>
-          <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight mb-6 tracking-tight">
-            I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">{portfolioData.name}</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-slate-400 mb-8 leading-relaxed max-w-3xl">
-            {portfolioData.headline}
-          </p>
-          
-          <div className="flex flex-wrap gap-4">
-            <a 
-              href={portfolioData.linkedinUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-semibold transition-all shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transform hover:-translate-y-1"
-            >
-              <Linkedin size={20} />
-              View LinkedIn Profile
-            </a>
-            <a 
-              href="#contact"
-              className="flex items-center gap-2 px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-full font-semibold transition-all border border-slate-700 hover:border-slate-600"
-            >
-              <Mail size={20} />
-              Let's Connect
-            </a>
-          </div>
-        </div>
-
-        {/* Stats Row */}
-        <div className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-slate-800 pt-12">
-          {portfolioData.stats.map((stat, index) => (
-            <div key={index} className="group cursor-default">
-              <h3 className="text-3xl md:text-4xl font-bold text-white mb-1 group-hover:text-blue-400 transition-colors">{stat.value}</h3>
-              <p className="text-slate-500 text-sm uppercase tracking-wider font-medium">{stat.label}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-      
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce text-slate-500">
-        <ChevronDown size={24} />
-      </div>
-    </section>
-  );
-};
-
-const About = () => {
-  return (
-    <section id="about" className="py-24 bg-slate-900">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 flex items-center gap-3">
-              <User className="text-blue-500" />
-              Professional Summary
-            </h2>
-            <p className="text-slate-300 text-lg leading-relaxed mb-8">
-              {portfolioData.about}
-            </p>
-            
-            <h3 className="text-xl font-semibold text-white mb-4">Core Technology Stack</h3>
-            <div className="flex flex-wrap gap-3">
-              {portfolioData.skills.map((skill, index) => (
-                <span 
-                  key={index} 
-                  className="px-4 py-2 bg-slate-800 text-slate-300 rounded-lg text-sm border border-slate-700 hover:border-blue-500/50 hover:text-blue-400 transition-colors cursor-default"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </div>
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-tr from-blue-600 to-purple-600 rounded-2xl blur-2xl opacity-20"></div>
-            <div className="relative bg-slate-800 border border-slate-700 rounded-2xl p-8 shadow-2xl">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-              </div>
-              <div className="font-mono text-sm text-slate-400 space-y-2">
-                <p><span className="text-purple-400">const</span> <span className="text-blue-400">dataStrategist</span> = {'{'}</p>
-                <p className="pl-4">name: <span className="text-green-400">"{portfolioData.name}"</span>,</p>
-                <p className="pl-4">focus: <span className="text-green-400">"Scalable Data Architectures"</span>,</p>
-                <p className="pl-4">cloud: <span className="text-green-400">["Azure", "AWS", "GCP"]</span>,</p>
-                <p className="pl-4">impact: <span className="text-orange-400">"Measured Business Growth"</span></p>
-                <p>{'};'}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const Experience = () => {
-  return (
-    <section id="experience" className="py-24 bg-slate-950">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 flex items-center gap-3">
-            <Briefcase className="text-blue-500" />
-            Career Milestones
-          </h2>
-          <p className="text-slate-400">My professional journey in Data Engineering and Analytics.</p>
-        </div>
-
-        <div className="relative border-l-2 border-slate-800 ml-3 md:ml-6 space-y-12">
-          {portfolioData.experience.map((exp, index) => (
-            <div key={index} className="relative pl-8 md:pl-12 group">
-              {/* Timeline Dot */}
-              <div className="absolute -left-[9px] md:-left-[9px] top-0 w-4 h-4 rounded-full bg-slate-800 border-2 border-slate-600 group-hover:bg-blue-600 group-hover:border-blue-400 transition-colors"></div>
-              
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">{exp.role}</h3>
-                <span className="text-sm font-mono text-slate-500 bg-slate-900 px-3 py-1 rounded-full border border-slate-800 mt-2 sm:mt-0 w-fit">
-                  {exp.period}
-                </span>
-              </div>
-              <h4 className="text-lg text-slate-400 mb-4">{exp.company}</h4>
-              <p className="text-slate-400 leading-relaxed max-w-3xl">
-                {exp.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const Projects = () => {
-  return (
-    <section id="projects" className="py-24 bg-slate-900">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 flex items-center gap-3">
-            <Code className="text-blue-500" />
-            Key Achievements & Initiatives
-          </h2>
-          <p className="text-slate-400">Showcasing projects with demonstrable business impact.</p>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {portfolioData.projects.map((project, index) => (
-            <div key={index} className="bg-slate-950 rounded-xl border border-slate-800 p-6 hover:border-blue-500/30 transition-all hover:shadow-xl hover:shadow-blue-500/5 group flex flex-col h-full">
-              <div className="flex justify-between items-start mb-4">
-                <div className="p-3 bg-slate-900 rounded-lg text-blue-400 group-hover:text-blue-300 group-hover:bg-blue-900/20 transition-colors">
-                  <Award size={24} />
-                </div>
-                {/* External Link or View Project button can be added here */}
-              </div>
-              
-              <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">{project.title}</h3>
-              <p className="text-slate-400 text-sm mb-6 flex-grow leading-relaxed">
-                {project.description}
-              </p>
-              
-              <div className="pt-4 border-t border-slate-800">
-                <p className="text-xs font-mono text-slate-500">
-                  Tech Focus: {project.tech}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const Contact = () => {
-  const [copied, setCopied] = useState(false);
-
-  const copyEmail = () => {
-    // Using navigator.clipboard.writeText if available, else fallback
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(portfolioData.email);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } else {
-      // Fallback for older browsers or iframe restrictions
-      const textArea = document.createElement("textarea");
-      textArea.value = portfolioData.email;
-      document.body.appendChild(textArea);
-      textArea.select();
-      try {
-        document.execCommand('copy');
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-      } catch (err) {
-        console.error('Fallback: Oops, unable to copy', err);
-      }
-      document.body.removeChild(textArea);
-    }
-  };
-
-  return (
-    <section id="contact" className="py-24 bg-slate-950 relative overflow-hidden">
-      {/* Footer decorative elements */}
-      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl"></div>
-
-      <div className="max-w-3xl mx-auto px-6 text-center relative z-10">
-        <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Let's work together</h2>
-        <p className="text-slate-400 text-lg mb-10">
-          I'm currently seeking challenging opportunities in Data Engineering and Architecture. Let's connect to discuss how I can drive data excellence on your team.
-        </p>
-        
-        <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-          <a 
-            href={`mailto:${portfolioData.email}`}
-            className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-semibold transition-all shadow-lg shadow-blue-500/25 min-w-[200px]"
-          >
-            Say Hello
-          </a>
-          
-          <button 
-            onClick={copyEmail}
-            className="px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-full font-semibold transition-all border border-slate-700 min-w-[200px] flex items-center justify-center gap-2"
-          >
-            {copied ? <Check size={18} /> : <Copy size={18} />}
-            {copied ? "Email Copied!" : "Copy Email"}
-          </button>
-        </div>
-
-        <div className="mt-16 flex justify-center gap-8">
-          <a href={portfolioData.linkedinUrl} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors p-2 hover:bg-slate-800 rounded-full">
-            <Linkedin size={24} />
-          </a>
-          {/* Add Github or other social links here if needed */}
-        </div>
-        
-        <footer className="mt-16 text-slate-600 text-sm">
-          <p>&copy; {new Date().getFullYear()} {portfolioData.name}. All rights reserved.</p>
-        </footer>
-      </div>
-    </section>
-  );
-};
-
-const App = () => {
-  return (
-    <div className="font-sans bg-slate-950 text-slate-200 selection:bg-blue-500/30 selection:text-blue-200">
-      <Navigation />
-      <Hero />
-      <About />
-      <Experience />
-      <Projects />
-      <Contact />
+    <div id="app">
+        <!-- Content will be generated by the script -->
     </div>
-  );
-};
 
-export default App;
+    <script>
+        // Data Configuration (Easily editable)
+        const portfolioData = {
+            name: "Manohar Chekka",
+            role: "Technical Lead | Data Engineering & Cloud Architecture",
+            headline: "Driving data excellence with scalable Azure solutions and performance optimization—delivering measurable business impact (30% runtime reduction).",
+            location: "Toronto, Ontario, Canada",
+            email: "manohar.c@example.com", // <<<--- !!! UPDATE YOUR EMAIL HERE !!!
+            linkedinUrl: "https://www.linkedin.com/in/manohar-c-74a0b225a",
+            about: "I am a results-focused Technical Leader with 7+ years of experience specializing in Data Engineering, BI, and ETL tools across both cloud (Azure, AWS, GCP) and on-premises environments. My core expertise lies in designing and implementing highly scalable data curation processes using modern tools like Databricks, Synapse, and PySpark. I am passionate about optimizing data pipelines, ensuring strict AML/Data Governance compliance, and translating complex data into strategic KPIs like CES and LEI that directly enhance customer experience and drive business alignment.",
+            
+            stats: [
+                { label: "Years Experience", value: "7+" },
+                { label: "Pipeline Runtime Reduced", value: "30%+" },
+                { label: "Cloud Platforms", value: "3 (Azure/AWS/GCP)" },
+                { label: "Strategic KPIs Developed", value: "CES & LEI" }
+            ],
+
+            skills: [
+                "Azure Data Factory (ADF)",
+                "Azure Databricks / Synapse",
+                "Python / PySpark / Pandas",
+                "SQL / Complex Queries",
+                "Data Modeling & Warehousing",
+                "Power BI / SSRS / DAX",
+                "Data Governance / AML Standards",
+                "Performance Optimization",
+                "ETL/ELT Pipeline Design",
+                "Team Leadership"
+            ],
+
+            experience: [
+                {
+                    company: "Wipro",
+                    role: "Technical Lead - Data Engineering",
+                    period: "Mar 2025 - Present",
+                    description: "Leading data-driven initiatives in a Technical Lead capacity, focusing on architecture, solution design, and mentoring to ensure high-quality and scalable data engineering practices."
+                },
+                {
+                    company: "TD Bank",
+                    role: "Data Engineer",
+                    period: "Jun 2023 - Present",
+                    description: "Key member of the Data as a Service team on the Athena platform (Databricks/Synapse). Developed robust ETL pipelines using Python/PySpark, achieving **>30% reduction in data pipeline runtime** through advanced performance optimization. Built critical customer-focused KPIs (CES & LEI) from the ground up and enforced strict Anti-Money Laundering (AML) standards."
+                },
+                {
+                    company: "BYJU'S",
+                    role: "Business Development Analyst",
+                    period: "Jan 2019 - Aug 2021",
+                    description: "Developed and managed ETL pipelines using Azure Data Factory (ADF) for data ingestion into Azure Data Lake and Synapse. Created essential accounting reports and dashboards using Power BI, optimizing SQL queries, and utilizing complex DAX functions for accurate financial reporting."
+                },
+                {
+                    company: "Padmavati Hospitals",
+                    role: "Administrative Manager / Database Admin",
+                    period: "Mar 2017 - Jan 2021",
+                    description: "Directed data-related operations and managed IT infrastructure/data analytics teams. Focused on supporting management decision-making with data insights and ensuring compliance with healthcare data standards."
+                }
+            ],
+
+            projects: [
+                {
+                    title: "Customer Experience KPI Implementation (CES & LEI)",
+                    tech: "Azure Databricks, PySpark, Data Modeling",
+                    description: "Architected and built the Customer Effort Score (CES) and Legendary Experience Index (LEI) KPIs, providing actionable insights used by stakeholders to significantly enhance customer journey experiences."
+                },
+                {
+                    title: "Athena Data Platform Performance Optimization",
+                    tech: "Python, PySpark, Synapse Analytics",
+                    description: "Spearheaded performance optimization techniques across core data pipelines, resulting in a quantifiable reduction of over 30% in overall pipeline execution runtime."
+                },
+                {
+                    title: "Financial Reporting & BI Solution",
+                    tech: "Power BI, DAX, Azure Data Factory, SQL",
+                    description: "Designed and published comprehensive Year-to-Date, Month-to-Date, and Budget reports, leveraging optimized SQL and complex DAX queries to ensure data integrity and business accuracy."
+                }
+            ]
+        };
+
+        // --- Utility Functions ---
+
+        /**
+         * Simple function to create HTML elements.
+         * @param {string} tag The HTML tag name (e.g., 'div', 'a').
+         * @param {string} className Tailwind classes.
+         * @param {string} innerHTML Inner HTML content.
+         * @param {object} attributes Additional attributes like { href: '#', target: '_blank' }.
+         * @returns {HTMLElement} The created element.
+         */
+        const createElement = (tag, className, innerHTML = '', attributes = {}) => {
+            const el = document.createElement(tag);
+            if (className) el.className = className;
+            if (innerHTML) el.innerHTML = innerHTML;
+            for (const key in attributes) {
+                el.setAttribute(key, attributes[key]);
+            }
+            return el;
+        };
+
+        const copyEmail = (email) => {
+            let copied = false;
+            // Fallback for older browsers or iframe restrictions (execCommand is deprecated but safer in this environment)
+            const textArea = document.createElement("textarea");
+            textArea.value = email;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                copied = true;
+            } catch (err) {
+                console.error('Fallback: Unable to copy', err);
+            }
+            document.body.removeChild(textArea);
+            return copied;
+        };
+
+        // --- Component Rendering Functions ---
+
+        const renderIcon = (iconName, className = 'w-5 h-5') => {
+            return `<i data-lucide="${iconName}" class="${className}"></i>`;
+        }
+
+        const renderNavigation = () => {
+            const navLinks = [
+                { name: 'About', href: '#about' },
+                { name: 'Experience', href: '#experience' },
+                { name: 'Projects', href: '#projects' },
+                { name: 'Contact', href: '#contact' },
+            ];
+
+            const nav = createElement('nav', 'fixed w-full z-50 transition-all duration-300 bg-slate-900/90 backdrop-blur-md shadow-lg py-4');
+            const container = createElement('div', 'max-w-7xl mx-auto px-6 flex justify-between items-center');
+
+            const logo = createElement('a', 'text-2xl font-bold text-white tracking-tighter', `MC<span class="text-blue-500">.</span>`, { href: '#'});
+            
+            const desktopNav = createElement('div', 'hidden md:flex space-x-8');
+            navLinks.forEach(link => {
+                desktopNav.appendChild(createElement('a', 'text-sm font-medium text-slate-300 hover:text-white transition-colors', link.name, { href: link.href }));
+            });
+            const hireButton = createElement('a', 'px-4 py-2 text-sm font-medium bg-blue-600 hover:bg-blue-700 text-white rounded-full transition-all shadow-lg shadow-blue-500/20', `Connect on LinkedIn`, { href: portfolioData.linkedinUrl, target: '_blank', rel: 'noopener noreferrer' });
+            desktopNav.appendChild(hireButton);
+
+            container.appendChild(logo);
+            container.appendChild(desktopNav);
+            
+            nav.appendChild(container);
+
+            // Note: Mobile menu button and logic is complex for pure JS/HTML, simplifying for a static portfolio.
+            return nav;
+        };
+
+        const renderHero = () => {
+            const section = createElement('section', 'relative min-h-screen flex items-center pt-20 overflow-hidden bg-slate-950', '', { id: 'hero' });
+
+            // Background Gradients
+            section.innerHTML += `<div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-[120px]"></div>`;
+            section.innerHTML += `<div class="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-[120px]"></div>`;
+
+            const contentDiv = createElement('div', 'max-w-7xl mx-auto px-6 relative z-10');
+
+            // Hero Text
+            const textBlock = createElement('div', 'max-w-4xl');
+            textBlock.innerHTML = `
+                <div class="inline-block px-3 py-1 mb-6 border border-blue-500/30 rounded-full bg-blue-500/10 text-blue-400 text-sm font-medium animate-fade-in">
+                    ${portfolioData.role.split('|')[0].trim()}
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold text-white leading-tight mb-6 tracking-tight">
+                    I'm <span class="hero-gradient-text">${portfolioData.name}</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-slate-400 mb-8 leading-relaxed max-w-3xl">
+                    ${portfolioData.headline}
+                </p>
+                
+                <div class="flex flex-wrap gap-4 mb-24">
+                    <a href="${portfolioData.linkedinUrl}" target="_blank" rel="noopener noreferrer"
+                        class="flex items-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-semibold transition-all shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transform hover:-translate-y-1">
+                        ${renderIcon('linkedin', 'w-5 h-5')}
+                        View LinkedIn Profile
+                    </a>
+                    <a href="#contact"
+                        class="flex items-center gap-2 px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-full font-semibold transition-all border border-slate-700 hover:border-slate-600">
+                        ${renderIcon('mail', 'w-5 h-5')}
+                        Let's Connect
+                    </a>
+                </div>
+            `;
+            contentDiv.appendChild(textBlock);
+            
+            // Stats Row
+            const statsRow = createElement('div', 'mt-12 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-slate-800 pt-12');
+            portfolioData.stats.forEach(stat => {
+                const statDiv = createElement('div', 'group cursor-default');
+                statDiv.innerHTML = `
+                    <h3 class="text-3xl md:text-4xl font-bold text-white mb-1 group-hover:text-blue-400 transition-colors">${stat.value}</h3>
+                    <p class="text-slate-500 text-sm uppercase tracking-wider font-medium">${stat.label}</p>
+                `;
+                statsRow.appendChild(statDiv);
+            });
+            contentDiv.appendChild(statsRow);
+            
+            section.appendChild(contentDiv);
+            
+            // Scroll indicator
+            section.innerHTML += `<div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce text-slate-500">${renderIcon('chevron-down', 'w-6 h-6')}</div>`;
+
+            return section;
+        };
+
+        const renderAbout = () => {
+            const section = createElement('section', 'py-24 bg-slate-900', '', { id: 'about' });
+            const container = createElement('div', 'max-w-7xl mx-auto px-6');
+            
+            const grid = createElement('div', 'grid md:grid-cols-2 gap-16 items-center');
+            
+            // Left Column: Text and Skills
+            const textCol = createElement('div', '');
+            textCol.innerHTML = `
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 flex items-center gap-3">
+                    ${renderIcon('user', 'w-6 h-6 text-blue-500')}
+                    Professional Summary
+                </h2>
+                <p class="text-slate-300 text-lg leading-relaxed mb-8">
+                    ${portfolioData.about}
+                </p>
+                <h3 class="text-xl font-semibold text-white mb-4">Core Technology Stack</h3>
+            `;
+            
+            const skillsDiv = createElement('div', 'flex flex-wrap gap-3');
+            portfolioData.skills.forEach(skill => {
+                skillsDiv.innerHTML += `<span class="px-4 py-2 bg-slate-800 text-slate-300 rounded-lg text-sm border border-slate-700 hover:border-blue-500/50 hover:text-blue-400 transition-colors cursor-default">${skill}</span>`;
+            });
+            textCol.appendChild(skillsDiv);
+
+            // Right Column: Code Block Mockup
+            const codeCol = createElement('div', 'relative');
+            codeCol.innerHTML = `
+                <div class="absolute inset-0 bg-gradient-to-tr from-blue-600 to-purple-600 rounded-2xl blur-2xl opacity-20"></div>
+                <div class="relative bg-slate-800 border border-slate-700 rounded-2xl p-8 shadow-2xl">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    </div>
+                    <div class="font-mono text-sm text-slate-400 space-y-2">
+                        <p><span class="text-purple-400">const</span> <span class="text-blue-400">dataStrategist</span> = {'{'}</p>
+                        <p class="pl-4">name: <span class="text-green-400">"${portfolioData.name}"</span>,</p>
+                        <p class="pl-4">focus: <span class="text-green-400">"Scalable Data Architectures"</span>,</p>
+                        <p class="pl-4">cloud: <span class="text-green-400">["Azure", "AWS", "GCP"]</span>,</p>
+                        <p class="pl-4">impact: <span class="text-orange-400">"Measured Business Growth"</span></p>
+                        <p>{'};'}</p>
+                    </div>
+                </div>
+            `;
+            
+            grid.appendChild(textCol);
+            grid.appendChild(codeCol);
+            container.appendChild(grid);
+            section.appendChild(container);
+            return section;
+        };
+
+        const renderExperience = () => {
+            const section = createElement('section', 'py-24 bg-slate-950', '', { id: 'experience' });
+            const container = createElement('div', 'max-w-7xl mx-auto px-6');
+            
+            container.innerHTML = `
+                <div class="mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 flex items-center gap-3">
+                        ${renderIcon('briefcase', 'w-6 h-6 text-blue-500')}
+                        Career Milestones
+                    </h2>
+                    <p class="text-slate-400">My professional journey in Data Engineering and Analytics.</p>
+                </div>
+            `;
+
+            const timeline = createElement('div', 'relative border-l-2 border-slate-800 ml-3 md:ml-6 space-y-12');
+            
+            portfolioData.experience.forEach((exp, index) => {
+                const item = createElement('div', 'relative pl-8 md:pl-12 group');
+                item.innerHTML = `
+                    <!-- Timeline Dot -->
+                    <div class="absolute -left-[9px] md:-left-[9px] top-0 w-4 h-4 rounded-full bg-slate-800 border-2 border-slate-600 group-hover:bg-blue-600 group-hover:border-blue-400 transition-colors"></div>
+                    
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
+                        <h3 class="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">${exp.role}</h3>
+                        <span class="text-sm font-mono text-slate-500 bg-slate-900 px-3 py-1 rounded-full border border-slate-800 mt-2 sm:mt-0 w-fit">
+                            ${exp.period}
+                        </span>
+                    </div>
+                    <h4 class="text-lg text-slate-400 mb-4">${exp.company}</h4>
+                    <p class="text-slate-400 leading-relaxed max-w-3xl">
+                        ${exp.description}
+                    </p>
+                `;
+                timeline.appendChild(item);
+            });
+            
+            container.appendChild(timeline);
+            section.appendChild(container);
+            return section;
+        };
+
+        const renderProjects = () => {
+            const section = createElement('section', 'py-24 bg-slate-900', '', { id: 'projects' });
+            const container = createElement('div', 'max-w-7xl mx-auto px-6');
+            
+            container.innerHTML = `
+                <div class="mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 flex items-center gap-3">
+                        ${renderIcon('code', 'w-6 h-6 text-blue-500')}
+                        Key Achievements & Initiatives
+                    </h2>
+                    <p class="text-slate-400">Showcasing projects with demonstrable business impact.</p>
+                </div>
+            `;
+
+            const grid = createElement('div', 'grid md:grid-cols-2 lg:grid-cols-3 gap-8');
+
+            portfolioData.projects.forEach((project, index) => {
+                const card = createElement('div', 'bg-slate-950 rounded-xl border border-slate-800 p-6 hover:border-blue-500/30 transition-all hover:shadow-xl hover:shadow-blue-500/5 group flex flex-col h-full');
+                card.innerHTML = `
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="p-3 bg-slate-900 rounded-lg text-blue-400 group-hover:text-blue-300 group-hover:bg-blue-900/20 transition-colors">
+                            ${renderIcon('award', 'w-6 h-6')}
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">${project.title}</h3>
+                    <p class="text-slate-400 text-sm mb-6 flex-grow leading-relaxed">
+                        ${project.description}
+                    </p>
+                    
+                    <div class="pt-4 border-t border-slate-800">
+                        <p class="text-xs font-mono text-slate-500">
+                            Tech Focus: ${project.tech}
+                        </p>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            container.appendChild(grid);
+            section.appendChild(container);
+            return section;
+        };
+
+        const renderContact = () => {
+            const section = createElement('section', 'py-24 bg-slate-950 relative overflow-hidden', '', { id: 'contact' });
+            
+            // Footer decorative elements
+            section.innerHTML += `<div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent"></div>`;
+            section.innerHTML += `<div class="absolute bottom-0 right-0 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl"></div>`;
+
+            const contentDiv = createElement('div', 'max-w-3xl mx-auto px-6 text-center relative z-10');
+            
+            contentDiv.innerHTML = `
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Let's work together</h2>
+                <p class="text-slate-400 text-lg mb-10">
+                    I'm currently seeking challenging opportunities in Data Engineering and Architecture. Let's connect to discuss how I can drive data excellence on your team.
+                </p>
+            `;
+
+            const buttonContainer = createElement('div', 'flex flex-col md:flex-row items-center justify-center gap-4');
+            const emailLink = createElement('a', 'px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-semibold transition-all shadow-lg shadow-blue-500/25 min-w-[200px]', 'Say Hello', { href: `mailto:${portfolioData.email}` });
+            
+            const copyButton = createElement('button', 'px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-full font-semibold transition-all border border-slate-700 min-w-[200px] flex items-center justify-center gap-2', 
+                `${renderIcon('copy', 'w-5 h-5', 'copy-icon')} Copy Email`,
+                { id: 'copy-email-button' }
+            );
+
+            // Add click listener for copy
+            copyButton.onclick = function() {
+                const isCopied = copyEmail(portfolioData.email);
+                const icon = copyButton.querySelector('.copy-icon');
+
+                if (isCopied) {
+                    copyButton.innerHTML = `${renderIcon('check', 'w-5 h-5 text-green-400')} Email Copied!`;
+                    setTimeout(() => {
+                        copyButton.innerHTML = `${renderIcon('copy', 'w-5 h-5')} Copy Email`;
+                        // Re-render icons after changing innerHTML
+                        lucide.createIcons();
+                    }, 2000);
+                } else {
+                    // Fallback visual feedback if copy failed
+                    copyButton.innerHTML = `${renderIcon('x', 'w-5 h-5 text-red-400')} Copy Failed`;
+                    setTimeout(() => {
+                        copyButton.innerHTML = `${renderIcon('copy', 'w-5 h-5')} Copy Email`;
+                        lucide.createIcons();
+                    }, 2000);
+                }
+                // Re-render icons after changing innerHTML
+                lucide.createIcons();
+            };
+
+            buttonContainer.appendChild(emailLink);
+            buttonContainer.appendChild(copyButton);
+            contentDiv.appendChild(buttonContainer);
+
+            contentDiv.innerHTML += `
+                <div class="mt-16 flex justify-center gap-8">
+                    <a href="${portfolioData.linkedinUrl}" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white transition-colors p-2 hover:bg-slate-800 rounded-full">
+                        ${renderIcon('linkedin', 'w-6 h-6')}
+                    </a>
+                </div>
+                
+                <footer class="mt-16 text-slate-600 text-sm">
+                    <p>&copy; ${new Date().getFullYear()} ${portfolioData.name}. All rights reserved.</p>
+                </footer>
+            `;
+            
+            section.appendChild(contentDiv);
+            return section;
+        };
+
+
+        // --- Main Initialization ---
+        const initApp = () => {
+            const app = document.getElementById('app');
+            if (!app) return;
+
+            // Append all sections
+            app.appendChild(renderNavigation());
+            app.appendChild(renderHero());
+            app.appendChild(renderAbout());
+            app.appendChild(renderExperience());
+            app.appendChild(renderProjects());
+            app.appendChild(renderContact());
+
+            // Initialize Lucide Icons after content is loaded
+            lucide.createIcons();
+
+            // Set up scroll listener for navigation bar state (optional, simplified)
+            const nav = document.querySelector('nav');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    nav.classList.add('py-4', 'bg-slate-900/90', 'backdrop-blur-md', 'shadow-lg');
+                    nav.classList.remove('py-6', 'bg-transparent');
+                } else {
+                    nav.classList.remove('py-4', 'bg-slate-900/90', 'backdrop-blur-md', 'shadow-lg');
+                    nav.classList.add('py-6', 'bg-transparent');
+                }
+            });
+        };
+
+        window.onload = initApp;
+    </script>
+</body>
+</html>
 
