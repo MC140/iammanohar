@@ -1,356 +1,440 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<meta name="theme-color" content="#0b132b" />
-<title>Manohar Chekka — Lead · Data Engineering</title>
-<meta name="description" content="Azure-first Lead Data Engineer: Databricks · Delta Lake · ADLS Gen2 · Synapse · ADF · PySpark · Purview · Unity Catalog · RLS/DRLS." />
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+import React, { useState, useEffect } from 'react';
+import { 
+  Github, 
+  Linkedin, 
+  Mail, 
+  ExternalLink, 
+  Download, 
+  ChevronDown, 
+  Code, 
+  Briefcase, 
+  User, 
+  Award,
+  Menu,
+  X,
+  Copy,
+  Check
+} from 'lucide-react';
 
-<style>
-:root{
-  --bg:#070b18; --bg2:#0b132b; --ink:#e9f3ff; --muted:#9db6cf;
-  --b:#5ee1ff; --g:#7dfc9b; --o:#ffb36b; --p:#a9a8ff; --y:#ffe27a;
-  --line:rgba(147,229,255,.25); --glass:rgba(255,255,255,.06);
-  --shadow:0 12px 40px rgba(0,0,0,.35), 0 0 0 4px rgba(94,225,255,.06) inset;
-}
-*{box-sizing:border-box} html,body{height:100%}
-body{
-  margin:0;color:var(--ink);
-  background:
-    radial-gradient(1000px 600px at 120% -20%, rgba(94,225,255,.12), transparent 60%),
-    linear-gradient(180deg,var(--bg2),var(--bg) 60%);
-  font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-  -webkit-font-smoothing:antialiased;
-}
-.wrap{width:min(1180px,92vw); margin:0 auto; padding:clamp(12px,4vh,48px)}
+/**
+ * ==================================================================================
+ * 🔧 CONFIGURATION SECTION - EDIT YOUR DETAILS HERE
+ * ==================================================================================
+ */
+const portfolioData = {
+  name: "Manohar Chekka",
+  role: "Technical Lead | Data Engineering & Cloud Architecture",
+  headline: "Driving data excellence with scalable Azure solutions and performance optimization—delivering measurable business impact (30% runtime reduction).",
+  location: "Toronto, Ontario, Canada",
+  email: "manohar.c@example.com", // <<<--- !!! UPDATE YOUR EMAIL HERE !!!
+  linkedinUrl: "https://www.linkedin.com/in/manohar-c-74a0b225a",
+  
+  about: "I am a results-focused Technical Leader with 7+ years of experience specializing in Data Engineering, BI, and ETL tools across both cloud (Azure, AWS, GCP) and on-premises environments. My core expertise lies in designing and implementing highly scalable data curation processes using modern tools like Databricks, Synapse, and PySpark. I am passionate about optimizing data pipelines, ensuring strict AML/Data Governance compliance, and translating complex data into strategic KPIs like CES and LEI that directly enhance customer experience and drive business alignment.",
+  
+  // "By The Numbers" - Hiring managers love quick stats
+  stats: [
+    { label: "Years Experience", value: "7+" },
+    { label: "Pipeline Runtime Reduced", value: "30%+" },
+    { label: "Cloud Platforms", value: "3 (Azure/AWS/GCP)" },
+    { label: "Strategic KPIs Developed", value: "CES & LEI" }
+  ],
 
-/* Header */
-header{display:flex; align-items:center; justify-content:space-between; gap:10px}
-.brand{font-weight:800; letter-spacing:.4px}
-.menu a{color:var(--muted); text-decoration:none; font-weight:600; padding:.6rem .7rem; border-radius:10px}
-.menu a:hover{color:var(--ink); background:rgba(255,255,255,.05)}
-.menu{display:none}
-.burger{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--glass);color:var(--ink);display:inline-flex;align-items:center;justify-content:center}
-.burger svg{width:22px;height:22px}
-.fly{display:none;position:fixed;right:12px;top:64px;background:rgba(11,19,43,.98);border:1px solid var(--line);border-radius:14px;padding:6px;z-index:50}
-.fly a{display:block;min-width:200px;color:var(--muted);text-decoration:none;font-weight:600;padding:.6rem .7rem;border-radius:10px}
-.fly a:hover{color:var(--ink);background:rgba(255,255,255,.05)}
-.fly.open{display:block}
-@media(min-width:980px){ .burger{display:none} .menu{display:flex; gap:4px} .fly{display:none!important} }
+  skills: [
+    "Azure Data Factory (ADF)",
+    "Azure Databricks / Synapse",
+    "Python / PySpark / Pandas",
+    "SQL / Complex Queries",
+    "Data Modeling & Warehousing",
+    "Power BI / SSRS / DAX",
+    "Data Governance / AML Standards",
+    "Performance Optimization",
+    "ETL/ELT Pipeline Design",
+    "Team Leadership"
+  ],
 
-/* HERO */
-.h1{font-size:clamp(28px,5.2vw,56px); margin:0; font-weight:800; line-height:1.02}
-.role{font-weight:800; color:#d2f4ff; margin-top:6px}
-.tag{color:var(--muted); margin-top:6px}
-.rule{height:2px;margin:14px 0 16px;background:linear-gradient(90deg,var(--b),#93e5ff); box-shadow:0 0 18px rgba(94,225,255,.35); transform-origin:left; animation:sweep 1.1s ease .2s both}
-@keyframes sweep{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  experience: [
+    {
+      company: "Wipro",
+      role: "Technical Lead - Data Engineering",
+      period: "Mar 2025 - Present",
+      description: "Leading data-driven initiatives in a Technical Lead capacity, focusing on architecture, solution design, and mentoring to ensure high-quality and scalable data engineering practices."
+    },
+    {
+      company: "TD Bank",
+      role: "Data Engineer",
+      period: "Jun 2023 - Present",
+      description: "Key member of the Data as a Service team on the Athena platform (Databricks/Synapse). Developed robust ETL pipelines using Python/PySpark, achieving **>30% reduction in data pipeline runtime** through advanced performance optimization. Built critical customer-focused KPIs (CES & LEI) from the ground up and enforced strict Anti-Money Laundering (AML) standards."
+    },
+    {
+      company: "BYJU'S",
+      role: "Business Development Analyst",
+      period: "Jan 2019 - Aug 2021",
+      description: "Developed and managed ETL pipelines using Azure Data Factory (ADF) for data ingestion into Azure Data Lake and Synapse. Created essential accounting reports and dashboards using Power BI, optimizing SQL queries, and utilizing complex DAX functions for accurate financial reporting."
+    },
+    {
+      company: "Padmavati Hospitals",
+      role: "Administrative Manager / Database Admin",
+      period: "Mar 2017 - Jan 2021",
+      description: "Directed data-related operations and managed IT infrastructure/data analytics teams. Focused on supporting management decision-making with data insights and ensuring compliance with healthcare data standards."
+    }
+  ],
 
-/* Pipeline stages */
-.stages{display:grid; gap:12px}
-@media(min-width:1100px){ .stages{grid-template-columns:repeat(5,1fr)} }
+  projects: [
+    {
+      title: "Customer Experience KPI Implementation (CES & LEI)",
+      tech: "Azure Databricks, PySpark, Data Modeling",
+      description: "Architected and built the Customer Effort Score (CES) and Legendary Experience Index (LEI) KPIs, providing actionable insights used by stakeholders to significantly enhance customer journey experiences."
+    },
+    {
+      title: "Athena Data Platform Performance Optimization",
+      tech: "Python, PySpark, Synapse Analytics",
+      description: "Spearheaded performance optimization techniques across core data pipelines, resulting in a quantifiable reduction of over 30% in overall pipeline execution runtime."
+    },
+    {
+      title: "Financial Reporting & BI Solution",
+      tech: "Power BI, DAX, Azure Data Factory, SQL",
+      description: "Designed and published comprehensive Year-to-Date, Month-to-Date, and Budget reports, leveraging optimized SQL and complex DAX queries to ensure data integrity and business accuracy."
+    }
+  ]
+};
 
-.stage{
-  border:1px solid var(--line); background:var(--glass); border-radius:18px; padding:12px;
-  box-shadow:var(--shadow); min-height:300px; position:relative; overflow:hidden;
-}
-.stage h3{margin:0 0 8px; font-size:16px; letter-spacing:.6px}
-.hblue{color:var(--b)} .hgreen{color:var(--g)} .horange{color:var(--o)} .hpurple{color:var(--p)} .hyellow{color:var(--y)}
-.stage:before{content:""; position:absolute; inset:0; border-radius:18px; pointer-events:none}
-.stage.b:before{box-shadow:0 0 0 2px rgba(94,225,255,.35) inset}
-.stage.g:before{box-shadow:0 0 0 2px rgba(125,252,155,.35) inset}
-.stage.p:before{box-shadow:0 0 0 2px rgba(169,168,255,.35) inset}
-.stage.o:before{box-shadow:0 0 0 2px rgba(255,179,107,.35) inset}
-.stage.y:before{box-shadow:0 0 0 2px rgba(255,226,122,.35) inset}
+/**
+ * ==================================================================================
+ * 🎨 COMPONENT CODE (No need to edit below unless customizing design)
+ * ==================================================================================
+ */
 
-/* Ingestion terminal */
-.term{font-family: ui-monospace, Menlo, Consolas, monospace; font-size:12px; line-height:1.5; white-space:pre-wrap; color:#c3f0ff; height:220px; overflow:auto; padding-right:6px}
-.term::-webkit-scrollbar{height:6px;width:6px} .term::-webkit-scrollbar-thumb{background:rgba(147,229,255,.3); border-radius:6px}
-.dot{width:6px;height:6px;border-radius:50%;background:var(--b);display:inline-block;margin-right:6px;box-shadow:0 0 10px rgba(94,225,255,.7);animation:pulse 1.2s infinite}
-@keyframes pulse{50%{transform:scale(.8);opacity:.7}}
+const Navigation = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-/* Transform — rotating radial */
-.graph{height:220px; display:grid; place-items:center}
-#radial{width:100%; height:100%}
-.progress{position:absolute; left:12px; right:12px; bottom:12px; height:10px; border:1px solid rgba(125,252,155,.35); border-radius:999px; overflow:hidden}
-.progress > i{display:block; height:100%; width:0%; background:linear-gradient(90deg,#5ef6a4,#a7ffcf); box-shadow:0 0 14px rgba(125,252,155,.6); transition:width .35s ease}
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-/* Governance — shield + checklist */
-.gov{height:220px; display:grid; align-content:start; gap:8px}
-.shield{width:60px; height:60px}
-.gov li{margin:4px 0 0 18px; color:#dfeeff}
-.badge{display:inline-block; padding:6px 10px; border-radius:999px; border:1px solid var(--line); font-size:11px; color:#e8eaff; background:rgba(169,168,255,.08); margin:4px 6px 0 0}
+  const navLinks = [
+    { name: 'About', href: '#about' },
+    { name: 'Experience', href: '#experience' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Contact', href: '#contact' },
+  ];
 
-/* Load — delta card */
-.delta{height:220px; display:grid; gap:8px; align-content:start}
-.logo{width:60px; height:60px}
-.linelabel{font-size:12px; color:#cfefff; opacity:.9}
-.status{margin-top:6px; font-size:12px; color:#dfeeff; opacity:.95}
-.ellipsis:after{content:""; display:inline-block; width:1ch; text-align:left; animation:ellipsis 1.6s steps(4,end) infinite}
-@keyframes ellipsis{0%{content:""}25%{content:"."}50%{content:".."}75%{content:"..."}}
+  return (
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-slate-900/90 backdrop-blur-md shadow-lg py-4' : 'bg-transparent py-6'}`}>
+      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        <a href="#" className="text-2xl font-bold text-white tracking-tighter">
+          MC<span className="text-blue-500">.</span>
+        </a>
 
-/* Reporting — animated charts */
-.rep{height:220px; display:grid; grid-template-columns:1fr 1fr; gap:10px}
-.chart{border:1px solid var(--line); border-radius:12px; background:rgba(255,255,255,.04); padding:8px; position:relative; overflow:hidden}
-.chart h4{margin:0 0 4px; font-size:12px; color:#cfefff}
-.bar{position:absolute; bottom:8px; width:16px; background:linear-gradient(180deg,#9fe3ff,#4ad1ff); box-shadow:0 0 10px rgba(94,225,255,.5); border-radius:3px 3px 0 0; transition:height .6s ease}
-.spark{position:absolute; inset:0;}
+        {/* Desktop Nav */}
+        <div className="hidden md:flex space-x-8">
+          {navLinks.map((link) => (
+            <a key={link.name} href={link.href} className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
+              {link.name}
+            </a>
+          ))}
+          <a 
+            href={portfolioData.linkedinUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 py-2 text-sm font-medium bg-blue-600 hover:bg-blue-700 text-white rounded-full transition-all shadow-lg shadow-blue-500/20"
+          >
+            Connect on LinkedIn
+          </a>
+        </div>
 
-/* Skills strip */
-.skills{margin-top:10px; display:flex; flex-wrap:wrap; gap:6px}
-.skill{padding:7px 10px; border-radius:999px; border:1px solid var(--line); font-size:11px; background:rgba(255,255,255,.06); color:#e9faff}
+        {/* Mobile Menu Button */}
+        <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-white">
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </div>
 
-/* Below sections */
-.section{margin-top:26px}
-.panel{border:1px solid var(--line); background:var(--glass); border-radius:18px; padding:14px; box-shadow:var(--shadow); opacity:0; transform:translateY(8px); transition:opacity .5s, transform .5s}
-.reveal{opacity:1; transform:none}
-.subttl{font-weight:800; margin-bottom:6px; letter-spacing:.3px}
-.p{color:var(--ink); opacity:.95; line-height:1.65; margin:0}
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce){
-  .rule{animation:none}
-}
-</style>
-</head>
-<body>
-<div class="wrap">
-  <!-- HEADER -->
-  <header>
-    <div class="brand">manoharchekka</div>
-    <button class="burger" id="burger" aria-controls="fly" aria-expanded="false" aria-label="Open navigation">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M8 18h12"/></svg>
-    </button>
-    <nav class="menu" aria-label="Primary">
-      <a href="#about">About</a><a href="#skills">Capabilities</a><a href="#exp">Experience</a><a href="#proj">Projects</a><a href="#engage">Engagement</a><a href="#contact">Contact</a>
+      {/* Mobile Nav */}
+      {isOpen && (
+        <div className="md:hidden absolute top-full left-0 w-full bg-slate-900 border-t border-slate-800 p-6 flex flex-col space-y-4 shadow-xl">
+          {navLinks.map((link) => (
+            <a 
+              key={link.name} 
+              href={link.href} 
+              onClick={() => setIsOpen(false)}
+              className="text-lg text-slate-300 hover:text-white"
+            >
+              {link.name}
+            </a>
+          ))}
+        </div>
+      )}
     </nav>
-    <nav id="fly" class="fly" role="dialog" aria-modal="true" aria-label="Mobile Menu">
-      <a href="#about">About</a><a href="#skills">Capabilities</a><a href="#exp">Experience</a><a href="#proj">Projects</a><a href="#engage">Engagement</a><a href="#contact">Contact</a>
-    </nav>
-  </header>
+  );
+};
 
-  <!-- HERO -->
-  <section id="home">
-    <h1 class="h1">Manohar Chekka</h1>
-    <div class="role">Lead · Data Engineering</div>
-    <p class="tag">Live pipeline: <strong>Ingest</strong> → <strong>Transform</strong> → <strong>Govern</strong> → <strong>Load</strong> → <strong>Report</strong> (Azure — Databricks → Delta Lake → Synapse)</p>
-    <div class="rule"></div>
+const Hero = () => {
+  return (
+    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-slate-950">
+      {/* Background Gradients */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-[120px]" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-[120px]" />
 
-    <div class="stages">
-      <!-- INGEST -->
-      <div class="stage b">
-        <h3 class="hblue">INGESTION</h3>
-        <div class="term" id="ingestTerm"><span class="dot"></span>[14:35:21] ADF > trigger nightly_ingest (business_date=utc_today)</div>
-        <div class="skills" aria-label="Skills: ingestion">
-          <span class="skill">Azure Data Factory</span><span class="skill">ADLS Gen2</span><span class="skill">REST / APIs</span><span class="skill">Delta Bronze</span>
-        </div>
-      </div>
-
-      <!-- TRANSFORM -->
-      <div class="stage g">
-        <h3 class="hgreen">TRANSFORM</h3>
-        <div class="graph">
-          <svg id="radial" viewBox="0 0 260 180" aria-hidden="true">
-            <defs>
-              <linearGradient id="gg" x1="0" x2="1"><stop offset="0%" stop-color="#7dfc9b"/><stop offset="100%" stop-color="#baffd1"/></linearGradient>
-              <filter id="glow"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-            </defs>
-            <g transform="translate(130,90)">
-              <circle r="30" fill="none" stroke="rgba(125,252,155,.35)" />
-              <g id="orbit" filter="url(#glow)">
-                <g stroke="url(#gg)" stroke-width="2" opacity=".8">
-                  <line x1="0" y1="-60" x2="0" y2="-30"/>
-                  <line x1="52" y1="-30" x2="26" y2="-15"/>
-                  <line x1="52" y1="30" x2="26" y2="15"/>
-                  <line x1="0" y1="60" x2="0" y2="30"/>
-                  <line x1="-52" y1="30" x2="-26" y2="15"/>
-                  <line x1="-52" y1="-30" x2="-26" y2="-15"/>
-                </g>
-                <g fill="#cffff1">
-                  <circle cx="0" cy="-60" r="4"/><circle cx="52" cy="-30" r="4"/><circle cx="52" cy="30" r="4"/>
-                  <circle cx="0" cy="60" r="4"/><circle cx="-52" cy="30" r="4"/><circle cx="-52" cy="-30" r="4"/>
-                </g>
-                <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="14s" repeatCount="indefinite"/>
-              </g>
-              <text y="5" text-anchor="middle" font-size="12" fill="#e6fff4" font-weight="700">Spark Cluster</text>
-            </g>
-          </svg>
-        </div>
-        <div class="progress"><i id="prog"></i></div>
-        <div class="skills" aria-label="Skills: transform">
-          <span class="skill">Databricks</span><span class="skill">PySpark / Spark SQL</span><span class="skill">Delta Silver</span><span class="skill">Modeling (Star/Dim)</span>
-        </div>
-      </div>
-
-      <!-- GOVERNANCE -->
-      <div class="stage p">
-        <h3 class="hpurple">GOVERNANCE</h3>
-        <div class="gov">
-          <svg class="shield" viewBox="0 0 64 64" aria-hidden="true">
-            <defs><linearGradient id="pp" x1="0" x2="1"><stop offset="0%" stop-color="#a9a8ff"/><stop offset="100%" stop-color="#d9d8ff"/></linearGradient></defs>
-            <path d="M32 6 L54 14 V30 C54 44 44 56 32 60 C20 56 10 44 10 30 V14 Z" fill="url(#pp)" opacity=".95"/>
-            <path d="M21 32 l7 7 l15 -15" stroke="#0b132b" stroke-width="4" fill="none" />
-          </svg>
-          <ul class="p" style="margin:0 0 0 18px;padding:0">
-            <li>Purview classification & lineage</li>
-            <li>RLS / DRLS access patterns (AD groups)</li>
-            <li>Unity Catalog / data permissions</li>
-            <li>Audit, retention & PII masking</li>
-          </ul>
-        </div>
-        <div class="skills" aria-label="Skills: governance">
-          <span class="badge">Purview</span><span class="badge">Unity Catalog</span><span class="badge">RLS/DRLS</span><span class="badge">AD Group Strategy</span><span class="badge">Compliance</span>
-        </div>
-      </div>
-
-      <!-- LOAD -->
-      <div class="stage o">
-        <h3 class="horange">LOAD</h3>
-        <div class="delta">
-          <svg class="logo" viewBox="0 0 64 64" aria-hidden="true">
-            <defs><linearGradient id="bb" x1="0" x2="1"><stop offset="0%" stop-color="#5ee1ff"/><stop offset="100%" stop-color="#93e5ff"/></linearGradient></defs>
-            <path d="M32 8 L55 50 H9 Z" fill="url(#bb)" opacity=".95"/>
-            <circle cx="32" cy="42" r="6" fill="#0b132b"/>
-          </svg>
-          <div class="linelabel"><strong>Destination:</strong> SynapseDW_analytics</div>
-          <div class="linelabel"><strong>Table:</strong> curated.fact_sessions</div>
-          <div class="status">Status: Appending to Delta Lake<span class="ellipsis"></span></div>
-        </div>
-        <div class="skills" aria-label="Skills: load">
-          <span class="skill">Delta Gold</span><span class="skill">Synapse (Serverless/Dedicated)</span><span class="skill">CTAS / Caching</span><span class="skill">Incremental / Partitioning</span>
-        </div>
-      </div>
-
-      <!-- REPORTING -->
-      <div class="stage y">
-        <h3 class="hyellow">REPORTING</h3>
-        <div class="rep">
-          <!-- Bars -->
-          <div class="chart" id="bars">
-            <h4>Sessions by Day</h4>
-            <div class="bar" style="left:14px;height:30%"></div>
-            <div class="bar" style="left:36px;height:50%"></div>
-            <div class="bar" style="left:58px;height:40%"></div>
-            <div class="bar" style="left:80px;height:60%"></div>
-            <div class="bar" style="left:102px;height:45%"></div>
-            <div class="bar" style="left:124px;height:72%"></div>
-            <div class="bar" style="left:146px;height:65%"></div>
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="max-w-4xl">
+          <div className="inline-block px-3 py-1 mb-6 border border-blue-500/30 rounded-full bg-blue-500/10 text-blue-400 text-sm font-medium animate-fade-in">
+            {portfolioData.role.split('|')[0].trim()}
           </div>
-          <!-- Sparkline -->
-          <div class="chart">
-            <h4>Conversion Trend</h4>
-            <svg class="spark" viewBox="0 0 180 90" preserveAspectRatio="none" aria-hidden="true">
-              <defs><linearGradient id="sg" x1="0" x2="1"><stop offset="0%" stop-color="#ffe27a"/><stop offset="100%" stop-color="#ffd147"/></linearGradient></defs>
-              <polyline id="sparkline" fill="none" stroke="url(#sg)" stroke-width="2"
-                points="0,70 20,68 40,62 60,66 80,58 100,60 120,52 140,56 160,48 180,50">
-                <animate attributeName="stroke-dasharray" from="0,400" to="400,0" dur="2s" fill="freeze"/>
-              </polyline>
-            </svg>
+          <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight mb-6 tracking-tight">
+            I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">{portfolioData.name}</span>
+          </h1>
+          <p className="text-xl md:text-2xl text-slate-400 mb-8 leading-relaxed max-w-3xl">
+            {portfolioData.headline}
+          </p>
+          
+          <div className="flex flex-wrap gap-4">
+            <a 
+              href={portfolioData.linkedinUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-semibold transition-all shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transform hover:-translate-y-1"
+            >
+              <Linkedin size={20} />
+              View LinkedIn Profile
+            </a>
+            <a 
+              href="#contact"
+              className="flex items-center gap-2 px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-full font-semibold transition-all border border-slate-700 hover:border-slate-600"
+            >
+              <Mail size={20} />
+              Let's Connect
+            </a>
           </div>
         </div>
-        <div class="skills" aria-label="Skills: reporting">
-          <span class="skill">Semantic Models</span><span class="skill">KPIs & SLAs</span><span class="skill">Usage Telemetry</span><span class="skill">Self-serve Patterns</span>
+
+        {/* Stats Row */}
+        <div className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-slate-800 pt-12">
+          {portfolioData.stats.map((stat, index) => (
+            <div key={index} className="group cursor-default">
+              <h3 className="text-3xl md:text-4xl font-bold text-white mb-1 group-hover:text-blue-400 transition-colors">{stat.value}</h3>
+              <p className="text-slate-500 text-sm uppercase tracking-wider font-medium">{stat.label}</p>
+            </div>
+          ))}
         </div>
       </div>
+      
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce text-slate-500">
+        <ChevronDown size={24} />
+      </div>
+    </section>
+  );
+};
+
+const About = () => {
+  return (
+    <section id="about" className="py-24 bg-slate-900">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid md:grid-cols-2 gap-16 items-center">
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 flex items-center gap-3">
+              <User className="text-blue-500" />
+              Professional Summary
+            </h2>
+            <p className="text-slate-300 text-lg leading-relaxed mb-8">
+              {portfolioData.about}
+            </p>
+            
+            <h3 className="text-xl font-semibold text-white mb-4">Core Technology Stack</h3>
+            <div className="flex flex-wrap gap-3">
+              {portfolioData.skills.map((skill, index) => (
+                <span 
+                  key={index} 
+                  className="px-4 py-2 bg-slate-800 text-slate-300 rounded-lg text-sm border border-slate-700 hover:border-blue-500/50 hover:text-blue-400 transition-colors cursor-default"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-tr from-blue-600 to-purple-600 rounded-2xl blur-2xl opacity-20"></div>
+            <div className="relative bg-slate-800 border border-slate-700 rounded-2xl p-8 shadow-2xl">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+              </div>
+              <div className="font-mono text-sm text-slate-400 space-y-2">
+                <p><span className="text-purple-400">const</span> <span className="text-blue-400">dataStrategist</span> = {'{'}</p>
+                <p className="pl-4">name: <span className="text-green-400">"{portfolioData.name}"</span>,</p>
+                <p className="pl-4">focus: <span className="text-green-400">"Scalable Data Architectures"</span>,</p>
+                <p className="pl-4">cloud: <span className="text-green-400">["Azure", "AWS", "GCP"]</span>,</p>
+                <p className="pl-4">impact: <span className="text-orange-400">"Measured Business Growth"</span></p>
+                <p>{'};'}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const Experience = () => {
+  return (
+    <section id="experience" className="py-24 bg-slate-950">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 flex items-center gap-3">
+            <Briefcase className="text-blue-500" />
+            Career Milestones
+          </h2>
+          <p className="text-slate-400">My professional journey in Data Engineering and Analytics.</p>
+        </div>
+
+        <div className="relative border-l-2 border-slate-800 ml-3 md:ml-6 space-y-12">
+          {portfolioData.experience.map((exp, index) => (
+            <div key={index} className="relative pl-8 md:pl-12 group">
+              {/* Timeline Dot */}
+              <div className="absolute -left-[9px] md:-left-[9px] top-0 w-4 h-4 rounded-full bg-slate-800 border-2 border-slate-600 group-hover:bg-blue-600 group-hover:border-blue-400 transition-colors"></div>
+              
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
+                <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">{exp.role}</h3>
+                <span className="text-sm font-mono text-slate-500 bg-slate-900 px-3 py-1 rounded-full border border-slate-800 mt-2 sm:mt-0 w-fit">
+                  {exp.period}
+                </span>
+              </div>
+              <h4 className="text-lg text-slate-400 mb-4">{exp.company}</h4>
+              <p className="text-slate-400 leading-relaxed max-w-3xl">
+                {exp.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const Projects = () => {
+  return (
+    <section id="projects" className="py-24 bg-slate-900">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 flex items-center gap-3">
+            <Code className="text-blue-500" />
+            Key Achievements & Initiatives
+          </h2>
+          <p className="text-slate-400">Showcasing projects with demonstrable business impact.</p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {portfolioData.projects.map((project, index) => (
+            <div key={index} className="bg-slate-950 rounded-xl border border-slate-800 p-6 hover:border-blue-500/30 transition-all hover:shadow-xl hover:shadow-blue-500/5 group flex flex-col h-full">
+              <div className="flex justify-between items-start mb-4">
+                <div className="p-3 bg-slate-900 rounded-lg text-blue-400 group-hover:text-blue-300 group-hover:bg-blue-900/20 transition-colors">
+                  <Award size={24} />
+                </div>
+                {/* External Link or View Project button can be added here */}
+              </div>
+              
+              <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">{project.title}</h3>
+              <p className="text-slate-400 text-sm mb-6 flex-grow leading-relaxed">
+                {project.description}
+              </p>
+              
+              <div className="pt-4 border-t border-slate-800">
+                <p className="text-xs font-mono text-slate-500">
+                  Tech Focus: {project.tech}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const Contact = () => {
+  const [copied, setCopied] = useState(false);
+
+  const copyEmail = () => {
+    // Using navigator.clipboard.writeText if available, else fallback
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(portfolioData.email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } else {
+      // Fallback for older browsers or iframe restrictions
+      const textArea = document.createElement("textarea");
+      textArea.value = portfolioData.email;
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      } catch (err) {
+        console.error('Fallback: Oops, unable to copy', err);
+      }
+      document.body.removeChild(textArea);
+    }
+  };
+
+  return (
+    <section id="contact" className="py-24 bg-slate-950 relative overflow-hidden">
+      {/* Footer decorative elements */}
+      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl"></div>
+
+      <div className="max-w-3xl mx-auto px-6 text-center relative z-10">
+        <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Let's work together</h2>
+        <p className="text-slate-400 text-lg mb-10">
+          I'm currently seeking challenging opportunities in Data Engineering and Architecture. Let's connect to discuss how I can drive data excellence on your team.
+        </p>
+        
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+          <a 
+            href={`mailto:${portfolioData.email}`}
+            className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-semibold transition-all shadow-lg shadow-blue-500/25 min-w-[200px]"
+          >
+            Say Hello
+          </a>
+          
+          <button 
+            onClick={copyEmail}
+            className="px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-full font-semibold transition-all border border-slate-700 min-w-[200px] flex items-center justify-center gap-2"
+          >
+            {copied ? <Check size={18} /> : <Copy size={18} />}
+            {copied ? "Email Copied!" : "Copy Email"}
+          </button>
+        </div>
+
+        <div className="mt-16 flex justify-center gap-8">
+          <a href={portfolioData.linkedinUrl} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors p-2 hover:bg-slate-800 rounded-full">
+            <Linkedin size={24} />
+          </a>
+          {/* Add Github or other social links here if needed */}
+        </div>
+        
+        <footer className="mt-16 text-slate-600 text-sm">
+          <p>&copy; {new Date().getFullYear()} {portfolioData.name}. All rights reserved.</p>
+        </footer>
+      </div>
+    </section>
+  );
+};
+
+const App = () => {
+  return (
+    <div className="font-sans bg-slate-950 text-slate-200 selection:bg-blue-500/30 selection:text-blue-200">
+      <Navigation />
+      <Hero />
+      <About />
+      <Experience />
+      <Projects />
+      <Contact />
     </div>
-  </section>
+  );
+};
 
-  <!-- ABOUT / CAPABILITIES / EXPERIENCE / PROJECTS / ENGAGEMENT / CONTACT (short) -->
-  <section id="about" class="section">
-    <div class="panel reveal">
-      <div class="subttl">About</div>
-      <p class="p">From BI/ETL and dimensional modeling to Azure data engineering at scale. I standardize ingestion on Databricks + ADLS, curate reliable Synapse models, and automate delivery with ADF and Git-based CI/CD. Governance (Purview, RLS/DRLS, Unity Catalog), performance (partitioning, Z-Order, CTAS/cache), and cost-aware reliability are my defaults.</p>
-    </div>
-  </section>
+export default App;
 
-  <section id="skills" class="section">
-    <div class="panel reveal">
-      <div class="subttl">Capabilities</div>
-      <p class="p">Azure Databricks · Delta Lake · ADLS Gen2 · Synapse (Serverless & Dedicated) · ADF · PySpark/Spark SQL · Data Modeling (Star/Dimensional) · CI/CD (Git) · Purview · RLS/DRLS · Unity Catalog · APIs</p>
-    </div>
-  </section>
-
-  <section id="exp" class="section">
-    <div class="panel reveal">
-      <div class="subttl">Experience (highlights)</div>
-      <p class="p">Lead Data Engineer — Enterprise BI & Analytics (2019—Present). Senior Data Engineer (prior). BI/ETL Engineer (early career).</p>
-    </div>
-  </section>
-
-  <section id="proj" class="section">
-    <div class="panel reveal">
-      <div class="subttl">Selected Projects</div>
-      <p class="p">Athena Curated Zone · Governed Access Framework · Performance & Cost Optimization for Azure analytics.</p>
-    </div>
-  </section>
-
-  <section id="engage" class="section">
-    <div class="panel reveal">
-      <div class="subttl">Community & Industry Engagement</div>
-      <p class="p">Active in Microsoft ecosystem; engaged with product channels around Azure data & Fabric. Regular participant in Fabric events; occasional contributor on public forums focused on governed, production-grade analytics.</p>
-    </div>
-  </section>
-
-  <section id="contact" class="section">
-    <div class="panel reveal">
-      <div class="subttl">Contact</div>
-      <p class="p">Email: <a href="mailto:manoharch0698@gmail.com" style="color:#9fdcff">manoharch0698@gmail.com</a></p>
-    </div>
-  </section>
-
-  <footer style="margin-top:18px;color:#8fb2c9;font-size:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
-    <div>© <span id="year"></span> Manohar Chekka</div>
-    <div><a href="#about" style="color:#9fdcff;text-decoration:none">About</a> · <a href="#skills" style="color:#9fdcff;text-decoration:none">Capabilities</a> · <a href="#exp" style="color:#9fdcff;text-decoration:none">Experience</a> · <a href="#proj" style="color:#9fdcff;text-decoration:none">Projects</a> · <a href="#engage" style="color:#9fdcff;text-decoration:none">Engagement</a> · <a href="#contact" style="color:#9fdcff;text-decoration:none">Contact</a></div>
-  </footer>
-</div>
-
-<script>
-/* Year */
-document.getElementById('year').textContent = new Date().getFullYear();
-
-/* Mobile nav */
-const b = document.getElementById('burger'), fly = document.getElementById('fly');
-b.addEventListener('click', ()=>{ const open = fly.classList.toggle('open'); b.setAttribute('aria-expanded', open ? 'true':'false'); });
-fly.querySelectorAll('a').forEach(a => a.addEventListener('click', ()=> fly.classList.remove('open')));
-
-/* Reveal on scroll */
-const io = new IntersectionObserver((es)=> es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('reveal'); io.unobserve(e.target); }}), {threshold:.14});
-document.querySelectorAll('.panel').forEach(el=> io.observe(el));
-
-/* Ingestion log typer */
-const term = document.getElementById('ingestTerm');
-const lines = [
-  "[14:35:22] Databricks > start bronze_ingest_v2 on cluster dbx-prod",
-  "[14:35:27] Source: ADLS Gen2 (landing/events/*.json) · 1.24M rows",
-  "[14:35:31] Dedupe by event_id · watermark = 7 days",
-  "[14:35:36] Write → Delta (bronze.events) · mode=merge",
-  "[14:35:44] OPTIMIZE bronze.events ZORDER BY (event_date)",
-  "[14:35:51] ✓ bronze complete — moving to silver"
-];
-let li=0, ci=0, current=lines[0];
-function tick(){
-  if(li>=lines.length){ li=0; term.textContent = term.textContent.split('\n').slice(-4).join('\n') + '\n'; }
-  if(ci<=current.length){
-    term.textContent += current.charAt(ci++); term.scrollTop = term.scrollHeight;
-  } else { term.textContent += "\n"; li++; ci=0; current = lines[li] || lines[0]; }
-}
-setInterval(tick, 18);
-
-/* Transform progress bar */
-const prog = document.getElementById('prog'); let p=0, dir=1;
-setInterval(()=>{ p += dir * (2 + Math.random()*3); if(p>100){p=100;dir=-1} if(p<5){p=5;dir=1} prog.style.width = p.toFixed(1)+'%'; }, 350);
-
-/* Reporting animations — wiggle bar heights */
-const bars = document.querySelectorAll('#bars .bar');
-function randomizeBars(){
-  bars.forEach((el,i)=>{
-    const h = 25 + Math.random()*55; // 25%..80%
-    el.style.height = h + '%';
-  });
-}
-randomizeBars(); setInterval(randomizeBars, 1400);
-</script>
-</body>
-</html>
