@@ -1,501 +1,394 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manohar Chekka | Technical Lead & Data Architect</title>
-    <!-- Load Tailwind CSS from CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Load Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <title>Manohar Chekka — Technical Lead & Data Engineering Leader</title>
+    <meta name="description" content="Manohar Chekka — Technical Lead in Data Engineering, building enterprise data platforms at scale. Toronto, ON.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@200;300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        /* Custom styles for background and font */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #020617; /* slate-950 */
-            color: #e2e8f0; /* slate-200 */
-            scroll-behavior: smooth;
+        :root {
+            --deep: #0B0F19;
+            --deep-2: #121726;
+            --deep-3: #1A2035;
+            --cream: #F4EDE4;
+            --cream-2: #EAE0D4;
+            --white: #FDFCFA;
+            --text-light: #C8C3BC;
+            --text-mid: #7A7670;
+            --text-dim: #4A4742;
+            --gold: #C9956B;
+            --gold-dim: #A87C58;
+            --gold-glow: rgba(201,149,107,0.1);
+            --border-d: rgba(255,255,255,0.06);
+            --border-d2: rgba(255,255,255,0.12);
+            --border-l: rgba(0,0,0,0.08);
+            --serif: 'Instrument Serif', Georgia, serif;
+            --sans: 'Outfit', sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+            --mw: 1200px;
+            --t: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
         }
-        /* Custom scrollbar to match dark theme */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #1e293b; /* slate-800 */
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #334155; /* slate-700 */
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #60a5fa; /* blue-400 */
-        }
-        .hero-gradient-text {
-            background-image: linear-gradient(to right, #60a5fa, #c084fc); /* blue-400 to purple-400 */
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .animate-fade-in {
-            animation: fadeIn 1s ease-out forwards;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+
+```
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--sans); background: var(--deep); color: var(--text-light); line-height: 1.7; overflow-x: hidden; }
+    ::selection { background: var(--gold); color: var(--deep); }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--deep); }
+    ::-webkit-scrollbar-thumb { background: var(--deep-3); border-radius: 2px; }
+    a { color: inherit; text-decoration: none; }
+    .w { max-width: var(--mw); margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+    svg.i { width: 16px; height: 16px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+    /* ===== NAV ===== */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.4rem 0; transition: all var(--t); mix-blend-mode: difference; }
+    .nav.s { mix-blend-mode: normal; background: rgba(11,15,25,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 0.8rem 0; border-bottom: 1px solid var(--border-d); }
+    .nav-i { max-width: var(--mw); margin: 0 auto; padding: 0 clamp(1.5rem,4vw,3rem); display: flex; justify-content: space-between; align-items: center; }
+    .nav-n { font-family: var(--sans); font-weight: 700; font-size: 0.85rem; color: #fff; letter-spacing: 0.12em; text-transform: uppercase; }
+    .nav-l { display: flex; align-items: center; gap: 2rem; }
+    .nav-l a { font-size: 0.75rem; font-weight: 500; color: #fff; opacity: 0.4; transition: opacity var(--t); letter-spacing: 0.08em; text-transform: uppercase; }
+    .nav-l a:hover { opacity: 1; }
+    .nav-c { opacity: 1 !important; border: 1px solid var(--gold) !important; color: var(--gold) !important; padding: 0.4rem 1rem !important; border-radius: 100px !important; transition: all var(--t) !important; }
+    .nav-c:hover { background: var(--gold) !important; color: var(--deep) !important; }
+    .mob { display: none; background: none; border: none; cursor: pointer; color: #fff; padding: 4px; }
+
+    /* ===== HERO ===== */
+    .hero { min-height: 100vh; display: flex; align-items: flex-end; padding-bottom: 5rem; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: 20%; right: 5%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(201,149,107,0.04) 0%, transparent 70%); pointer-events: none; }
+    .hero-i { position: relative; z-index: 2; width: 100%; max-width: var(--mw); margin: 0 auto; padding: 0 clamp(1.5rem,4vw,3rem); }
+
+    .hero-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; margin-bottom: 4rem; }
+    .hero-left { flex: 1; }
+    .hero-right { font-family: var(--mono); font-size: 0.7rem; color: var(--text-dim); text-align: right; line-height: 1.9; letter-spacing: 0.04em; opacity: 0; animation: fi .6s 1s both; }
+
+    .hero-label { font-family: var(--mono); font-size: 0.68rem; color: var(--gold); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; opacity: 0; animation: fi .6s .2s both; }
+    .hero-label::before { content: ''; width: 24px; height: 1px; background: var(--gold-dim); }
+    .hero-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); animation: pulse 2.5s infinite; }
+
+    .hero h1 { font-family: var(--serif); font-size: clamp(3.5rem, 8vw, 7rem); font-weight: 400; color: var(--white); line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 1.5rem; opacity: 0; animation: fi .7s .35s both; }
+    .hero h1 em { font-style: italic; color: var(--gold); }
+
+    .hero-sub { font-size: 1.05rem; color: var(--text-mid); max-width: 480px; line-height: 1.8; font-weight: 300; margin-bottom: 2.5rem; opacity: 0; animation: fi .6s .55s both; }
+
+    .hero-btns { display: flex; gap: 0.6rem; flex-wrap: wrap; opacity: 0; animation: fi .6s .7s both; }
+    .btn { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.75rem 1.5rem; font-family: var(--sans); font-size: 0.78rem; font-weight: 600; border: none; cursor: pointer; transition: all var(--t); letter-spacing: 0.04em; text-transform: uppercase; border-radius: 100px; }
+    .btn-g { background: var(--gold); color: var(--deep); }
+    .btn-g:hover { background: var(--gold-dim); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,149,107,0.2); }
+    .btn-o { background: transparent; color: var(--text-light); border: 1px solid var(--border-d2); }
+    .btn-o:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* Stats */
+    .hero-stats { display: flex; gap: 0; border-top: 1px solid var(--border-d); margin-top: 4rem; opacity: 0; animation: fi .6s .85s both; }
+    .hs { flex: 1; padding: 1.75rem 0; border-right: 1px solid var(--border-d); }
+    .hs:last-child { border-right: none; }
+    .hs-v { font-family: var(--serif); font-size: 2.5rem; color: var(--white); line-height: 1; font-weight: 400; }
+    .hs-l { font-family: var(--mono); font-size: 0.62rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.12em; margin-top: 0.35rem; }
+
+    /* ===== SECTIONS ===== */
+    section { padding: clamp(4rem, 8vw, 6rem) 0; position: relative; }
+    .sl { font-family: var(--mono); font-size: 0.65rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.18em; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.7rem; }
+    .sl::before { content: ''; width: 16px; height: 1px; background: var(--gold-dim); }
+    .sh { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; color: var(--white); letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 0.5rem; }
+    .ss { font-size: 0.9rem; color: var(--text-dim); max-width: 420px; margin-bottom: 3rem; font-weight: 300; }
+
+    /* ===== ABOUT — CREAM PANEL ===== */
+    #about { background: var(--cream); color: #2A2723; padding: clamp(4rem,8vw,6rem) 0; }
+    #about .sl { color: var(--gold-dim); }
+    #about .sl::before { background: var(--gold-dim); }
+    #about .sh { color: #1A1816; }
+    .ab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .ab-p { font-size: 0.95rem; line-height: 2; color: #5A554E; }
+    .ab-p p + p { margin-top: 1.2rem; }
+    .ab-p strong { color: #1A1816; font-weight: 600; }
+    .exc { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+    .ec { padding: 1rem; border: 1px solid var(--border-l); border-radius: 8px; background: rgba(255,255,255,0.6); transition: all var(--t); }
+    .ec:hover { background: #fff; border-color: var(--gold); box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
+    .ec h4 { font-size: 0.78rem; font-weight: 700; color: #1A1816; margin-bottom: 0.2rem; }
+    .ec p { font-size: 0.68rem; color: #8A847C; line-height: 1.5; }
+
+    /* ===== EXPERIENCE ===== */
+    #experience { background: var(--deep); }
+    .exp { display: grid; grid-template-columns: 160px 1fr; gap: 2.5rem; padding: 2.25rem 0; border-bottom: 1px solid var(--border-d); transition: all var(--t); }
+    .exp:first-of-type { border-top: 1px solid var(--border-d); }
+    .exp:hover { padding-left: 0.5rem; }
+    .exp-d { font-family: var(--mono); font-size: 0.7rem; color: var(--text-dim); padding-top: 0.4rem; }
+    .exp-cur { display: inline-block; font-family: var(--mono); font-size: 0.58rem; color: var(--gold); border: 1px solid rgba(201,149,107,0.3); padding: 0.1rem 0.45rem; border-radius: 3px; margin-top: 0.4rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .exp-b h3 { font-family: var(--serif); font-size: 1.4rem; font-weight: 400; color: var(--white); margin-bottom: 0.15rem; }
+    .exp-co { font-size: 0.82rem; color: var(--gold); font-weight: 600; margin-bottom: 0.75rem; }
+    .exp-b p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.85; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.85rem; }
+    .tg { font-family: var(--mono); font-size: 0.6rem; color: var(--text-dim); padding: 0.15rem 0.5rem; border: 1px solid var(--border-d); border-radius: 100px; letter-spacing: 0.02em; }
+
+    /* ===== IMPACT ===== */
+    #impact { background: var(--deep-2); }
+    .imp-g { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border-d); border: 1px solid var(--border-d); border-radius: 12px; overflow: hidden; }
+    .im { background: var(--deep-2); padding: 2rem; transition: background var(--t); }
+    .im:hover { background: var(--deep-3); }
+    .im-n { font-family: var(--serif); font-size: 2.5rem; color: var(--gold); line-height: 1; margin-bottom: 0.5rem; }
+    .im h4 { font-size: 0.82rem; font-weight: 700; color: var(--white); margin-bottom: 0.3rem; }
+    .im p { font-size: 0.73rem; color: var(--text-dim); line-height: 1.55; }
+
+    /* ===== SKILLS ===== */
+    #skills { background: var(--deep); }
+    .sk-g { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; }
+    .sk h3 { font-family: var(--serif); font-size: 1.15rem; color: var(--white); margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--gold); display: inline-block; }
+    .sk ul { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+    .sk li { font-size: 0.82rem; color: var(--text-mid); display: flex; align-items: center; gap: 0.5rem; transition: color var(--t); }
+    .sk li:hover { color: var(--white); }
+    .sk li::before { content: ''; width: 3px; height: 3px; background: var(--gold); flex-shrink: 0; border-radius: 50%; }
+
+    /* ===== EDUCATION ===== */
+    #education { background: var(--deep-2); }
+    .edu-g { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .ed { padding: 1.5rem; border: 1px solid var(--border-d); border-radius: 8px; transition: all var(--t); }
+    .ed:hover { border-color: var(--gold-dim); }
+    .ed h3 { font-family: var(--serif); font-size: 1.05rem; color: var(--white); margin-bottom: 0.2rem; }
+    .ed span { font-size: 0.82rem; color: var(--gold); font-weight: 500; }
+
+    /* ===== CONTACT ===== */
+    #contact { background: var(--cream); color: #2A2723; text-align: center; }
+    #contact .sl { justify-content: center; color: var(--gold-dim); }
+    #contact .sl::before { display: none; }
+    #contact .sh { color: #1A1816; text-align: center; }
+    #contact .ss { max-width: 100%; text-align: center; margin-left: auto; margin-right: auto; color: #8A847C; }
+    .ct { max-width: 480px; margin: 0 auto; }
+    .ct-btns { display: flex; justify-content: center; gap: 0.7rem; flex-wrap: wrap; }
+    .ct .btn-g:hover { box-shadow: 0 8px 30px rgba(201,149,107,0.25); }
+    .ct .btn-o { color: #5A554E; border-color: var(--border-l); }
+    .ct .btn-o:hover { border-color: var(--gold-dim); color: var(--gold-dim); }
+    .ct-em { margin-top: 1.5rem; font-family: var(--mono); font-size: 0.75rem; color: #8A847C; }
+    .ct-em a { color: var(--gold-dim); font-weight: 500; }
+    .ct-em a:hover { color: #1A1816; }
+
+    footer { padding: 1.5rem; text-align: center; font-size: 0.65rem; color: var(--text-dim); background: var(--deep); border-top: 1px solid var(--border-d); letter-spacing: 0.1em; text-transform: uppercase; }
+
+    /* ===== ANIM ===== */
+    @keyframes fi { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+    .rv { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
+    .rv.v { opacity: 1; transform: translateY(0); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+        .nav-l { display: none; }
+        .mob { display: block; }
+        .nav-l.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(11,15,25,0.97); backdrop-filter: blur(16px); padding: 1.25rem 2rem 1.5rem; gap: 1rem; border-bottom: 1px solid var(--border-d); }
+        .hero-top { flex-direction: column; align-items: flex-start; }
+        .hero-right { text-align: left; }
+        .hero-stats { flex-wrap: wrap; }
+        .hs { flex: 1 1 45%; }
+        .hs:nth-child(2) { border-right: none; }
+        .ab-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+        .exc { grid-template-columns: 1fr; }
+        .exp { grid-template-columns: 1fr; gap: 0.35rem; }
+        .exp:hover { padding-left: 0; }
+        .imp-g { grid-template-columns: 1fr; }
+        .sk-g { grid-template-columns: 1fr; gap: 2rem; }
+        .edu-g { grid-template-columns: 1fr; }
+        .hero-i { padding-top: 2rem; }
+        .hero { padding-bottom: 3rem; }
+    }
+</style>
+```
+
 </head>
-<body class="bg-slate-950">
+<body>
 
-    <div id="app">
-        <!-- Content will be generated by the script -->
+<nav class="nav" id="nav">
+    <div class="nav-i">
+        <span class="nav-n">M. Chekka</span>
+        <button class="mob" aria-label="Menu" onclick="document.querySelector('.nav-l').classList.toggle('open')">
+            <svg class="i" style="width:22px;height:22px"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+        </button>
+        <div class="nav-l">
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#impact">Impact</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact" class="nav-c">Connect</a>
+        </div>
     </div>
+</nav>
 
-    <script>
-        // Data Configuration (Easily editable)
-        const portfolioData = {
-            name: "Manohar Chekka",
-            role: "Technical Lead | Data Engineering & Cloud Architecture",
-            headline: "Driving data excellence with scalable Azure solutions and performance optimization—delivering measurable business impact (30% runtime reduction).",
-            location: "Toronto, Ontario, Canada",
-            email: "manohar.c@example.com", // <<<--- !!! UPDATE YOUR EMAIL HERE !!!
-            linkedinUrl: "https://www.linkedin.com/in/manohar-c-74a0b225a",
-            about: "I am a results-focused Technical Leader with 7+ years of experience specializing in Data Engineering, BI, and ETL tools across both cloud (Azure, AWS, GCP) and on-premises environments. My core expertise lies in designing and implementing highly scalable data curation processes using modern tools like Databricks, Synapse, and PySpark. I am passionate about optimizing data pipelines, ensuring strict AML/Data Governance compliance, and translating complex data into strategic KPIs like CES and LEI that directly enhance customer experience and drive business alignment.",
-            
-            stats: [
-                { label: "Years Experience", value: "7+" },
-                { label: "Pipeline Runtime Reduced", value: "30%+" },
-                { label: "Cloud Platforms", value: "3 (Azure/AWS/GCP)" },
-                { label: "Strategic KPIs Developed", value: "CES & LEI" }
-            ],
-
-            skills: [
-                "Azure Data Factory (ADF)",
-                "Azure Databricks / Synapse",
-                "Python / PySpark / Pandas",
-                "SQL / Complex Queries",
-                "Data Modeling & Warehousing",
-                "Power BI / SSRS / DAX",
-                "Data Governance / AML Standards",
-                "Performance Optimization",
-                "ETL/ELT Pipeline Design",
-                "Team Leadership"
-            ],
-
-            experience: [
-                {
-                    company: "Wipro",
-                    role: "Technical Lead - Data Engineering",
-                    period: "Mar 2025 - Present",
-                    description: "Leading data-driven initiatives in a Technical Lead capacity, focusing on architecture, solution design, and mentoring to ensure high-quality and scalable data engineering practices."
-                },
-                {
-                    company: "TD Bank",
-                    role: "Data Engineer",
-                    period: "Jun 2023 - Present",
-                    description: "Key member of the Data as a Service team on the Athena platform (Databricks/Synapse). Developed robust ETL pipelines using Python/PySpark, achieving **>30% reduction in data pipeline runtime** through advanced performance optimization. Built critical customer-focused KPIs (CES & LEI) from the ground up and enforced strict Anti-Money Laundering (AML) standards."
-                },
-                {
-                    company: "BYJU'S",
-                    role: "Business Development Analyst",
-                    period: "Jan 2019 - Aug 2021",
-                    description: "Developed and managed ETL pipelines using Azure Data Factory (ADF) for data ingestion into Azure Data Lake and Synapse. Created essential accounting reports and dashboards using Power BI, optimizing SQL queries, and utilizing complex DAX functions for accurate financial reporting."
-                },
-                {
-                    company: "Padmavati Hospitals",
-                    role: "Administrative Manager / Database Admin",
-                    period: "Mar 2017 - Jan 2021",
-                    description: "Directed data-related operations and managed IT infrastructure/data analytics teams. Focused on supporting management decision-making with data insights and ensuring compliance with healthcare data standards."
-                }
-            ],
-
-            projects: [
-                {
-                    title: "Customer Experience KPI Implementation (CES & LEI)",
-                    tech: "Azure Databricks, PySpark, Data Modeling",
-                    description: "Architected and built the Customer Effort Score (CES) and Legendary Experience Index (LEI) KPIs, providing actionable insights used by stakeholders to significantly enhance customer journey experiences."
-                },
-                {
-                    title: "Athena Data Platform Performance Optimization",
-                    tech: "Python, PySpark, Synapse Analytics",
-                    description: "Spearheaded performance optimization techniques across core data pipelines, resulting in a quantifiable reduction of over 30% in overall pipeline execution runtime."
-                },
-                {
-                    title: "Financial Reporting & BI Solution",
-                    tech: "Power BI, DAX, Azure Data Factory, SQL",
-                    description: "Designed and published comprehensive Year-to-Date, Month-to-Date, and Budget reports, leveraging optimized SQL and complex DAX queries to ensure data integrity and business accuracy."
-                }
-            ]
-        };
-
-        // --- Utility Functions ---
-
-        /**
-         * Simple function to create HTML elements.
-         * @param {string} tag The HTML tag name (e.g., 'div', 'a').
-         * @param {string} className Tailwind classes.
-         * @param {string} innerHTML Inner HTML content.
-         * @param {object} attributes Additional attributes like { href: '#', target: '_blank' }.
-         * @returns {HTMLElement} The created element.
-         */
-        const createElement = (tag, className, innerHTML = '', attributes = {}) => {
-            const el = document.createElement(tag);
-            if (className) el.className = className;
-            if (innerHTML) el.innerHTML = innerHTML;
-            for (const key in attributes) {
-                el.setAttribute(key, attributes[key]);
-            }
-            return el;
-        };
-
-        const copyEmail = (email) => {
-            let copied = false;
-            // Fallback for older browsers or iframe restrictions (execCommand is deprecated but safer in this environment)
-            const textArea = document.createElement("textarea");
-            textArea.value = email;
-            document.body.appendChild(textArea);
-            textArea.select();
-            try {
-                document.execCommand('copy');
-                copied = true;
-            } catch (err) {
-                console.error('Fallback: Unable to copy', err);
-            }
-            document.body.removeChild(textArea);
-            return copied;
-        };
-
-        // --- Component Rendering Functions ---
-
-        const renderIcon = (iconName, className = 'w-5 h-5') => {
-            return `<i data-lucide="${iconName}" class="${className}"></i>`;
-        }
-
-        const renderNavigation = () => {
-            const navLinks = [
-                { name: 'About', href: '#about' },
-                { name: 'Experience', href: '#experience' },
-                { name: 'Projects', href: '#projects' },
-                { name: 'Contact', href: '#contact' },
-            ];
-
-            const nav = createElement('nav', 'fixed w-full z-50 transition-all duration-300 bg-slate-900/90 backdrop-blur-md shadow-lg py-4');
-            const container = createElement('div', 'max-w-7xl mx-auto px-6 flex justify-between items-center');
-
-            const logo = createElement('a', 'text-2xl font-bold text-white tracking-tighter', `MC<span class="text-blue-500">.</span>`, { href: '#'});
-            
-            const desktopNav = createElement('div', 'hidden md:flex space-x-8');
-            navLinks.forEach(link => {
-                desktopNav.appendChild(createElement('a', 'text-sm font-medium text-slate-300 hover:text-white transition-colors', link.name, { href: link.href }));
-            });
-            const hireButton = createElement('a', 'px-4 py-2 text-sm font-medium bg-blue-600 hover:bg-blue-700 text-white rounded-full transition-all shadow-lg shadow-blue-500/20', `Connect on LinkedIn`, { href: portfolioData.linkedinUrl, target: '_blank', rel: 'noopener noreferrer' });
-            desktopNav.appendChild(hireButton);
-
-            container.appendChild(logo);
-            container.appendChild(desktopNav);
-            
-            nav.appendChild(container);
-
-            // Note: Mobile menu button and logic is complex for pure JS/HTML, simplifying for a static portfolio.
-            return nav;
-        };
-
-        const renderHero = () => {
-            const section = createElement('section', 'relative min-h-screen flex items-center pt-20 overflow-hidden bg-slate-950', '', { id: 'hero' });
-
-            // Background Gradients
-            section.innerHTML += `<div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-[120px]"></div>`;
-            section.innerHTML += `<div class="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-[120px]"></div>`;
-
-            const contentDiv = createElement('div', 'max-w-7xl mx-auto px-6 relative z-10');
-
-            // Hero Text
-            const textBlock = createElement('div', 'max-w-4xl');
-            textBlock.innerHTML = `
-                <div class="inline-block px-3 py-1 mb-6 border border-blue-500/30 rounded-full bg-blue-500/10 text-blue-400 text-sm font-medium animate-fade-in">
-                    ${portfolioData.role.split('|')[0].trim()}
-                </div>
-                <h1 class="text-5xl md:text-7xl font-bold text-white leading-tight mb-6 tracking-tight">
-                    I'm <span class="hero-gradient-text">${portfolioData.name}</span>
-                </h1>
-                <p class="text-xl md:text-2xl text-slate-400 mb-8 leading-relaxed max-w-3xl">
-                    ${portfolioData.headline}
-                </p>
-                
-                <div class="flex flex-wrap gap-4 mb-24">
-                    <a href="${portfolioData.linkedinUrl}" target="_blank" rel="noopener noreferrer"
-                        class="flex items-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-semibold transition-all shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transform hover:-translate-y-1">
-                        ${renderIcon('linkedin', 'w-5 h-5')}
-                        View LinkedIn Profile
+<section class="hero">
+    <div class="hero-i">
+        <div class="hero-top">
+            <div class="hero-left">
+                <div class="hero-label"><span class="hero-dot"></span> Available for Opportunities</div>
+                <h1>Manohar<br>Chekka</h1>
+                <p class="hero-sub">Technical Lead in Data Engineering — building enterprise platforms at scale. Moving toward product ownership and data leadership.</p>
+                <div class="hero-btns">
+                    <a href="https://www.linkedin.com/in/manohar-c-74a0b225a" target="_blank" rel="noopener noreferrer" class="btn btn-g">
+                        <svg class="i"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                        LinkedIn
                     </a>
-                    <a href="#contact"
-                        class="flex items-center gap-2 px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-full font-semibold transition-all border border-slate-700 hover:border-slate-600">
-                        ${renderIcon('mail', 'w-5 h-5')}
-                        Let's Connect
+                    <a href="mailto:manoharch0698@gmail.com" class="btn btn-o">
+                        <svg class="i"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        Email
+                    </a>
+                    <a href="#experience" class="btn btn-o">
+                        <svg class="i"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+                        Work
                     </a>
                 </div>
-            `;
-            contentDiv.appendChild(textBlock);
-            
-            // Stats Row
-            const statsRow = createElement('div', 'mt-12 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-slate-800 pt-12');
-            portfolioData.stats.forEach(stat => {
-                const statDiv = createElement('div', 'group cursor-default');
-                statDiv.innerHTML = `
-                    <h3 class="text-3xl md:text-4xl font-bold text-white mb-1 group-hover:text-blue-400 transition-colors">${stat.value}</h3>
-                    <p class="text-slate-500 text-sm uppercase tracking-wider font-medium">${stat.label}</p>
-                `;
-                statsRow.appendChild(statDiv);
-            });
-            contentDiv.appendChild(statsRow);
-            
-            section.appendChild(contentDiv);
-            
-            // Scroll indicator
-            section.innerHTML += `<div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce text-slate-500">${renderIcon('chevron-down', 'w-6 h-6')}</div>`;
+            </div>
+            <div class="hero-right">
+                Toronto, ON<br>
+                Wipro · Technical Lead<br>
+                Data Engineering & BI<br>
+                Product · Cloud · Scale
+            </div>
+        </div>
+        <div class="hero-stats">
+            <div class="hs"><div class="hs-v">6+</div><div class="hs-l">Years in Data</div></div>
+            <div class="hs"><div class="hs-v">3,000+</div><div class="hs-l">Platform Users</div></div>
+            <div class="hs"><div class="hs-v">30%</div><div class="hs-l">Pipeline Optimized</div></div>
+            <div class="hs"><div class="hs-v">3</div><div class="hs-l">Cloud Platforms</div></div>
+        </div>
+    </div>
+</section>
 
-            return section;
-        };
-
-        const renderAbout = () => {
-            const section = createElement('section', 'py-24 bg-slate-900', '', { id: 'about' });
-            const container = createElement('div', 'max-w-7xl mx-auto px-6');
-            
-            const grid = createElement('div', 'grid md:grid-cols-2 gap-16 items-center');
-            
-            // Left Column: Text and Skills
-            const textCol = createElement('div', '');
-            textCol.innerHTML = `
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 flex items-center gap-3">
-                    ${renderIcon('user', 'w-6 h-6 text-blue-500')}
-                    Professional Summary
-                </h2>
-                <p class="text-slate-300 text-lg leading-relaxed mb-8">
-                    ${portfolioData.about}
-                </p>
-                <h3 class="text-xl font-semibold text-white mb-4">Core Technology Stack</h3>
-            `;
-            
-            const skillsDiv = createElement('div', 'flex flex-wrap gap-3');
-            portfolioData.skills.forEach(skill => {
-                skillsDiv.innerHTML += `<span class="px-4 py-2 bg-slate-800 text-slate-300 rounded-lg text-sm border border-slate-700 hover:border-blue-500/50 hover:text-blue-400 transition-colors cursor-default">${skill}</span>`;
-            });
-            textCol.appendChild(skillsDiv);
-
-            // Right Column: Code Block Mockup
-            const codeCol = createElement('div', 'relative');
-            codeCol.innerHTML = `
-                <div class="absolute inset-0 bg-gradient-to-tr from-blue-600 to-purple-600 rounded-2xl blur-2xl opacity-20"></div>
-                <div class="relative bg-slate-800 border border-slate-700 rounded-2xl p-8 shadow-2xl">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                    </div>
-                    <div class="font-mono text-sm text-slate-400 space-y-2">
-                        <p><span class="text-purple-400">const</span> <span class="text-blue-400">dataStrategist</span> = {'{'}</p>
-                        <p class="pl-4">name: <span class="text-green-400">"${portfolioData.name}"</span>,</p>
-                        <p class="pl-4">focus: <span class="text-green-400">"Scalable Data Architectures"</span>,</p>
-                        <p class="pl-4">cloud: <span class="text-green-400">["Azure", "AWS", "GCP"]</span>,</p>
-                        <p class="pl-4">impact: <span class="text-orange-400">"Measured Business Growth"</span></p>
-                        <p>{'};'}</p>
-                    </div>
+<section id="about">
+    <div class="w">
+        <div class="ab-grid">
+            <div>
+                <div class="sl rv">About</div>
+                <h2 class="sh rv">Product thinking<br>meets engineering</h2>
+                <div class="ab-p rv">
+                    <p>I sit at the intersection of <strong>product ownership</strong> and <strong>technical depth</strong>. My career has been built on translating business requirements into data products that actually ship.</p>
+                    <p>Currently leading a <strong>Power BI Center of Excellence</strong> at a major Canadian bank — owning product vision, backlog, and delivery. Took it from pilot to production at scale. Now rolling out <strong>Copilot AI</strong> with governance I built from scratch.</p>
+                    <p>Previously at TD Bank, de facto product owner for the <strong>Athena platform</strong> — building KPIs that changed how the bank measures customer experience.</p>
                 </div>
-            `;
-            
-            grid.appendChild(textCol);
-            grid.appendChild(codeCol);
-            container.appendChild(grid);
-            section.appendChild(container);
-            return section;
-        };
-
-        const renderExperience = () => {
-            const section = createElement('section', 'py-24 bg-slate-950', '', { id: 'experience' });
-            const container = createElement('div', 'max-w-7xl mx-auto px-6');
-            
-            container.innerHTML = `
-                <div class="mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 flex items-center gap-3">
-                        ${renderIcon('briefcase', 'w-6 h-6 text-blue-500')}
-                        Career Milestones
-                    </h2>
-                    <p class="text-slate-400">My professional journey in Data Engineering and Analytics.</p>
+            </div>
+            <div>
+                <div class="sl rv" style="margin-bottom:1rem">Expertise</div>
+                <div class="exc rv">
+                    <div class="ec"><h4>Product Ownership</h4><p>Backlog, roadmaps, sprints, stakeholder prioritization</p></div>
+                    <div class="ec"><h4>Data Platforms</h4><p>Snowflake, Databricks, Synapse, Fabric, Power BI</p></div>
+                    <div class="ec"><h4>Cloud Architecture</h4><p>Azure (expert), AWS, GCP, CI/CD, DevOps</p></div>
+                    <div class="ec"><h4>Engineering</h4><p>ETL/ELT, SQL, Python, PySpark, optimization</p></div>
+                    <div class="ec"><h4>Governance</h4><p>RBAC, GDPR, AML, AI governance, Purview</p></div>
+                    <div class="ec"><h4>Leadership</h4><p>Teams, Microsoft negotiations, exec presentations</p></div>
                 </div>
-            `;
+            </div>
+        </div>
+    </div>
+</section>
 
-            const timeline = createElement('div', 'relative border-l-2 border-slate-800 ml-3 md:ml-6 space-y-12');
-            
-            portfolioData.experience.forEach((exp, index) => {
-                const item = createElement('div', 'relative pl-8 md:pl-12 group');
-                item.innerHTML = `
-                    <!-- Timeline Dot -->
-                    <div class="absolute -left-[9px] md:-left-[9px] top-0 w-4 h-4 rounded-full bg-slate-800 border-2 border-slate-600 group-hover:bg-blue-600 group-hover:border-blue-400 transition-colors"></div>
-                    
-                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                        <h3 class="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">${exp.role}</h3>
-                        <span class="text-sm font-mono text-slate-500 bg-slate-900 px-3 py-1 rounded-full border border-slate-800 mt-2 sm:mt-0 w-fit">
-                            ${exp.period}
-                        </span>
-                    </div>
-                    <h4 class="text-lg text-slate-400 mb-4">${exp.company}</h4>
-                    <p class="text-slate-400 leading-relaxed max-w-3xl">
-                        ${exp.description}
-                    </p>
-                `;
-                timeline.appendChild(item);
-            });
-            
-            container.appendChild(timeline);
-            section.appendChild(container);
-            return section;
-        };
+<section id="experience">
+    <div class="w">
+        <div class="sl rv">Experience</div>
+        <h2 class="sh rv">Career trajectory</h2>
+        <p class="ss rv">From data engineering to product-oriented leadership.</p>
 
-        const renderProjects = () => {
-            const section = createElement('section', 'py-24 bg-slate-900', '', { id: 'projects' });
-            const container = createElement('div', 'max-w-7xl mx-auto px-6');
-            
-            container.innerHTML = `
-                <div class="mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 flex items-center gap-3">
-                        ${renderIcon('code', 'w-6 h-6 text-blue-500')}
-                        Key Achievements & Initiatives
-                    </h2>
-                    <p class="text-slate-400">Showcasing projects with demonstrable business impact.</p>
-                </div>
-            `;
+```
+    <div class="exp rv">
+        <div class="exp-d">2025 — Present<div class="exp-cur">Current</div></div>
+        <div class="exp-b">
+            <h3>Technical Lead — Data Engineering</h3>
+            <div class="exp-co">Wipro · Toronto</div>
+            <p>Leading Power BI COE for a major Canadian bank. Own product vision, roadmap, and backlog across 3 consolidated teams. Launched platform from pilot to production at scale. Driving Copilot AI rollout with enterprise governance. Direct negotiations with Microsoft on product strategy.</p>
+            <div class="tags"><span class="tg">Product Ownership</span><span class="tg">Power BI</span><span class="tg">Fabric</span><span class="tg">Copilot AI</span><span class="tg">Governance</span></div>
+        </div>
+    </div>
+    <div class="exp rv">
+        <div class="exp-d">2023 — 2025</div>
+        <div class="exp-b">
+            <h3>Data Engineer & Data Scientist</h3>
+            <div class="exp-co">TD Bank · Toronto</div>
+            <p>Product owner for "Athena" — enterprise data platform across Databricks, Snowflake, and Azure Synapse. Built mission-critical KPIs (CES, LEI, FCR) from ground up. 30%+ pipeline optimization. Managed engineering team and governance.</p>
+            <div class="tags"><span class="tg">Snowflake</span><span class="tg">Databricks</span><span class="tg">Synapse</span><span class="tg">PySpark</span><span class="tg">KPIs</span></div>
+        </div>
+    </div>
+    <div class="exp rv">
+        <div class="exp-d">2019 — 2020</div>
+        <div class="exp-b">
+            <h3>BI Engineer & Business Dev Analyst</h3>
+            <div class="exp-co">Byju's · Hyderabad</div>
+            <p>End-to-end analytics lifecycle: requirements, dimensional modeling, executive dashboards. SSIS ETL, Kafka streaming, Airflow automation, Jenkins CI/CD.</p>
+            <div class="tags"><span class="tg">SSIS</span><span class="tg">Power BI</span><span class="tg">Kafka</span><span class="tg">Airflow</span></div>
+        </div>
+    </div>
+</div>
+```
 
-            const grid = createElement('div', 'grid md:grid-cols-2 lg:grid-cols-3 gap-8');
+</section>
 
-            portfolioData.projects.forEach((project, index) => {
-                const card = createElement('div', 'bg-slate-950 rounded-xl border border-slate-800 p-6 hover:border-blue-500/30 transition-all hover:shadow-xl hover:shadow-blue-500/5 group flex flex-col h-full');
-                card.innerHTML = `
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="p-3 bg-slate-900 rounded-lg text-blue-400 group-hover:text-blue-300 group-hover:bg-blue-900/20 transition-colors">
-                            ${renderIcon('award', 'w-6 h-6')}
-                        </div>
-                    </div>
-                    
-                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">${project.title}</h3>
-                    <p class="text-slate-400 text-sm mb-6 flex-grow leading-relaxed">
-                        ${project.description}
-                    </p>
-                    
-                    <div class="pt-4 border-t border-slate-800">
-                        <p class="text-xs font-mono text-slate-500">
-                            Tech Focus: ${project.tech}
-                        </p>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
+<section id="impact">
+    <div class="w">
+        <div class="sl rv">Impact</div>
+        <h2 class="sh rv">Measurable outcomes</h2>
+        <p class="ss rv">What shipped and what it delivered.</p>
+        <div class="imp-g rv">
+            <div class="im"><div class="im-n">3,000+</div><h4>Platform Scale</h4><p>Enterprise BI infrastructure and governance for bank-wide adoption.</p></div>
+            <div class="im"><div class="im-n">30%+</div><h4>Runtime Reduced</h4><p>PySpark optimization across core ETL pipelines.</p></div>
+            <div class="im"><div class="im-n">3 KPIs</div><h4>Built from Zero</h4><p>CES, LEI, FCR — driving data-informed decisions.</p></div>
+            <div class="im"><div class="im-n">3 Teams</div><h4>Unified COE</h4><p>Consolidated into one operating model.</p></div>
+            <div class="im"><div class="im-n">Copilot</div><h4>AI Governance</h4><p>Framework adopted as enterprise policy.</p></div>
+            <div class="im"><div class="im-n">Microsoft</div><h4>Vendor Partner</h4><p>Primary voice for roadmap and Fabric strategy.</p></div>
+        </div>
+    </div>
+</section>
 
-            container.appendChild(grid);
-            section.appendChild(container);
-            return section;
-        };
+<section id="skills">
+    <div class="w">
+        <div class="sl rv">Technical</div>
+        <h2 class="sh rv">Stack</h2>
+        <p class="ss rv">Pipeline code to executive dashboards.</p>
+        <div class="sk-g rv">
+            <div class="sk"><h3>Platforms & Cloud</h3><ul><li>Snowflake</li><li>Azure Synapse</li><li>Databricks</li><li>Microsoft Fabric</li><li>Azure Data Factory</li><li>Redshift</li><li>Azure / AWS / GCP</li></ul></div>
+            <div class="sk"><h3>Languages</h3><ul><li>SQL / T-SQL</li><li>Python</li><li>PySpark / SparkSQL</li><li>DAX / Power Query</li><li>R</li><li>Kafka / Event Hub</li><li>Airflow</li></ul></div>
+            <div class="sk"><h3>Product & Leadership</h3><ul><li>Backlog & Roadmaps</li><li>Agile / Scrum</li><li>JIRA / Confluence</li><li>Power BI</li><li>Tableau / Qlik / SSRS</li><li>CI/CD / DevOps / Git</li><li>Purview / Collibra</li></ul></div>
+        </div>
+    </div>
+</section>
 
-        const renderContact = () => {
-            const section = createElement('section', 'py-24 bg-slate-950 relative overflow-hidden', '', { id: 'contact' });
-            
-            // Footer decorative elements
-            section.innerHTML += `<div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent"></div>`;
-            section.innerHTML += `<div class="absolute bottom-0 right-0 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl"></div>`;
+<section id="education">
+    <div class="w">
+        <div class="sl rv">Education</div>
+        <h2 class="sh rv">Background</h2>
+        <div style="margin-bottom:2rem"></div>
+        <div class="edu-g rv">
+            <div class="ed"><h3>PG Diploma — Data Analytics</h3><span>St. Clair College, Canada</span></div>
+            <div class="ed"><h3>Bachelor of Technology</h3><span>KL University, India</span></div>
+        </div>
+    </div>
+</section>
 
-            const contentDiv = createElement('div', 'max-w-3xl mx-auto px-6 text-center relative z-10');
-            
-            contentDiv.innerHTML = `
-                <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Let's work together</h2>
-                <p class="text-slate-400 text-lg mb-10">
-                    I'm currently seeking challenging opportunities in Data Engineering and Architecture. Let's connect to discuss how I can drive data excellence on your team.
-                </p>
-            `;
+<section id="contact">
+    <div class="w">
+        <div class="ct">
+            <div class="sl rv">Contact</div>
+            <h2 class="sh rv">Let's talk</h2>
+            <p class="ss rv" style="max-width:100%">Exploring Product Owner, Analytics Manager, and Data Engineering leadership roles in the GTA. Open to hybrid and remote.</p>
+            <div class="ct-btns rv">
+                <a href="https://www.linkedin.com/in/manohar-c-74a0b225a" target="_blank" rel="noopener noreferrer" class="btn btn-g">
+                    <svg class="i"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    LinkedIn
+                </a>
+                <a href="mailto:manoharch0698@gmail.com" class="btn btn-o">
+                    <svg class="i"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    Email
+                </a>
+            </div>
+            <div class="ct-em rv"><a href="mailto:manoharch0698@gmail.com">manoharch0698@gmail.com</a> · Toronto · 519-992-8680</div>
+        </div>
+    </div>
+</section>
 
-            const buttonContainer = createElement('div', 'flex flex-col md:flex-row items-center justify-center gap-4');
-            const emailLink = createElement('a', 'px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-semibold transition-all shadow-lg shadow-blue-500/25 min-w-[200px]', 'Say Hello', { href: `mailto:${portfolioData.email}` });
-            
-            const copyButton = createElement('button', 'px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-full font-semibold transition-all border border-slate-700 min-w-[200px] flex items-center justify-center gap-2', 
-                `${renderIcon('copy', 'w-5 h-5', 'copy-icon')} Copy Email`,
-                { id: 'copy-email-button' }
-            );
+<footer><p>&copy; 2026 Manohar Chekka</p></footer>
 
-            // Add click listener for copy
-            copyButton.onclick = function() {
-                const isCopied = copyEmail(portfolioData.email);
-                const icon = copyButton.querySelector('.copy-icon');
+<script>
+var n=document.getElementById('nav');
+window.onscroll=function(){n.classList.toggle('s',window.scrollY>80)};
+try{var els=document.querySelectorAll('.rv');var ob=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('v');ob.unobserve(en.target)}})},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});els.forEach(function(el){ob.observe(el)})}catch(e){var a=document.querySelectorAll('.rv');for(var i=0;i<a.length;i++){a[i].classList.add('v')}}
+document.querySelectorAll('.nav-l a').forEach(function(a){a.addEventListener('click',function(){document.querySelector('.nav-l').classList.remove('open')})});
+</script>
 
-                if (isCopied) {
-                    copyButton.innerHTML = `${renderIcon('check', 'w-5 h-5 text-green-400')} Email Copied!`;
-                    setTimeout(() => {
-                        copyButton.innerHTML = `${renderIcon('copy', 'w-5 h-5')} Copy Email`;
-                        // Re-render icons after changing innerHTML
-                        lucide.createIcons();
-                    }, 2000);
-                } else {
-                    // Fallback visual feedback if copy failed
-                    copyButton.innerHTML = `${renderIcon('x', 'w-5 h-5 text-red-400')} Copy Failed`;
-                    setTimeout(() => {
-                        copyButton.innerHTML = `${renderIcon('copy', 'w-5 h-5')} Copy Email`;
-                        lucide.createIcons();
-                    }, 2000);
-                }
-                // Re-render icons after changing innerHTML
-                lucide.createIcons();
-            };
-
-            buttonContainer.appendChild(emailLink);
-            buttonContainer.appendChild(copyButton);
-            contentDiv.appendChild(buttonContainer);
-
-            contentDiv.innerHTML += `
-                <div class="mt-16 flex justify-center gap-8">
-                    <a href="${portfolioData.linkedinUrl}" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white transition-colors p-2 hover:bg-slate-800 rounded-full">
-                        ${renderIcon('linkedin', 'w-6 h-6')}
-                    </a>
-                </div>
-                
-                <footer class="mt-16 text-slate-600 text-sm">
-                    <p>&copy; ${new Date().getFullYear()} ${portfolioData.name}. All rights reserved.</p>
-                </footer>
-            `;
-            
-            section.appendChild(contentDiv);
-            return section;
-        };
-
-
-        // --- Main Initialization ---
-        const initApp = () => {
-            const app = document.getElementById('app');
-            if (!app) return;
-
-            // Append all sections
-            app.appendChild(renderNavigation());
-            app.appendChild(renderHero());
-            app.appendChild(renderAbout());
-            app.appendChild(renderExperience());
-            app.appendChild(renderProjects());
-            app.appendChild(renderContact());
-
-            // Initialize Lucide Icons after content is loaded
-            lucide.createIcons();
-
-            // Set up scroll listener for navigation bar state (optional, simplified)
-            const nav = document.querySelector('nav');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    nav.classList.add('py-4', 'bg-slate-900/90', 'backdrop-blur-md', 'shadow-lg');
-                    nav.classList.remove('py-6', 'bg-transparent');
-                } else {
-                    nav.classList.remove('py-4', 'bg-slate-900/90', 'backdrop-blur-md', 'shadow-lg');
-                    nav.classList.add('py-6', 'bg-transparent');
-                }
-            });
-        };
-
-        window.onload = initApp;
-    </script>
 </body>
 </html>
-
