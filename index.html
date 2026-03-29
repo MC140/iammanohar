@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manohar Chekka — Technical Lead & Data Engineering Leader</title>
-    <meta name="description" content="Manohar Chekka — Technical Lead in Data Engineering, building enterprise data platforms at scale. Toronto, ON.">
+    <title>Manohar Chekka — Data & Product Leader | Toronto</title>
+    <meta name="description" content="Manohar Chekka — Senior data and product leader building enterprise analytics platforms, owning product roadmaps, and delivering at scale. Toronto, ON.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@200;300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -45,7 +45,7 @@
     .w { max-width: var(--mw); margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
     svg.i { width: 16px; height: 16px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
 
-    /* ===== NAV ===== */
+    /* NAV */
     .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.4rem 0; transition: all var(--t); mix-blend-mode: difference; }
     .nav.s { mix-blend-mode: normal; background: rgba(11,15,25,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 0.8rem 0; border-bottom: 1px solid var(--border-d); }
     .nav-i { max-width: var(--mw); margin: 0 auto; padding: 0 clamp(1.5rem,4vw,3rem); display: flex; justify-content: space-between; align-items: center; }
@@ -57,7 +57,7 @@
     .nav-c:hover { background: var(--gold) !important; color: var(--deep) !important; }
     .mob { display: none; background: none; border: none; cursor: pointer; color: #fff; padding: 4px; }
 
-    /* ===== HERO ===== */
+    /* HERO */
     .hero { min-height: 100vh; display: flex; align-items: flex-end; padding-bottom: 5rem; position: relative; overflow: hidden; }
     .hero::before { content: ''; position: absolute; top: 20%; right: 5%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(201,149,107,0.04) 0%, transparent 70%); pointer-events: none; }
     .hero-i { position: relative; z-index: 2; width: 100%; max-width: var(--mw); margin: 0 auto; padding: 0 clamp(1.5rem,4vw,3rem); }
@@ -73,7 +73,7 @@
     .hero h1 { font-family: var(--serif); font-size: clamp(3.5rem, 8vw, 7rem); font-weight: 400; color: var(--white); line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 1.5rem; opacity: 0; animation: fi .7s .35s both; }
     .hero h1 em { font-style: italic; color: var(--gold); }
 
-    .hero-sub { font-size: 1.05rem; color: var(--text-mid); max-width: 480px; line-height: 1.8; font-weight: 300; margin-bottom: 2.5rem; opacity: 0; animation: fi .6s .55s both; }
+    .hero-sub { font-size: 1.05rem; color: var(--text-mid); max-width: 520px; line-height: 1.8; font-weight: 300; margin-bottom: 2.5rem; opacity: 0; animation: fi .6s .55s both; }
 
     .hero-btns { display: flex; gap: 0.6rem; flex-wrap: wrap; opacity: 0; animation: fi .6s .7s both; }
     .btn { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.75rem 1.5rem; font-family: var(--sans); font-size: 0.78rem; font-weight: 600; border: none; cursor: pointer; transition: all var(--t); letter-spacing: 0.04em; text-transform: uppercase; border-radius: 100px; }
@@ -89,14 +89,14 @@
     .hs-v { font-family: var(--serif); font-size: 2.5rem; color: var(--white); line-height: 1; font-weight: 400; }
     .hs-l { font-family: var(--mono); font-size: 0.62rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.12em; margin-top: 0.35rem; }
 
-    /* ===== SECTIONS ===== */
+    /* SECTIONS */
     section { padding: clamp(4rem, 8vw, 6rem) 0; position: relative; }
     .sl { font-family: var(--mono); font-size: 0.65rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.18em; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.7rem; }
     .sl::before { content: ''; width: 16px; height: 1px; background: var(--gold-dim); }
     .sh { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; color: var(--white); letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 0.5rem; }
     .ss { font-size: 0.9rem; color: var(--text-dim); max-width: 420px; margin-bottom: 3rem; font-weight: 300; }
 
-    /* ===== ABOUT — CREAM PANEL ===== */
+    /* ABOUT */
     #about { background: var(--cream); color: #2A2723; padding: clamp(4rem,8vw,6rem) 0; }
     #about .sl { color: var(--gold-dim); }
     #about .sl::before { background: var(--gold-dim); }
@@ -111,7 +111,7 @@
     .ec h4 { font-size: 0.78rem; font-weight: 700; color: #1A1816; margin-bottom: 0.2rem; }
     .ec p { font-size: 0.68rem; color: #8A847C; line-height: 1.5; }
 
-    /* ===== EXPERIENCE ===== */
+    /* EXPERIENCE */
     #experience { background: var(--deep); }
     .exp { display: grid; grid-template-columns: 160px 1fr; gap: 2.5rem; padding: 2.25rem 0; border-bottom: 1px solid var(--border-d); transition: all var(--t); }
     .exp:first-of-type { border-top: 1px solid var(--border-d); }
@@ -124,7 +124,7 @@
     .tags { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.85rem; }
     .tg { font-family: var(--mono); font-size: 0.6rem; color: var(--text-dim); padding: 0.15rem 0.5rem; border: 1px solid var(--border-d); border-radius: 100px; letter-spacing: 0.02em; }
 
-    /* ===== IMPACT ===== */
+    /* IMPACT */
     #impact { background: var(--deep-2); }
     .imp-g { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border-d); border: 1px solid var(--border-d); border-radius: 12px; overflow: hidden; }
     .im { background: var(--deep-2); padding: 2rem; transition: background var(--t); }
@@ -133,8 +133,23 @@
     .im h4 { font-size: 0.82rem; font-weight: 700; color: var(--white); margin-bottom: 0.3rem; }
     .im p { font-size: 0.73rem; color: var(--text-dim); line-height: 1.55; }
 
-    /* ===== SKILLS ===== */
-    #skills { background: var(--deep); }
+    /* PROJECTS */
+    #projects { background: var(--deep); }
+    .proj-g { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .pr { padding: 2rem; border: 1px solid var(--border-d); border-radius: 12px; transition: all var(--t); position: relative; overflow: hidden; }
+    .pr::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-dim), transparent); opacity: 0; transition: opacity var(--t); }
+    .pr:hover { border-color: rgba(201,149,107,0.3); background: var(--deep-2); }
+    .pr:hover::before { opacity: 1; }
+    .pr-tag { font-family: var(--mono); font-size: 0.58rem; color: var(--gold); border: 1px solid rgba(201,149,107,0.3); padding: 0.15rem 0.5rem; border-radius: 3px; text-transform: uppercase; letter-spacing: 0.08em; display: inline-block; margin-bottom: 1rem; }
+    .pr h3 { font-family: var(--serif); font-size: 1.4rem; color: var(--white); margin-bottom: 0.4rem; font-weight: 400; }
+    .pr-url { font-family: var(--mono); font-size: 0.65rem; color: var(--gold-dim); margin-bottom: 0.85rem; transition: color var(--t); }
+    .pr:hover .pr-url { color: var(--gold); }
+    .pr p { font-size: 0.85rem; color: var(--text-mid); line-height: 1.75; margin-bottom: 1rem; }
+    .pr-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.72rem; font-weight: 600; color: var(--gold); letter-spacing: 0.06em; text-transform: uppercase; transition: gap var(--t); }
+    .pr-link:hover { gap: 0.6rem; }
+
+    /* SKILLS */
+    #skills { background: var(--deep-2); }
     .sk-g { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; }
     .sk h3 { font-family: var(--serif); font-size: 1.15rem; color: var(--white); margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--gold); display: inline-block; }
     .sk ul { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
@@ -142,15 +157,15 @@
     .sk li:hover { color: var(--white); }
     .sk li::before { content: ''; width: 3px; height: 3px; background: var(--gold); flex-shrink: 0; border-radius: 50%; }
 
-    /* ===== EDUCATION ===== */
-    #education { background: var(--deep-2); }
+    /* EDUCATION */
+    #education { background: var(--deep); }
     .edu-g { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     .ed { padding: 1.5rem; border: 1px solid var(--border-d); border-radius: 8px; transition: all var(--t); }
     .ed:hover { border-color: var(--gold-dim); }
     .ed h3 { font-family: var(--serif); font-size: 1.05rem; color: var(--white); margin-bottom: 0.2rem; }
     .ed span { font-size: 0.82rem; color: var(--gold); font-weight: 500; }
 
-    /* ===== CONTACT ===== */
+    /* CONTACT */
     #contact { background: var(--cream); color: #2A2723; text-align: center; }
     #contact .sl { justify-content: center; color: var(--gold-dim); }
     #contact .sl::before { display: none; }
@@ -167,13 +182,13 @@
 
     footer { padding: 1.5rem; text-align: center; font-size: 0.65rem; color: var(--text-dim); background: var(--deep); border-top: 1px solid var(--border-d); letter-spacing: 0.1em; text-transform: uppercase; }
 
-    /* ===== ANIM ===== */
+    /* ANIM */
     @keyframes fi { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
     .rv { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
     .rv.v { opacity: 1; transform: translateY(0); }
 
-    /* ===== RESPONSIVE ===== */
+    /* RESPONSIVE */
     @media (max-width: 900px) {
         .nav-l { display: none; }
         .mob { display: block; }
@@ -188,6 +203,7 @@
         .exp { grid-template-columns: 1fr; gap: 0.35rem; }
         .exp:hover { padding-left: 0; }
         .imp-g { grid-template-columns: 1fr; }
+        .proj-g { grid-template-columns: 1fr; }
         .sk-g { grid-template-columns: 1fr; gap: 2rem; }
         .edu-g { grid-template-columns: 1fr; }
         .hero-i { padding-top: 2rem; }
@@ -208,7 +224,7 @@
         <div class="nav-l">
             <a href="#about">About</a>
             <a href="#experience">Experience</a>
-            <a href="#impact">Impact</a>
+            <a href="#projects">Projects</a>
             <a href="#skills">Skills</a>
             <a href="#contact" class="nav-c">Connect</a>
         </div>
@@ -219,9 +235,9 @@
     <div class="hero-i">
         <div class="hero-top">
             <div class="hero-left">
-                <div class="hero-label"><span class="hero-dot"></span> Available for Opportunities</div>
-                <h1>Manohar<br>Chekka</h1>
-                <p class="hero-sub">Technical Lead in Data Engineering — building enterprise platforms at scale. Moving toward product ownership and data leadership.</p>
+                <div class="hero-label"><span class="hero-dot"></span> Open to Opportunities · Toronto</div>
+                <h1>Manohar<br><em>Chekka</em></h1>
+                <p class="hero-sub">Senior data and product leader — owning enterprise analytics platforms, driving product roadmaps, and delivering measurable business outcomes at scale across financial services.</p>
                 <div class="hero-btns">
                     <a href="https://www.linkedin.com/in/manohar-c-74a0b225a" target="_blank" rel="noopener noreferrer" class="btn btn-g">
                         <svg class="i"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
@@ -238,17 +254,17 @@
                 </div>
             </div>
             <div class="hero-right">
-                Toronto, ON<br>
-                Wipro · Technical Lead<br>
-                Data Engineering & BI<br>
-                Product · Cloud · Scale
+                Toronto, ON · Canada<br>
+                Product · Analytics · Data<br>
+                Financial Services<br>
+                Cloud · AI · Governance
             </div>
         </div>
         <div class="hero-stats">
-            <div class="hs"><div class="hs-v">6+</div><div class="hs-l">Years in Data</div></div>
+            <div class="hs"><div class="hs-v">5.5+</div><div class="hs-l">Years Experience</div></div>
             <div class="hs"><div class="hs-v">3,000+</div><div class="hs-l">Platform Users</div></div>
-            <div class="hs"><div class="hs-v">30%</div><div class="hs-l">Pipeline Optimized</div></div>
-            <div class="hs"><div class="hs-v">3</div><div class="hs-l">Cloud Platforms</div></div>
+            <div class="hs"><div class="hs-v">30%+</div><div class="hs-l">Pipeline Optimized</div></div>
+            <div class="hs"><div class="hs-v">2</div><div class="hs-l">Live Products Built</div></div>
         </div>
     </div>
 </section>
@@ -258,22 +274,22 @@
         <div class="ab-grid">
             <div>
                 <div class="sl rv">About</div>
-                <h2 class="sh rv">Product thinking<br>meets engineering</h2>
+                <h2 class="sh rv">Product thinking<br>meets engineering depth</h2>
                 <div class="ab-p rv">
-                    <p>I sit at the intersection of <strong>product ownership</strong> and <strong>technical depth</strong>. My career has been built on translating business requirements into data products that actually ship.</p>
-                    <p>Currently leading a <strong>Power BI Center of Excellence</strong> at a major Canadian bank — owning product vision, backlog, and delivery. Took it from pilot to production at scale. Now rolling out <strong>Copilot AI</strong> with governance I built from scratch.</p>
-                    <p>Previously at TD Bank, de facto product owner for the <strong>Athena platform</strong> — building KPIs that changed how the bank measures customer experience.</p>
+                    <p>I sit at the intersection of <strong>product ownership</strong> and <strong>technical depth</strong>. My career has been built on translating complex business requirements into data products that actually ship — on time, at scale, in regulated environments.</p>
+                    <p>Currently leading a <strong>Power BI Center of Excellence</strong> at a major Canadian bank — owning the product roadmap, managing backlog, and driving delivery from pilot to production. Rolled out <strong>Copilot AI</strong> with an enterprise governance framework I built from scratch and presented to financial risk leadership.</p>
+                    <p>Previously at TD Bank, served as de facto product owner for the <strong>Athena platform</strong> — a single-source-of-truth financial data system built on Databricks, Snowflake, and Azure Synapse — delivering KPIs that fundamentally changed how the bank measures performance.</p>
                 </div>
             </div>
             <div>
                 <div class="sl rv" style="margin-bottom:1rem">Expertise</div>
                 <div class="exc rv">
-                    <div class="ec"><h4>Product Ownership</h4><p>Backlog, roadmaps, sprints, stakeholder prioritization</p></div>
+                    <div class="ec"><h4>Product Ownership</h4><p>Backlog, roadmaps, sprint planning, stakeholder prioritization</p></div>
                     <div class="ec"><h4>Data Platforms</h4><p>Snowflake, Databricks, Synapse, Fabric, Power BI</p></div>
-                    <div class="ec"><h4>Cloud Architecture</h4><p>Azure (expert), AWS, GCP, CI/CD, DevOps</p></div>
-                    <div class="ec"><h4>Engineering</h4><p>ETL/ELT, SQL, Python, PySpark, optimization</p></div>
-                    <div class="ec"><h4>Governance</h4><p>RBAC, GDPR, AML, AI governance, Purview</p></div>
-                    <div class="ec"><h4>Leadership</h4><p>Teams, Microsoft negotiations, exec presentations</p></div>
+                    <div class="ec"><h4>Cloud Architecture</h4><p>Azure (expert), AWS, GCP, CI/CD, DevOps pipelines</p></div>
+                    <div class="ec"><h4>Engineering</h4><p>ETL/ELT, SQL, Python, PySpark, performance optimization</p></div>
+                    <div class="ec"><h4>Governance & AI</h4><p>RBAC, GDPR, AML, Copilot AI governance, Purview</p></div>
+                    <div class="ec"><h4>Leadership</h4><p>Team management, vendor negotiation, exec presentations</p></div>
                 </div>
             </div>
         </div>
@@ -284,34 +300,46 @@
     <div class="w">
         <div class="sl rv">Experience</div>
         <h2 class="sh rv">Career trajectory</h2>
-        <p class="ss rv">From data engineering to product-oriented leadership.</p>
+        <p class="ss rv">From data engineering to product-led platform leadership.</p>
 
 ```
     <div class="exp rv">
         <div class="exp-d">2025 — Present<div class="exp-cur">Current</div></div>
         <div class="exp-b">
-            <h3>Technical Lead — Data Engineering</h3>
-            <div class="exp-co">Wipro · Toronto</div>
-            <p>Leading Power BI COE for a major Canadian bank. Own product vision, roadmap, and backlog across 3 consolidated teams. Launched platform from pilot to production at scale. Driving Copilot AI rollout with enterprise governance. Direct negotiations with Microsoft on product strategy.</p>
-            <div class="tags"><span class="tg">Product Ownership</span><span class="tg">Power BI</span><span class="tg">Fabric</span><span class="tg">Copilot AI</span><span class="tg">Governance</span></div>
+            <h3>Analytics & Product Lead — CoE</h3>
+            <div class="exp-co">Wipro · Toronto (Major Canadian Bank)</div>
+            <p>Own the product roadmap and backlog for a Power BI enterprise analytics platform. Consolidated three teams into one CoE, executed a 250-user pilot, and scaled to 3,000+ business users. Designed and launched Copilot AI governance framework adopted as bank-wide policy. Direct engagement with Microsoft on platform roadmap and Fabric strategy.</p>
+            <div class="tags"><span class="tg">Product Ownership</span><span class="tg">Power BI</span><span class="tg">Fabric</span><span class="tg">Copilot AI</span><span class="tg">Governance</span><span class="tg">Agile</span></div>
         </div>
     </div>
+
     <div class="exp rv">
         <div class="exp-d">2023 — 2025</div>
         <div class="exp-b">
-            <h3>Data Engineer & Data Scientist</h3>
+            <h3>Data Engineer · De Facto Product Owner</h3>
             <div class="exp-co">TD Bank · Toronto</div>
-            <p>Product owner for "Athena" — enterprise data platform across Databricks, Snowflake, and Azure Synapse. Built mission-critical KPIs (CES, LEI, FCR) from ground up. 30%+ pipeline optimization. Managed engineering team and governance.</p>
-            <div class="tags"><span class="tg">Snowflake</span><span class="tg">Databricks</span><span class="tg">Synapse</span><span class="tg">PySpark</span><span class="tg">KPIs</span></div>
+            <p>Product owner for Athena — TD Bank's enterprise financial data platform across Databricks, Snowflake, and Azure Synapse. Managed full backlog, wrote business requirements, and drove end-to-end delivery. Built three mission-critical KPIs (CES, LEI, FCR) from zero. Delivered 30%+ pipeline optimization. Supported NACO and TECE lines of business.</p>
+            <div class="tags"><span class="tg">Snowflake</span><span class="tg">Databricks</span><span class="tg">Synapse</span><span class="tg">PySpark</span><span class="tg">SQL</span><span class="tg">AML</span><span class="tg">KPIs</span></div>
         </div>
     </div>
+
     <div class="exp rv">
-        <div class="exp-d">2019 — 2020</div>
+        <div class="exp-d">2019 — 2021</div>
         <div class="exp-b">
-            <h3>BI Engineer & Business Dev Analyst</h3>
+            <h3>BI Engineer & Business Analyst</h3>
             <div class="exp-co">Byju's · Hyderabad</div>
-            <p>End-to-end analytics lifecycle: requirements, dimensional modeling, executive dashboards. SSIS ETL, Kafka streaming, Airflow automation, Jenkins CI/CD.</p>
-            <div class="tags"><span class="tg">SSIS</span><span class="tg">Power BI</span><span class="tg">Kafka</span><span class="tg">Airflow</span></div>
+            <p>End-to-end analytics lifecycle: requirements gathering, dimensional modelling, executive dashboards, and ETL pipeline delivery. SSIS, Kafka streaming, Airflow automation, Jenkins CI/CD. Agile Scrum environment with direct stakeholder collaboration.</p>
+            <div class="tags"><span class="tg">SSIS</span><span class="tg">Power BI</span><span class="tg">Kafka</span><span class="tg">Airflow</span><span class="tg">SQL</span></div>
+        </div>
+    </div>
+
+    <div class="exp rv">
+        <div class="exp-d">2018 — 2019</div>
+        <div class="exp-b">
+            <h3>Hospital Administrator & Operations Lead</h3>
+            <div class="exp-co">Padmavati Hospitals · India</div>
+            <p>Managed end-to-end operations for a multi-specialty hospital — staff, vendors, billing, compliance reporting, and clinical quality metrics. Built cross-functional coordination and stakeholder management skills that underpin every product role since.</p>
+            <div class="tags"><span class="tg">Operations</span><span class="tg">Reporting</span><span class="tg">Compliance</span><span class="tg">Healthcare</span></div>
         </div>
     </div>
 </div>
@@ -325,12 +353,44 @@
         <h2 class="sh rv">Measurable outcomes</h2>
         <p class="ss rv">What shipped and what it delivered.</p>
         <div class="imp-g rv">
-            <div class="im"><div class="im-n">3,000+</div><h4>Platform Scale</h4><p>Enterprise BI infrastructure and governance for bank-wide adoption.</p></div>
-            <div class="im"><div class="im-n">30%+</div><h4>Runtime Reduced</h4><p>PySpark optimization across core ETL pipelines.</p></div>
-            <div class="im"><div class="im-n">3 KPIs</div><h4>Built from Zero</h4><p>CES, LEI, FCR — driving data-informed decisions.</p></div>
-            <div class="im"><div class="im-n">3 Teams</div><h4>Unified COE</h4><p>Consolidated into one operating model.</p></div>
-            <div class="im"><div class="im-n">Copilot</div><h4>AI Governance</h4><p>Framework adopted as enterprise policy.</p></div>
-            <div class="im"><div class="im-n">Microsoft</div><h4>Vendor Partner</h4><p>Primary voice for roadmap and Fabric strategy.</p></div>
+            <div class="im"><div class="im-n">3,000+</div><h4>Platform Scale</h4><p>Enterprise analytics platform rolled out to bank-wide users from a 250-person pilot.</p></div>
+            <div class="im"><div class="im-n">30%+</div><h4>Runtime Reduced</h4><p>PySpark and Delta Lake optimization across core ETL pipelines at TD Bank.</p></div>
+            <div class="im"><div class="im-n">3 KPIs</div><h4>Built from Zero</h4><p>CES, LEI, FCR — enterprise performance metrics now driving bank-wide decisions.</p></div>
+            <div class="im"><div class="im-n">3 Teams</div><h4>Unified CoE</h4><p>Three separate Power BI teams consolidated into one governed operating model.</p></div>
+            <div class="im"><div class="im-n">Copilot</div><h4>AI Governance</h4><p>Enterprise AI framework tested against financial risk use cases and adopted as policy.</p></div>
+            <div class="im"><div class="im-n">2</div><h4>Products Shipped</h4><p>Live software products built and launched independently — AI and healthcare domains.</p></div>
+        </div>
+    </div>
+</section>
+
+<section id="projects">
+    <div class="w">
+        <div class="sl rv">Projects</div>
+        <h2 class="sh rv">Built independently</h2>
+        <p class="ss rv">Products conceived, designed, and shipped outside of corporate work.</p>
+        <div class="proj-g">
+            <div class="pr rv">
+                <span class="pr-tag">AI · SaaS · Live</span>
+                <h3>PromptCue</h3>
+                <div class="pr-url">thepromptcue.com</div>
+                <p>An AI prompt generation platform targeting marketers, developers, and business professionals. Owns the full product lifecycle — requirements, design, API integration, and deployment. Built on Claude AI API with an Apify-powered data backend. Live and publicly accessible.</p>
+                <div class="tags" style="margin-bottom:1rem"><span class="tg">Claude API</span><span class="tg">Apify</span><span class="tg">Product Design</span><span class="tg">Full Stack</span></div>
+                <a href="https://www.thepromptcue.com" target="_blank" rel="noopener noreferrer" class="pr-link">
+                    Visit Site
+                    <svg class="i" style="width:14px;height:14px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+            </div>
+            <div class="pr rv">
+                <span class="pr-tag">Healthcare · Fintech · Live</span>
+                <h3>HealPath Global</h3>
+                <div class="pr-url">healpathglobal.com</div>
+                <p>A healthcare concierge platform connecting patients with JCI-accredited hospitals and coordinating end-to-end medical travel. Built on deep healthcare operations experience. Patient-first service design model. Incorporated in Ontario, Canada as HealPath Global Concierge Inc.</p>
+                <div class="tags" style="margin-bottom:1rem"><span class="tg">Healthcare</span><span class="tg">Product</span><span class="tg">Ontario Inc.</span><span class="tg">Patient Journey</span></div>
+                <a href="https://www.healpathglobal.com" target="_blank" rel="noopener noreferrer" class="pr-link">
+                    Visit Site
+                    <svg class="i" style="width:14px;height:14px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+            </div>
         </div>
     </div>
 </section>
@@ -341,9 +401,39 @@
         <h2 class="sh rv">Stack</h2>
         <p class="ss rv">Pipeline code to executive dashboards.</p>
         <div class="sk-g rv">
-            <div class="sk"><h3>Platforms & Cloud</h3><ul><li>Snowflake</li><li>Azure Synapse</li><li>Databricks</li><li>Microsoft Fabric</li><li>Azure Data Factory</li><li>Redshift</li><li>Azure / AWS / GCP</li></ul></div>
-            <div class="sk"><h3>Languages</h3><ul><li>SQL / T-SQL</li><li>Python</li><li>PySpark / SparkSQL</li><li>DAX / Power Query</li><li>R</li><li>Kafka / Event Hub</li><li>Airflow</li></ul></div>
-            <div class="sk"><h3>Product & Leadership</h3><ul><li>Backlog & Roadmaps</li><li>Agile / Scrum</li><li>JIRA / Confluence</li><li>Power BI</li><li>Tableau / Qlik / SSRS</li><li>CI/CD / DevOps / Git</li><li>Purview / Collibra</li></ul></div>
+            <div class="sk">
+                <h3>Platforms & Cloud</h3>
+                <ul>
+                    <li>Snowflake</li>
+                    <li>Azure Synapse</li>
+                    <li>Databricks</li>
+                    <li>Microsoft Fabric</li>
+                    <li>Azure Data Factory</li>
+                    <li>Azure / AWS / GCP</li>
+                </ul>
+            </div>
+            <div class="sk">
+                <h3>Languages</h3>
+                <ul>
+                    <li>SQL / T-SQL (Advanced)</li>
+                    <li>Python</li>
+                    <li>PySpark / SparkSQL</li>
+                    <li>DAX / Power Query M</li>
+                    <li>R</li>
+                    <li>Kafka / Event Hub</li>
+                </ul>
+            </div>
+            <div class="sk">
+                <h3>Product & Leadership</h3>
+                <ul>
+                    <li>Backlog & Roadmap Ownership</li>
+                    <li>Agile / Scrum</li>
+                    <li>JIRA / Confluence</li>
+                    <li>Power BI / Tableau</li>
+                    <li>CI/CD / DevOps / Git</li>
+                    <li>Purview / Collibra / RBAC</li>
+                </ul>
+            </div>
         </div>
     </div>
 </section>
@@ -354,8 +444,14 @@
         <h2 class="sh rv">Background</h2>
         <div style="margin-bottom:2rem"></div>
         <div class="edu-g rv">
-            <div class="ed"><h3>PG Diploma — Data Analytics</h3><span>St. Clair College, Canada</span></div>
-            <div class="ed"><h3>Bachelor of Technology</h3><span>KL University, India</span></div>
+            <div class="ed">
+                <h3>PG Diploma — Data Analytics for Business</h3>
+                <span>St. Clair College · Windsor, ON · Canada</span>
+            </div>
+            <div class="ed">
+                <h3>Bachelor of Technology — Computer Science</h3>
+                <span>KL University · India</span>
+            </div>
         </div>
     </div>
 </section>
@@ -365,7 +461,7 @@
         <div class="ct">
             <div class="sl rv">Contact</div>
             <h2 class="sh rv">Let's talk</h2>
-            <p class="ss rv" style="max-width:100%">Exploring Product Owner, Analytics Manager, and Data Engineering leadership roles in the GTA. Open to hybrid and remote.</p>
+            <p class="ss rv" style="max-width:100%">Exploring Product Owner, Analytics Manager, and Senior Data roles in the GTA and remotely. Open to fintech, banking, healthcare, and technology sectors.</p>
             <div class="ct-btns rv">
                 <a href="https://www.linkedin.com/in/manohar-c-74a0b225a" target="_blank" rel="noopener noreferrer" class="btn btn-g">
                     <svg class="i"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
@@ -376,12 +472,12 @@
                     Email
                 </a>
             </div>
-            <div class="ct-em rv"><a href="mailto:manoharch0698@gmail.com">manoharch0698@gmail.com</a> · Toronto · 519-992-8680</div>
+            <div class="ct-em rv"><a href="mailto:manoharch0698@gmail.com">manoharch0698@gmail.com</a> · Toronto, ON · 519-992-8680</div>
         </div>
     </div>
 </section>
 
-<footer><p>&copy; 2026 Manohar Chekka</p></footer>
+<footer><p>&copy; 2026 Manohar Chekka · iammanohar.com</p></footer>
 
 <script>
 var n=document.getElementById('nav');
