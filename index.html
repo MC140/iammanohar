@@ -1,400 +1,726 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manohar Chekka — Data & Analytics Leader | Toronto</title>
-    <meta name="description" content="Manohar Chekka — Data and analytics leader who owns product roadmaps, leads teams, and delivers enterprise platforms at scale. Toronto, ON.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@200;300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --deep:#0B0F19;--deep-2:#121726;--deep-3:#1A2035;
-            --cream:#F4EDE4;--cream-2:#EAE0D4;--white:#FDFCFA;
-            --text-light:#C8C3BC;--text-mid:#7A7670;--text-dim:#4A4742;
-            --gold:#C9956B;--gold-dim:#A87C58;
-            --border-d:rgba(255,255,255,0.06);--border-d2:rgba(255,255,255,0.12);--border-l:rgba(0,0,0,0.08);
-            --serif:'Instrument Serif',Georgia,serif;--sans:'Outfit',sans-serif;--mono:'JetBrains Mono',monospace;
-            --mw:1200px;--t:0.4s cubic-bezier(0.22,1,0.36,1);
-        }
-        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-        html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
-        body{font-family:var(--sans);background:var(--deep);color:var(--text-light);line-height:1.7;overflow-x:hidden}
-        ::selection{background:var(--gold);color:var(--deep)}
-        ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--deep)}::-webkit-scrollbar-thumb{background:var(--deep-3);border-radius:2px}
-        a{color:inherit;text-decoration:none}
-        .w{max-width:var(--mw);margin:0 auto;padding:0 clamp(1.5rem,4vw,3rem)}
-        svg.i{width:16px;height:16px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manohar Chekka — Data & Analytics Leader | Toronto</title>
+<meta name="description" content="Manohar Chekka — Data and analytics leader who owns product roadmaps, leads teams, and delivers enterprise platforms at scale. Toronto, ON.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --bg:#070D0A;
+  --bg-2:#0B1510;
+  --panel:#0F1D16;
+  --card:#12241B;
+  --card-2:#16291F;
+  --text:#E8F2EB;          /* primary — high contrast */
+  --text-2:#B9CCC0;        /* secondary */
+  --text-3:#7E9588;        /* muted */
+  --neon:#3EE08F;          /* signal green */
+  --neon-dim:#23A368;
+  --amber:#FFB454;
+  --hot:#FF6B4A;
+  --line:rgba(62,224,143,0.18);
+  --line-soft:rgba(232,242,235,0.08);
+  --grid:rgba(62,224,143,0.045);
+  --sans:'Archivo',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --mw:1200px;
+  --ease:cubic-bezier(0.22,1,0.36,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{
+  font-family:var(--sans);background:var(--bg);color:var(--text-2);
+  line-height:1.7;font-size:16.5px;overflow-x:hidden;
+}
+/* animated grid + glow */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:54px 54px;
+  animation:gridDrift 24s linear infinite;
+}
+body::after{
+  content:'';position:fixed;top:-20%;right:-10%;width:60vw;height:60vw;z-index:0;pointer-events:none;
+  background:radial-gradient(circle,rgba(62,224,143,0.07) 0%,transparent 60%);
+  animation:breathe 9s ease-in-out infinite;
+}
+@keyframes gridDrift{from{background-position:0 0,0 0}to{background-position:54px 54px,54px 54px}}
+@keyframes breathe{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
+::selection{background:var(--neon);color:var(--bg)}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--neon-dim);border-radius:3px}
+a{color:inherit;text-decoration:none}
+.w{max-width:var(--mw);margin:0 auto;padding:0 clamp(1.25rem,4vw,3rem);position:relative;z-index:1}
 
-```
-    .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.4rem 0;transition:all var(--t);mix-blend-mode:difference}
-    .nav.s{mix-blend-mode:normal;background:rgba(11,15,25,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:0.8rem 0;border-bottom:1px solid var(--border-d)}
-    .nav-i{max-width:var(--mw);margin:0 auto;padding:0 clamp(1.5rem,4vw,3rem);display:flex;justify-content:space-between;align-items:center}
-    .nav-n{font-family:var(--sans);font-weight:700;font-size:0.85rem;color:#fff;letter-spacing:0.12em;text-transform:uppercase}
-    .nav-l{display:flex;align-items:center;gap:2rem}
-    .nav-l a{font-size:0.75rem;font-weight:500;color:#fff;opacity:0.4;transition:opacity var(--t);letter-spacing:0.08em;text-transform:uppercase}
-    .nav-l a:hover{opacity:1}
-    .nav-c{opacity:1!important;border:1px solid var(--gold)!important;color:var(--gold)!important;padding:0.4rem 1rem!important;border-radius:100px!important;transition:all var(--t)!important}
-    .nav-c:hover{background:var(--gold)!important;color:var(--deep)!important}
-    .mob{display:none;background:none;border:none;cursor:pointer;color:#fff;padding:4px}
+.eyebrow{
+  font-family:var(--mono);font-size:0.72rem;font-weight:600;color:var(--neon);
+  letter-spacing:0.18em;text-transform:uppercase;display:flex;align-items:center;gap:0.7rem;margin-bottom:1.1rem;
+}
+.eyebrow::before{content:'';width:9px;height:9px;border:1.5px solid var(--neon);transform:rotate(45deg);box-shadow:0 0 8px rgba(62,224,143,0.6);flex-shrink:0}
+h2.sh{
+  font-family:var(--sans);font-stretch:116%;font-weight:680;
+  font-size:clamp(2rem,4.2vw,3.1rem);line-height:1.05;letter-spacing:-0.02em;
+  color:var(--text);margin-bottom:0.65rem;
+}
+.ss{font-size:1rem;color:var(--text-3);max-width:520px;margin-bottom:2.8rem}
+svg.i{width:16px;height:16px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
 
-    .hero{min-height:100vh;display:flex;align-items:flex-end;padding-bottom:5rem;position:relative;overflow:hidden}
-    .hero::before{content:'';position:absolute;top:20%;right:5%;width:400px;height:400px;background:radial-gradient(circle,rgba(201,149,107,0.04) 0%,transparent 70%);pointer-events:none}
-    .hero-i{position:relative;z-index:2;width:100%;max-width:var(--mw);margin:0 auto;padding:0 clamp(1.5rem,4vw,3rem)}
-    .hero-top{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:4rem}
-    .hero-left{flex:1}
-    .hero-right{font-family:var(--mono);font-size:0.7rem;color:var(--text-dim);text-align:right;line-height:1.9;letter-spacing:0.04em;opacity:0;animation:fi .6s 1s both}
-    .hero-label{font-family:var(--mono);font-size:0.68rem;color:var(--gold);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.75rem;opacity:0;animation:fi .6s .2s both}
-    .hero-label::before{content:'';width:24px;height:1px;background:var(--gold-dim)}
-    .hero-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);animation:pulse 2.5s infinite}
-    .hero h1{font-family:var(--serif);font-size:clamp(3.5rem,8vw,7rem);font-weight:400;color:var(--white);line-height:0.95;letter-spacing:-0.04em;margin-bottom:1.5rem;opacity:0;animation:fi .7s .35s both}
-    .hero h1 em{font-style:italic;color:var(--gold)}
-    .hero-sub{font-size:1.05rem;color:var(--text-mid);max-width:520px;line-height:1.8;font-weight:300;margin-bottom:2.5rem;opacity:0;animation:fi .6s .55s both}
-    .hero-btns{display:flex;gap:0.6rem;flex-wrap:wrap;opacity:0;animation:fi .6s .7s both}
-    .btn{display:inline-flex;align-items:center;gap:0.45rem;padding:0.75rem 1.5rem;font-family:var(--sans);font-size:0.78rem;font-weight:600;border:none;cursor:pointer;transition:all var(--t);letter-spacing:0.04em;text-transform:uppercase;border-radius:100px}
-    .btn-g{background:var(--gold);color:var(--deep)}
-    .btn-g:hover{background:var(--gold-dim);transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,149,107,0.2)}
-    .btn-o{background:transparent;color:var(--text-light);border:1px solid var(--border-d2)}
-    .btn-o:hover{border-color:var(--gold);color:var(--gold)}
-    .hero-stats{display:flex;gap:0;border-top:1px solid var(--border-d);margin-top:4rem;opacity:0;animation:fi .6s .85s both}
-    .hs{flex:1;padding:1.75rem 0;border-right:1px solid var(--border-d)}
-    .hs:last-child{border-right:none}
-    .hs-v{font-family:var(--serif);font-size:2.5rem;color:var(--white);line-height:1;font-weight:400}
-    .hs-l{font-family:var(--mono);font-size:0.62rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.12em;margin-top:0.35rem}
+/* ============ NAV ============ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:all .35s var(--ease);padding:1.1rem 0;border-bottom:1px solid transparent}
+.nav.s{background:rgba(7,13,10,0.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:0.65rem 0;border-bottom:1px solid var(--line-soft)}
+.nav-i{max-width:var(--mw);margin:0 auto;padding:0 clamp(1.25rem,4vw,3rem);display:flex;justify-content:space-between;align-items:center}
+.nav-n{font-family:var(--sans);font-stretch:120%;font-weight:760;font-size:0.88rem;color:var(--text);letter-spacing:0.07em;text-transform:uppercase;display:flex;align-items:center;gap:0.55rem}
+.nav-n::before{content:'';width:9px;height:9px;background:var(--neon);transform:rotate(45deg);box-shadow:0 0 10px var(--neon)}
+.nav-l{display:flex;align-items:center;gap:1.9rem}
+.nav-l a{font-family:var(--mono);font-size:0.7rem;font-weight:500;color:var(--text-2);letter-spacing:0.08em;text-transform:uppercase;transition:all .25s;position:relative}
+.nav-l a:not(.nav-c)::after{content:'';position:absolute;left:0;bottom:-4px;width:0;height:1.5px;background:var(--neon);transition:width .3s var(--ease)}
+.nav-l a:hover{color:var(--neon)}
+.nav-l a:not(.nav-c):hover::after{width:100%}
+.nav-c{color:var(--bg)!important;background:var(--neon);padding:0.48rem 1.1rem;font-weight:600;box-shadow:0 0 18px rgba(62,224,143,0.35);transition:all .25s!important}
+.nav-c:hover{background:#fff;box-shadow:0 0 26px rgba(62,224,143,0.6)}
+.mob{display:none;background:none;border:none;cursor:pointer;color:var(--text);padding:4px}
 
-    section{padding:clamp(4rem,8vw,6rem) 0;position:relative}
-    .sl{font-family:var(--mono);font-size:0.65rem;color:var(--gold);text-transform:uppercase;letter-spacing:0.18em;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.7rem}
-    .sl::before{content:'';width:16px;height:1px;background:var(--gold-dim)}
-    .sh{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:400;color:var(--white);letter-spacing:-0.02em;line-height:1.1;margin-bottom:0.5rem}
-    .ss{font-size:0.9rem;color:var(--text-dim);max-width:420px;margin-bottom:3rem;font-weight:300}
+/* ============ HERO ============ */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;position:relative;padding:7.5rem 0 0;z-index:1}
+.hero-grid{display:grid;grid-template-columns:1.15fr 0.85fr;gap:3.5rem;align-items:center}
+.status{
+  font-family:var(--mono);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--text-2);display:inline-flex;align-items:center;gap:0.6rem;
+  border:1px solid var(--line);background:rgba(62,224,143,0.06);padding:0.5rem 1rem;
+  margin-bottom:2rem;opacity:0;animation:fi .6s .15s both;
+}
+.status b{color:var(--neon);font-weight:600}
+.status-dot{width:8px;height:8px;border-radius:50%;background:var(--hot);box-shadow:0 0 10px var(--hot);animation:pulse 2s infinite}
+.hero h1{
+  font-family:var(--sans);font-stretch:118%;font-weight:790;
+  font-size:clamp(3rem,8vw,6.2rem);line-height:0.92;letter-spacing:-0.03em;
+  text-transform:uppercase;color:var(--text);margin-bottom:1.4rem;
+  opacity:0;animation:fi .7s .3s both;
+}
+.hero h1 span{display:block;color:transparent;-webkit-text-stroke:1.5px var(--neon);text-stroke:1.5px var(--neon);text-shadow:0 0 32px rgba(62,224,143,0.25)}
+.hero-sub{font-size:1.05rem;color:var(--text-2);max-width:540px;line-height:1.85;margin-bottom:1.6rem;opacity:0;animation:fi .6s .5s both}
+.hero-sub strong{color:var(--text);font-weight:600}
 
-    #about{background:var(--cream);color:#2A2723;padding:clamp(4rem,8vw,6rem) 0}
-    #about .sl{color:var(--gold-dim)}#about .sl::before{background:var(--gold-dim)}#about .sh{color:#1A1816}
-    .ab-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
-    .ab-p{font-size:0.95rem;line-height:2;color:#5A554E}
-    .ab-p p+p{margin-top:1.2rem}
-    .ab-p strong{color:#1A1816;font-weight:600}
-    .exc{display:grid;grid-template-columns:1fr 1fr;gap:0.6rem}
-    .ec{padding:1rem;border:1px solid var(--border-l);border-radius:8px;background:rgba(255,255,255,0.6);transition:all var(--t)}
-    .ec:hover{background:#fff;border-color:var(--gold);box-shadow:0 4px 16px rgba(0,0,0,0.04)}
-    .ec h4{font-size:0.78rem;font-weight:700;color:#1A1816;margin-bottom:0.2rem}
-    .ec p{font-size:0.68rem;color:#8A847C;line-height:1.5}
+/* typing console */
+.console{
+  font-family:var(--mono);font-size:0.78rem;color:var(--neon);
+  background:rgba(15,29,22,0.85);border:1px solid var(--line);
+  padding:0.85rem 1.1rem;margin-bottom:2.2rem;max-width:540px;
+  display:flex;align-items:center;gap:0.6rem;min-height:3rem;
+  box-shadow:inset 0 0 30px rgba(62,224,143,0.04);
+  opacity:0;animation:fi .6s .6s both;
+}
+.console .pr0{color:var(--amber);user-select:none}
+.console .cursor{display:inline-block;width:8px;height:15px;background:var(--neon);margin-left:2px;animation:blink 1s steps(1) infinite;vertical-align:text-bottom}
+@keyframes blink{50%{opacity:0}}
 
-    #experience{background:var(--deep)}
-    .exp{display:grid;grid-template-columns:160px 1fr;gap:2.5rem;padding:2.25rem 0;border-bottom:1px solid var(--border-d);transition:all var(--t)}
-    .exp:first-of-type{border-top:1px solid var(--border-d)}
-    .exp:hover{padding-left:0.5rem}
-    .exp-d{font-family:var(--mono);font-size:0.7rem;color:var(--text-dim);padding-top:0.4rem}
-    .exp-cur{display:inline-block;font-family:var(--mono);font-size:0.58rem;color:var(--gold);border:1px solid rgba(201,149,107,0.3);padding:0.1rem 0.45rem;border-radius:3px;margin-top:0.4rem;text-transform:uppercase;letter-spacing:0.06em}
-    .exp-b h3{font-family:var(--serif);font-size:1.4rem;font-weight:400;color:var(--white);margin-bottom:0.15rem}
-    .exp-co{font-size:0.82rem;color:var(--gold);font-weight:600;margin-bottom:0.75rem}
-    .exp-b p{font-size:0.88rem;color:var(--text-mid);line-height:1.85}
-    .tags{display:flex;flex-wrap:wrap;gap:0.3rem;margin-top:0.85rem}
-    .tg{font-family:var(--mono);font-size:0.6rem;color:var(--text-dim);padding:0.15rem 0.5rem;border:1px solid var(--border-d);border-radius:100px;letter-spacing:0.02em}
+.hero-btns{display:flex;gap:0.65rem;flex-wrap:wrap;opacity:0;animation:fi .6s .75s both}
+.btn{
+  display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 1.5rem;
+  font-family:var(--mono);font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
+  cursor:pointer;transition:all .3s var(--ease);border:1px solid var(--neon);
+}
+.btn-g{background:var(--neon);color:var(--bg);box-shadow:0 0 22px rgba(62,224,143,0.3)}
+.btn-g:hover{background:#fff;border-color:#fff;transform:translateY(-3px);box-shadow:0 0 34px rgba(62,224,143,0.55)}
+.btn-o{background:transparent;color:var(--neon)}
+.btn-o:hover{background:rgba(62,224,143,0.12);transform:translateY(-3px);box-shadow:0 0 18px rgba(62,224,143,0.2)}
 
-    #impact{background:var(--deep-2)}
-    .imp-g{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border-d);border:1px solid var(--border-d);border-radius:12px;overflow:hidden}
-    .im{background:var(--deep-2);padding:2rem;transition:background var(--t)}
-    .im:hover{background:var(--deep-3)}
-    .im-n{font-family:var(--serif);font-size:2.5rem;color:var(--gold);line-height:1;margin-bottom:0.5rem}
-    .im h4{font-size:0.82rem;font-weight:700;color:var(--white);margin-bottom:0.3rem}
-    .im p{font-size:0.73rem;color:var(--text-dim);line-height:1.55}
+/* ============ STAR SCHEMA — interactive ============ */
+.schema{position:relative;opacity:0;animation:fi .8s .85s both}
+.schema svg{width:100%;height:auto;display:block;overflow:visible}
+.schema .lk{stroke:rgba(62,224,143,0.3);stroke-width:1.2;fill:none;transition:all .3s}
+.schema .lk.on{stroke:var(--neon);stroke-width:2;filter:drop-shadow(0 0 6px var(--neon))}
+.schema .nd-g{cursor:pointer}
+.schema .nd{fill:var(--panel);stroke:var(--neon-dim);stroke-width:1.3;transition:all .3s}
+.schema .nd-g:hover .nd,.schema .nd-g.on .nd{fill:var(--card-2);stroke:var(--neon);filter:drop-shadow(0 0 10px rgba(62,224,143,0.7))}
+.schema .nd-f{fill:var(--neon);stroke:var(--neon);filter:drop-shadow(0 0 16px rgba(62,224,143,0.5));animation:factPulse 3.4s ease-in-out infinite}
+@keyframes factPulse{0%,100%{filter:drop-shadow(0 0 10px rgba(62,224,143,0.4))}50%{filter:drop-shadow(0 0 26px rgba(62,224,143,0.85))}}
+.schema text{font-family:var(--mono);font-size:8.6px;letter-spacing:0.06em;fill:var(--text-2);text-transform:uppercase;pointer-events:none}
+.schema .nd-g:hover text{fill:var(--neon)}
+.schema .tf{fill:var(--bg);font-weight:600}
+.schema .pulse{fill:var(--amber);filter:drop-shadow(0 0 5px var(--amber))}
+.schema-cap{font-family:var(--mono);font-size:0.62rem;color:var(--text-3);letter-spacing:0.1em;text-transform:uppercase;text-align:center;margin-top:1rem}
+.schema-tip{
+  position:absolute;left:50%;bottom:-0.4rem;transform:translateX(-50%);
+  font-family:var(--mono);font-size:0.66rem;color:var(--amber);letter-spacing:0.06em;
+  background:rgba(15,29,22,0.95);border:1px solid rgba(255,180,84,0.35);padding:0.4rem 0.85rem;
+  opacity:0;transition:opacity .25s;pointer-events:none;white-space:nowrap;
+}
+.schema-tip.show{opacity:1}
 
-    #projects{background:var(--deep)}
-    .proj-g{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-    .pr{padding:2rem;border:1px solid var(--border-d);border-radius:12px;transition:all var(--t);position:relative;overflow:hidden}
-    .pr::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold-dim),transparent);opacity:0;transition:opacity var(--t)}
-    .pr:hover{border-color:rgba(201,149,107,0.3);background:var(--deep-2)}
-    .pr:hover::before{opacity:1}
-    .pr-tag{font-family:var(--mono);font-size:0.58rem;color:var(--gold);border:1px solid rgba(201,149,107,0.3);padding:0.15rem 0.5rem;border-radius:3px;text-transform:uppercase;letter-spacing:0.08em;display:inline-block;margin-bottom:1rem}
-    .pr h3{font-family:var(--serif);font-size:1.4rem;color:var(--white);margin-bottom:0.4rem;font-weight:400}
-    .pr-url{font-family:var(--mono);font-size:0.65rem;color:var(--gold-dim);margin-bottom:0.85rem;transition:color var(--t)}
-    .pr:hover .pr-url{color:var(--gold)}
-    .pr p{font-size:0.85rem;color:var(--text-mid);line-height:1.75;margin-bottom:1rem}
-    .pr-link{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.72rem;font-weight:600;color:var(--gold);letter-spacing:0.06em;text-transform:uppercase;transition:gap var(--t)}
-    .pr-link:hover{gap:0.6rem}
+/* ============ TICKER ============ */
+.ticker{
+  border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);
+  background:rgba(15,29,22,0.5);overflow:hidden;margin-top:4.5rem;
+  opacity:0;animation:fi .7s 1s both;position:relative;z-index:1;
+}
+.ticker-in{display:flex;width:max-content;animation:scrollX 32s linear infinite}
+.ticker:hover .ticker-in{animation-play-state:paused}
+.tk{display:flex;align-items:center;gap:0.7rem;padding:0.85rem 1.6rem;font-family:var(--mono);font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-2);white-space:nowrap}
+.tk b{color:var(--neon);font-weight:600}
+.tk::after{content:'◆';color:var(--neon-dim);font-size:0.5rem;margin-left:1.6rem}
+@keyframes scrollX{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-    #skills{background:var(--deep-2)}
-    .sk-g{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem}
-    .sk h3{font-family:var(--serif);font-size:1.15rem;color:var(--white);margin-bottom:1rem;padding-bottom:0.6rem;border-bottom:1px solid var(--gold);display:inline-block}
-    .sk ul{list-style:none;display:flex;flex-direction:column;gap:0.45rem}
-    .sk li{font-size:0.82rem;color:var(--text-mid);display:flex;align-items:center;gap:0.5rem;transition:color var(--t)}
-    .sk li:hover{color:var(--white)}
-    .sk li::before{content:'';width:3px;height:3px;background:var(--gold);flex-shrink:0;border-radius:50%}
+/* ============ SECTIONS ============ */
+section{padding:clamp(4.5rem,9vw,7rem) 0;position:relative;z-index:1}
+.band{background:var(--bg-2);border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
 
-    #education{background:var(--deep)}
-    .edu-g{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-    .ed{padding:1.5rem;border:1px solid var(--border-d);border-radius:8px;transition:all var(--t)}
-    .ed:hover{border-color:var(--gold-dim)}
-    .ed h3{font-family:var(--serif);font-size:1.05rem;color:var(--white);margin-bottom:0.2rem}
-    .ed span{font-size:0.82rem;color:var(--gold);font-weight:500}
+/* KPI counters */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);margin-bottom:4rem}
+.kpi{padding:1.7rem 1.5rem;background:var(--panel);position:relative;overflow:hidden;transition:background .3s}
+.kpi:hover{background:var(--card)}
+.kpi::after{content:'';position:absolute;bottom:0;left:0;height:2px;width:100%;background:linear-gradient(90deg,transparent,var(--neon),transparent);transform:translateX(-100%);transition:transform .8s var(--ease)}
+.kpi:hover::after{transform:translateX(0)}
+.kpi-v{font-family:var(--sans);font-stretch:112%;font-weight:740;font-size:2.4rem;line-height:1;color:var(--text);letter-spacing:-0.02em}
+.kpi-v .u{color:var(--neon)}
+.kpi-l{font-family:var(--mono);font-size:0.63rem;color:var(--text-3);text-transform:uppercase;letter-spacing:0.13em;margin-top:0.5rem}
+.kpi svg{position:absolute;right:1.2rem;top:1.5rem;width:56px;height:28px;overflow:visible}
+.kpi .sp{fill:none;stroke:var(--neon);stroke-width:1.8;stroke-linecap:round;stroke-dasharray:120;stroke-dashoffset:120;filter:drop-shadow(0 0 4px rgba(62,224,143,0.5))}
+.kpi.v .sp{animation:draw 1.4s .2s var(--ease) forwards}
+.kpi .sp-a{fill:rgba(62,224,143,0.12);stroke:none;opacity:0;transition:opacity .8s .6s}
+.kpi.v .sp-a{opacity:1}
+.kpi .bar{fill:var(--neon-dim);transform:scaleY(0);transform-origin:bottom;transition:transform .7s var(--ease)}
+.kpi.v .bar{transform:scaleY(1)}
+.kpi.v .bar:nth-of-type(2){transition-delay:.15s}
+.kpi.v .bar:nth-of-type(3){transition-delay:.3s}
+.kpi .pt{fill:var(--hot);filter:drop-shadow(0 0 5px var(--hot))}
 
-    #contact{background:var(--cream);color:#2A2723;text-align:center}
-    #contact .sl{justify-content:center;color:var(--gold-dim)}#contact .sl::before{display:none}
-    #contact .sh{color:#1A1816;text-align:center}
-    #contact .ss{max-width:100%;text-align:center;margin-left:auto;margin-right:auto;color:#8A847C}
-    .ct{max-width:480px;margin:0 auto}
-    .ct-btns{display:flex;justify-content:center;gap:0.7rem;flex-wrap:wrap}
-    .ct .btn-g:hover{box-shadow:0 8px 30px rgba(201,149,107,0.25)}
-    .ct .btn-o{color:#5A554E;border-color:var(--border-l)}
-    .ct .btn-o:hover{border-color:var(--gold-dim);color:var(--gold-dim)}
-    .ct-em{margin-top:1.5rem;font-family:var(--mono);font-size:0.75rem;color:#8A847C}
-    .ct-em a{color:var(--gold-dim);font-weight:500}
-    .ct-em a:hover{color:#1A1816}
+/* about */
+.ab-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:4rem;align-items:start}
+.ab-p{font-size:1rem;line-height:1.95;color:var(--text-2)}
+.ab-p p+p{margin-top:1.3rem}
+.ab-p strong{color:var(--text);font-weight:600}
+.exc{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft)}
+.ec{padding:1.25rem 1.2rem;background:var(--panel);transition:all .3s;position:relative;overflow:hidden}
+.ec::before{content:'';position:absolute;top:0;left:0;width:2px;height:100%;background:var(--neon);transform:scaleY(0);transform-origin:top;transition:transform .35s var(--ease)}
+.ec:hover{background:var(--card)}
+.ec:hover::before{transform:scaleY(1)}
+.ec h4{font-family:var(--sans);font-stretch:108%;font-size:0.84rem;font-weight:660;color:var(--text);margin-bottom:0.3rem}
+.ec p{font-size:0.73rem;color:var(--text-3);line-height:1.6}
 
-    footer{padding:1.5rem;text-align:center;font-size:0.65rem;color:var(--text-dim);background:var(--deep);border-top:1px solid var(--border-d);letter-spacing:0.1em;text-transform:uppercase}
+/* ============ PIPELINE — flowing ============ */
+.pipe{position:relative;margin-top:1rem}
+.pipe::before{
+  content:'';position:absolute;left:11px;top:8px;bottom:8px;width:2px;
+  background:repeating-linear-gradient(to bottom,var(--neon) 0 7px,transparent 7px 16px);
+  background-size:2px 23px;opacity:0.55;
+  animation:flow 1.2s linear infinite;
+}
+@keyframes flow{from{background-position:0 0}to{background-position:0 23px}}
+.stage{position:relative;padding:0 0 3.2rem 3.5rem;transition:transform .3s var(--ease)}
+.stage:last-child{padding-bottom:0}
+.stage:hover{transform:translateX(6px)}
+.stage-node{
+  position:absolute;left:0;top:6px;width:24px;height:24px;
+  background:var(--bg);border:2px solid var(--neon);transform:rotate(45deg);transition:all .3s var(--ease);
+}
+.stage:hover .stage-node{background:var(--neon);box-shadow:0 0 16px rgba(62,224,143,0.7)}
+.stage.cur .stage-node{border-color:var(--hot);box-shadow:0 0 14px rgba(255,107,74,0.55);animation:nodePulse 2.2s ease-in-out infinite}
+@keyframes nodePulse{0%,100%{box-shadow:0 0 8px rgba(255,107,74,0.4)}50%{box-shadow:0 0 22px rgba(255,107,74,0.9)}}
+.stage-tag{font-family:var(--mono);font-size:0.63rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--neon);display:inline-flex;align-items:center;gap:0.75rem;margin-bottom:0.55rem}
+.stage-tag .yrs{color:var(--text-3);font-weight:400}
+.stage-tag .live{color:var(--hot);border:1px solid rgba(255,107,74,0.45);padding:0.06rem 0.5rem;animation:pulse 2s infinite}
+.stage h3{font-family:var(--sans);font-stretch:112%;font-size:1.4rem;font-weight:680;letter-spacing:-0.01em;color:var(--text);line-height:1.2}
+.stage-co{font-family:var(--mono);font-size:0.74rem;color:var(--amber);margin:0.3rem 0 0.9rem}
+.stage p.d{font-size:0.93rem;line-height:1.85;color:var(--text-2);max-width:780px}
+.tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.95rem}
+.tg{font-family:var(--mono);font-size:0.6rem;color:var(--text-2);padding:0.2rem 0.6rem;border:1px solid var(--line-soft);background:rgba(18,36,27,0.6);letter-spacing:0.05em;text-transform:uppercase;transition:all .25s}
+.tg:hover{border-color:var(--neon);color:var(--neon);box-shadow:0 0 10px rgba(62,224,143,0.2)}
 
-    @keyframes fi{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
-    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
-    .rv{opacity:0;transform:translateY(30px);transition:all 0.7s cubic-bezier(0.22,1,0.36,1)}
-    .rv.v{opacity:1;transform:translateY(0)}
+/* ============ MEASURES — spotlight cards ============ */
+.imp-g{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-soft);border:1px solid var(--line-soft)}
+.im{background:var(--panel);padding:1.9rem 1.7rem;position:relative;overflow:hidden;transition:background .3s}
+.im::before{
+  content:'';position:absolute;inset:0;opacity:0;transition:opacity .35s;pointer-events:none;
+  background:radial-gradient(220px circle at var(--mx,50%) var(--my,50%),rgba(62,224,143,0.13),transparent 65%);
+}
+.im:hover::before{opacity:1}
+.im-h{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.95rem}
+.im-n{font-family:var(--sans);font-stretch:112%;font-weight:740;font-size:2.1rem;color:var(--neon);line-height:1;letter-spacing:-0.02em;text-shadow:0 0 22px rgba(62,224,143,0.3)}
+.im-arrow{font-family:var(--mono);font-size:0.63rem;color:var(--amber);font-weight:600;letter-spacing:0.06em}
+.im h4{font-family:var(--sans);font-stretch:106%;font-size:0.92rem;font-weight:660;color:var(--text);margin-bottom:0.4rem}
+.im p{font-size:0.78rem;color:var(--text-3);line-height:1.65}
 
-    @media(max-width:900px){
-        .nav-l{display:none}.mob{display:block}
-        .nav-l.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(11,15,25,0.97);backdrop-filter:blur(16px);padding:1.25rem 2rem 1.5rem;gap:1rem;border-bottom:1px solid var(--border-d)}
-        .hero-top{flex-direction:column;align-items:flex-start}.hero-right{text-align:left}
-        .hero-stats{flex-wrap:wrap}.hs{flex:1 1 45%}.hs:nth-child(2){border-right:none}
-        .ab-grid{grid-template-columns:1fr;gap:2.5rem}.exc{grid-template-columns:1fr}
-        .exp{grid-template-columns:1fr;gap:0.35rem}.exp:hover{padding-left:0}
-        .imp-g{grid-template-columns:1fr}.proj-g{grid-template-columns:1fr}
-        .sk-g{grid-template-columns:1fr;gap:2rem}.edu-g{grid-template-columns:1fr}
-        .hero-i{padding-top:2rem}.hero{padding-bottom:3rem}
-    }
+/* ============ VENTURES — spotlight + lift ============ */
+.proj-g{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.pr{padding:2.1rem;border:1px solid var(--line-soft);background:var(--panel);position:relative;overflow:hidden;transition:all .35s var(--ease)}
+.pr::before{
+  content:'';position:absolute;inset:0;opacity:0;transition:opacity .35s;pointer-events:none;
+  background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%),rgba(62,224,143,0.12),transparent 65%);
+}
+.pr:hover{border-color:var(--neon);transform:translateY(-5px);box-shadow:0 18px 48px rgba(0,0,0,0.5),0 0 24px rgba(62,224,143,0.12)}
+.pr:hover::before{opacity:1}
+.pr-tag{font-family:var(--mono);font-size:0.6rem;font-weight:600;color:var(--neon);letter-spacing:0.12em;text-transform:uppercase;display:inline-block;margin-bottom:1.05rem;border:1px solid var(--line);padding:0.2rem 0.6rem;background:rgba(62,224,143,0.06)}
+.pr h3{font-family:var(--sans);font-stretch:112%;font-size:1.5rem;font-weight:700;color:var(--text);letter-spacing:-0.01em;margin-bottom:0.2rem}
+.pr-url{font-family:var(--mono);font-size:0.68rem;color:var(--text-3);margin-bottom:0.95rem;transition:color .3s}
+.pr:hover .pr-url{color:var(--amber)}
+.pr p{font-size:0.89rem;color:var(--text-2);line-height:1.75;margin-bottom:1.05rem}
+.pr-link{display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--mono);font-size:0.68rem;font-weight:600;color:var(--neon);letter-spacing:0.08em;text-transform:uppercase;transition:gap .3s var(--ease)}
+.pr-link:hover{gap:0.85rem;text-shadow:0 0 12px rgba(62,224,143,0.6)}
+
+/* ============ STACK ============ */
+.sk-g{display:grid;grid-template-columns:repeat(3,1fr);gap:2.6rem}
+.sk h3{font-family:var(--mono);font-size:0.74rem;font-weight:600;color:var(--text);text-transform:uppercase;letter-spacing:0.13em;margin-bottom:1.1rem;padding-bottom:0.7rem;border-bottom:2px solid var(--neon);text-shadow:0 0 14px rgba(62,224,143,0.25)}
+.sk ul{list-style:none}
+.sk li{font-size:0.88rem;color:var(--text-2);padding:0.55rem 0;border-bottom:1px solid var(--line-soft);display:flex;align-items:center;justify-content:space-between;transition:all .25s var(--ease)}
+.sk li::after{content:'·';font-family:var(--mono);color:var(--text-3)}
+.sk li:hover{color:var(--neon);padding-left:0.5rem;border-bottom-color:var(--line)}
+.sk li:hover::after{content:'■';color:var(--neon);font-size:0.55rem;text-shadow:0 0 8px var(--neon)}
+
+/* education */
+.edu-g{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.ed{padding:1.6rem 1.7rem;border:1px solid var(--line-soft);background:var(--panel);border-left:3px solid var(--neon);transition:all .3s var(--ease)}
+.ed:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,0.4),0 0 16px rgba(62,224,143,0.1);border-left-color:var(--amber)}
+.ed h3{font-family:var(--sans);font-stretch:108%;font-size:1.02rem;font-weight:660;color:var(--text);margin-bottom:0.3rem}
+.ed span{font-family:var(--mono);font-size:0.7rem;color:var(--text-3)}
+
+/* ============ CONTACT ============ */
+#contact{background:linear-gradient(180deg,var(--bg-2),#04130C);position:relative;overflow:hidden}
+#contact::before{content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:680px;height:680px;background:radial-gradient(circle,rgba(62,224,143,0.1),transparent 60%);pointer-events:none;animation:breathe 8s ease-in-out infinite}
+#contact .eyebrow{justify-content:center}
+#contact h2.sh,#contact .ss{text-align:center;margin-left:auto;margin-right:auto}
+.ct{max-width:580px;margin:0 auto;text-align:center;position:relative;z-index:1}
+.ct-btns{display:flex;justify-content:center;gap:0.75rem;flex-wrap:wrap}
+.ct-em{margin-top:2.1rem;font-family:var(--mono);font-size:0.74rem;color:var(--text-3);letter-spacing:0.04em}
+.ct-em a{color:var(--neon);font-weight:500}
+.ct-em a:hover{text-shadow:0 0 12px rgba(62,224,143,0.7)}
+
+footer{padding:1.5rem;text-align:center;font-family:var(--mono);font-size:0.62rem;color:var(--text-3);border-top:1px solid var(--line-soft);letter-spacing:0.13em;text-transform:uppercase;position:relative;z-index:1}
+
+/* ============ MOTION ============ */
+@keyframes fi{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+@keyframes draw{to{stroke-dashoffset:0}}
+.rv{opacity:0;transform:translateY(30px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv.v{opacity:1;transform:translateY(0)}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition-duration:0.001s!important}
+  .rv{opacity:1;transform:none}
+  .kpi .sp{stroke-dashoffset:0}.kpi .bar{transform:none}.kpi .sp-a{opacity:1}
+  html{scroll-behavior:auto}
+}
+a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:1000px){
+  .hero-grid{grid-template-columns:1fr}
+  .schema{max-width:440px;margin:0 auto}
+}
+@media(max-width:900px){
+  .nav-l{display:none}.mob{display:block}
+  .nav-l.open{display:flex;flex-direction:column;align-items:flex-start;position:absolute;top:100%;left:0;right:0;background:rgba(7,13,10,0.97);backdrop-filter:blur(16px);padding:1.3rem clamp(1.25rem,4vw,3rem) 1.6rem;gap:1.15rem;border-bottom:1px solid var(--line-soft)}
+  .kpis{grid-template-columns:1fr 1fr}
+  .ab-grid{grid-template-columns:1fr;gap:2.8rem}
+  .imp-g{grid-template-columns:1fr}
+  .proj-g{grid-template-columns:1fr}
+  .sk-g{grid-template-columns:1fr;gap:2.1rem}
+  .edu-g{grid-template-columns:1fr}
+  .exc{grid-template-columns:1fr}
+  .hero{padding-top:6rem}
+}
+@media(max-width:520px){
+  .kpis{grid-template-columns:1fr}
+}
 </style>
-```
-
 </head>
 <body>
 
 <nav class="nav" id="nav">
-    <div class="nav-i">
-        <span class="nav-n">M. Chekka</span>
-        <button class="mob" aria-label="Menu" onclick="document.querySelector('.nav-l').classList.toggle('open')">
-            <svg class="i" style="width:22px;height:22px"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
-        </button>
-        <div class="nav-l">
-            <a href="#about">About</a>
-            <a href="#experience">Experience</a>
-            <a href="#projects">Ventures</a>
-            <a href="#skills">Skills</a>
-            <a href="#contact" class="nav-c">Connect</a>
-        </div>
+  <div class="nav-i">
+    <span class="nav-n">Manohar Chekka</span>
+    <button class="mob" aria-label="Menu" onclick="document.querySelector('.nav-l').classList.toggle('open')">
+      <svg class="i" style="width:22px;height:22px"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+    </button>
+    <div class="nav-l">
+      <a href="#about">Profile</a>
+      <a href="#experience">Pipeline</a>
+      <a href="#impact">Measures</a>
+      <a href="#projects">Ventures</a>
+      <a href="#skills">Stack</a>
+      <a href="#contact" class="nav-c">Connect</a>
     </div>
+  </div>
 </nav>
 
 <section class="hero">
-    <div class="hero-i">
-        <div class="hero-top">
-            <div class="hero-left">
-                <div class="hero-label"><span class="hero-dot"></span> Open to Opportunities</div>
-                <h1>Manohar<br><em>Chekka</em></h1>
-                <p class="hero-sub">I lead teams, own product roadmaps, and deliver enterprise data platforms at scale. Currently running a Center of Excellence at a major Canadian bank — managing people, strategy, and execution across the full analytics lifecycle.</p>
-                <div class="hero-btns">
-                    <a href="https://www.linkedin.com/in/manohar-c-74a0b225a" target="_blank" rel="noopener noreferrer" class="btn btn-g">
-                        <svg class="i"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                        LinkedIn
-                    </a>
-                    <a href="mailto:manoharch0698@gmail.com" class="btn btn-o">
-                        <svg class="i"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                        Email
-                    </a>
-                    <a href="#experience" class="btn btn-o">
-                        <svg class="i"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
-                        Work
-                    </a>
-                </div>
-            </div>
-            <div class="hero-right">
-                Toronto, ON · Canada<br>
-                Team & People Leadership<br>
-                Product Vision & Strategy<br>
-                Enterprise Data & Analytics
-            </div>
+  <div class="w">
+    <div class="hero-grid">
+      <div>
+        <div class="status"><span class="status-dot"></span> Open to: <b>BI / Analytics Manager · Product Owner</b> · Toronto</div>
+        <h1>Manohar<span>Chekka</span></h1>
+        <p class="hero-sub"><strong>Technical Lead, Data &amp; Analytics</strong> — I lead the Power BI Center of Excellence team at a major Canadian bank, driving governance, standards, and delivery. My next step: <strong>leading people as a manager</strong>.</p>
+        <div class="console" aria-hidden="true"><span class="pr0" id="typerPrompt">DAX&gt;</span> <span id="typer"></span><span class="cursor"></span></div>
+        <div class="hero-btns">
+          <a href="https://www.linkedin.com/in/manohar-c-74a0b225a" target="_blank" rel="noopener noreferrer" class="btn btn-g">
+            <svg class="i"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+          <a href="mailto:manoharch0698@gmail.com" class="btn btn-o">
+            <svg class="i"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            Email
+          </a>
+          <a href="#experience" class="btn btn-o">
+            <svg class="i"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+            Work
+          </a>
         </div>
-        <div class="hero-stats">
-            <div class="hs"><div class="hs-v">6+</div><div class="hs-l">Years Leading</div></div>
-            <div class="hs"><div class="hs-v">3</div><div class="hs-l">Teams Managed</div></div>
-            <div class="hs"><div class="hs-v">3,000+</div><div class="hs-l">Users Served</div></div>
-            <div class="hs"><div class="hs-v">2</div><div class="hs-l">Ventures Built</div></div>
-        </div>
+      </div>
+
+      <div class="schema" id="schema">
+        <svg viewBox="0 0 360 320" role="img" aria-label="Star schema diagram of Manohar's leadership model">
+          <path class="lk" id="lk1" d="M110 70 L155 135"/>
+          <path class="lk" id="lk2" d="M250 70 L205 135"/>
+          <path class="lk" id="lk3" d="M58 165 L138 165"/>
+          <path class="lk" id="lk4" d="M302 165 L222 165"/>
+          <path class="lk" id="lk5" d="M110 260 L155 195"/>
+          <path class="lk" id="lk6" d="M250 260 L205 195"/>
+
+          <!-- data pulses traveling the joins -->
+          <circle class="pulse" r="2.6"><animateMotion dur="2.6s" repeatCount="indefinite" path="M110 70 L155 135"/></circle>
+          <circle class="pulse" r="2.6"><animateMotion dur="3.1s" begin="0.5s" repeatCount="indefinite" path="M250 70 L205 135"/></circle>
+          <circle class="pulse" r="2.6"><animateMotion dur="2.8s" begin="1s" repeatCount="indefinite" path="M58 165 L138 165"/></circle>
+          <circle class="pulse" r="2.6"><animateMotion dur="3.3s" begin="1.4s" repeatCount="indefinite" path="M302 165 L222 165"/></circle>
+          <circle class="pulse" r="2.6"><animateMotion dur="2.9s" begin="0.8s" repeatCount="indefinite" path="M110 260 L155 195"/></circle>
+          <circle class="pulse" r="2.6"><animateMotion dur="3.5s" begin="1.8s" repeatCount="indefinite" path="M250 260 L205 195"/></circle>
+
+          <g class="nd-g" data-link="lk1" data-tip="Mentoring · onboarding · enabling developers" data-go="#about"><rect class="nd" x="62" y="42" width="96" height="28"/><text x="110" y="60" text-anchor="middle">dim_People</text></g>
+          <g class="nd-g" data-link="lk2" data-tip="Backlog input · product thinking · 2 solo ventures" data-go="#projects"><rect class="nd" x="202" y="42" width="96" height="28"/><text x="250" y="60" text-anchor="middle">dim_Product</text></g>
+          <g class="nd-g" data-link="lk3" data-tip="Stakeholder comms · presenting to leadership" data-go="#experience"><rect class="nd" x="10" y="151" width="96" height="28"/><text x="58" y="169" text-anchor="middle">dim_Strategy</text></g>
+          <g class="nd-g" data-link="lk4" data-tip="Snowflake · Databricks · Fabric · Power BI" data-go="#skills"><rect class="nd" x="254" y="151" width="96" height="28"/><text x="302" y="169" text-anchor="middle">dim_Platform</text></g>
+          <g class="nd-g" data-link="lk5" data-tip="Copilot governance framework · review standards" data-go="#impact"><rect class="nd" x="62" y="250" width="96" height="28"/><text x="110" y="268" text-anchor="middle">dim_Governance</text></g>
+          <g class="nd-g" data-link="lk6" data-tip="PromptCue · HealPath Global — built solo" data-go="#projects"><rect class="nd" x="202" y="250" width="96" height="28"/><text x="250" y="268" text-anchor="middle">dim_Ventures</text></g>
+
+          <g><rect class="nd nd-f" x="138" y="135" width="84" height="60"/>
+            <text class="tf" x="180" y="160" text-anchor="middle">fact_</text>
+            <text class="tf" x="180" y="174" text-anchor="middle">Delivery</text>
+          </g>
+        </svg>
+        <div class="schema-cap">how I work · every dimension feeds delivery · hover &amp; click</div>
+        <div class="schema-tip" id="schemaTip"></div>
+      </div>
     </div>
+  </div>
+
+  <div class="ticker">
+    <div class="ticker-in" id="tickerIn">
+      <span class="tk"><b>Technical Lead</b> · Power BI CoE</span>
+      <span class="tk"><b>3,000+</b> users on the platform our team enabled</span>
+      <span class="tk"><b>Copilot</b> governance framework — designed it</span>
+      <span class="tk"><b>Snowflake</b> · Databricks · Fabric</span>
+      <span class="tk"><b>3 KPIs</b> built at TD Bank</span>
+      <span class="tk"><b>30%+</b> faster pipelines</span>
+      <span class="tk"><b>2 ventures</b> built solo</span>
+      <span class="tk"><b>Next step:</b> people management</span>
+    </div>
+  </div>
 </section>
 
-<section id="about">
-    <div class="w">
-        <div class="ab-grid">
-            <div>
-                <div class="sl rv">About</div>
-                <h2 class="sh rv">I lead people, products,<br>and platforms</h2>
-                <div class="ab-p rv">
-                    <p>I'm a data and analytics leader who <strong>manages teams, owns product strategy, and delivers at enterprise scale</strong>. My career has been defined by taking ownership — of people, of roadmaps, of outcomes — not just writing code.</p>
-                    <p>Currently I <strong>run a Center of Excellence</strong> at a major Canadian bank, where I consolidated three separate teams into one, hired and coached BI professionals, set delivery standards, and own the product vision. I present to C-suite executives, negotiate directly with Microsoft on platform strategy, and was the one who decided to launch Copilot AI — then built the governance to make it safe.</p>
-                    <p>At TD Bank, I <strong>managed a team of engineers</strong> while serving as product owner for the Athena platform. I didn't just build pipelines — I gathered requirements across business units, made prioritization decisions, and delivered KPIs that changed how the bank measures customer experience.</p>
-                </div>
-            </div>
-            <div>
-                <div class="sl rv" style="margin-bottom:1rem">How I Lead</div>
-                <div class="exc rv">
-                    <div class="ec"><h4>People Management</h4><p>Hiring, coaching, performance expectations, team development, culture-setting</p></div>
-                    <div class="ec"><h4>Product Strategy</h4><p>Vision, roadmaps, backlog ownership, stakeholder prioritization, intake management</p></div>
-                    <div class="ec"><h4>Executive Communication</h4><p>C-suite presentations, progress updates, risk trade-offs, vendor negotiations</p></div>
-                    <div class="ec"><h4>Platform Delivery</h4><p>Snowflake, Databricks, Synapse, Fabric, Power BI — architected and shipped at scale</p></div>
-                    <div class="ec"><h4>Governance & Risk</h4><p>AI governance, RBAC, GDPR, AML compliance, data quality standards, policy creation</p></div>
-                    <div class="ec"><h4>Entrepreneurial Drive</h4><p>Two live ventures built independently — full ownership from idea to market</p></div>
-                </div>
-            </div>
-        </div>
+<section id="about" class="band">
+  <div class="w">
+    <div class="kpis rv">
+      <div class="kpi">
+        <div class="kpi-v"><span class="cnt" data-n="6">0</span><span class="u">+</span></div><div class="kpi-l">Years in data</div>
+        <svg viewBox="0 0 56 28"><path class="sp" d="M2 24 L12 19 L22 20 L32 13 L42 9 L54 3"/><circle class="pt" cx="54" cy="3" r="2.6"/></svg>
+      </div>
+      <div class="kpi">
+        <div class="kpi-v"><span class="cnt" data-n="3">0</span></div><div class="kpi-l">KPIs built at TD</div>
+        <svg viewBox="0 0 56 28"><rect class="bar" x="6" y="15" width="10" height="11"/><rect class="bar" x="23" y="9" width="10" height="17"/><rect class="bar" x="40" y="2" width="10" height="24"/></svg>
+      </div>
+      <div class="kpi">
+        <div class="kpi-v"><span class="cnt" data-n="3000" data-f="comma">0</span><span class="u">+</span></div><div class="kpi-l">Users · platform our team enabled</div>
+        <svg viewBox="0 0 56 28"><path class="sp-a" d="M2 26 L12 22 L22 18 L32 11 L42 6 L54 2 L54 26 Z"/><path class="sp" d="M2 26 L12 22 L22 18 L32 11 L42 6 L54 2"/><circle class="pt" cx="54" cy="2" r="2.6"/></svg>
+      </div>
+      <div class="kpi">
+        <div class="kpi-v"><span class="cnt" data-n="2">0</span></div><div class="kpi-l">Ventures built solo</div>
+        <svg viewBox="0 0 56 28"><rect class="bar" x="12" y="11" width="13" height="15"/><rect class="bar" x="33" y="4" width="13" height="22"/></svg>
+      </div>
     </div>
+
+    <div class="ab-grid">
+      <div>
+        <div class="eyebrow rv">Profile</div>
+        <h2 class="sh rv">Technical lead today,<br>people leader next</h2>
+        <div class="ab-p rv" style="margin-top:1.5rem">
+          <p>I'm a <strong>Technical Lead in data &amp; analytics</strong> who keeps stepping into leadership-shaped work: setting standards, mentoring developers, presenting to senior stakeholders, and owning outcomes beyond my job description.</p>
+          <p>Today I lead the technical direction of a <strong>Power BI Center of Excellence</strong> at a major Canadian bank — driving governance and review standards, designing the Copilot enablement and governance framework, mentoring BI developers across teams, and presenting adoption metrics and tooling to leadership. The platform's growth from a 250-user pilot to 3,000+ users in production was a team effort I'm proud to have helped engineer.</p>
+          <p>At TD Bank, I was a data engineer on the Athena platform who <strong>served as de facto product owner</strong> — gathering requirements across business units, helping prioritize the backlog, and building three KPIs the bank still uses. <strong>I'm now deliberately moving into people management:</strong> BI/Analytics Manager, Product Owner, or Data Engineering Manager roles where I can lead a team formally, not just in practice.</p>
+        </div>
+      </div>
+      <div>
+        <div class="eyebrow rv">Why I'm ready to manage</div>
+        <div class="exc rv" style="margin-top:0.5rem">
+          <div class="ec"><h4>Mentoring &amp; Coaching</h4><p>Onboard, unblock, and grow BI developers across teams — code reviews to career advice</p></div>
+          <div class="ec"><h4>Product Thinking</h4><p>Requirements, prioritization, backlog input — acted as de facto product owner at TD</p></div>
+          <div class="ec"><h4>Stakeholder Communication</h4><p>Present adoption metrics, tooling, and trade-offs to senior leadership</p></div>
+          <div class="ec"><h4>Platform Delivery</h4><p>Snowflake, Databricks, Synapse, Fabric, Power BI — built and shipped at scale</p></div>
+          <div class="ec"><h4>Governance &amp; Standards</h4><p>Designed Copilot governance framework, review/approval standards, semantic model rules</p></div>
+          <div class="ec"><h4>Owner's Mindset</h4><p>Two ventures built solo, end to end — proof I can own outcomes, not just tasks</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section id="experience">
-    <div class="w">
-        <div class="sl rv">Experience</div>
-        <h2 class="sh rv">Leadership journey</h2>
-        <p class="ss rv">Every role has been a step toward broader ownership.</p>
+  <div class="w">
+    <div class="eyebrow rv">Experience · Career lineage</div>
+    <h2 class="sh rv">From source to semantic layer</h2>
+    <p class="ss rv">Every role refined the output of the last — the same way good data moves through a pipeline.</p>
 
-```
-    <div class="exp rv">
-        <div class="exp-d">2025 — Present<div class="exp-cur">Current</div></div>
-        <div class="exp-b">
-            <h3>Technical Lead — Center of Excellence</h3>
-            <div class="exp-co">Wipro · Toronto (Major Canadian Bank)</div>
-            <p>Run the Power BI Center of Excellence end-to-end: people, product, and platform. Consolidated three teams into one operating model. Own the product vision, roadmap, and backlog. Coach and develop BI professionals, set performance standards, and drive delivery culture. Present strategy and adoption metrics to C-suite leadership. Led the Copilot AI rollout — made the decision, built the governance, got it adopted as policy. Negotiate directly with Microsoft on product roadmap. Took the platform from a 250-user pilot to enterprise-wide production.</p>
-            <div class="tags"><span class="tg">People Management</span><span class="tg">Product Ownership</span><span class="tg">Power BI</span><span class="tg">Copilot AI</span><span class="tg">Executive Comms</span><span class="tg">Vendor Strategy</span></div>
-        </div>
+    <div class="pipe">
+      <div class="stage cur rv">
+        <div class="stage-node"></div>
+        <div class="stage-tag">Serving · Semantic <span class="yrs">2025 — Present</span> <span class="live">● Live</span></div>
+        <h3>Technical Lead — Power BI Center of Excellence</h3>
+        <div class="stage-co">Wipro · Toronto (Major Canadian Bank)</div>
+        <p class="d">Lead the technical direction of the CoE: governance, review and approval standards, and delivery quality. Designed the Copilot enablement and governance framework adopted by the team. Mentor and support BI developers across the bank — semantic model reviews, DAX and architecture guidance, complex troubleshooting. Built a Tableau-to-Power BI migration accelerator and presented it to senior stakeholders. Contributed to the platform's growth from a 250-user pilot to 3,000+ users in production as part of the enablement program.</p>
+        <div class="tags"><span class="tg">Technical Leadership</span><span class="tg">Mentorship</span><span class="tg">Power BI</span><span class="tg">Copilot Governance</span><span class="tg">Stakeholder Comms</span><span class="tg">Standards &amp; Review</span></div>
+      </div>
+
+      <div class="stage rv">
+        <div class="stage-node"></div>
+        <div class="stage-tag">Curated <span class="yrs">2023 — 2025</span></div>
+        <h3>Data Engineer · De Facto Product Owner</h3>
+        <div class="stage-co">TD Bank · Toronto</div>
+        <p class="d">Data engineer on Athena — TD's enterprise data platform across Databricks, Snowflake, and Synapse — who grew into product-owner responsibilities. Gathered requirements across business units, helped prioritize the backlog, and coordinated delivery. Built three mission-critical KPIs from scratch (CES, LEI, FCR) that the bank still uses. Delivered 30%+ pipeline optimization through PySpark tuning. Mentored junior engineers through code reviews and architecture guidance.</p>
+        <div class="tags"><span class="tg">De Facto PO</span><span class="tg">Snowflake</span><span class="tg">Databricks</span><span class="tg">PySpark</span><span class="tg">KPI Design</span><span class="tg">Mentoring</span></div>
+      </div>
+
+      <div class="stage rv">
+        <div class="stage-node"></div>
+        <div class="stage-tag">Staged <span class="yrs">2019 — 2021</span></div>
+        <h3>BI Engineer &amp; Business Development Analyst</h3>
+        <div class="stage-co">Byju's · Hyderabad, India</div>
+        <p class="d">Owned the analytics lifecycle end-to-end — requirements gathering, dimensional modeling, executive dashboards, and ETL delivery. Worked directly with stakeholders to define priorities and timelines. Built real-time streaming pipelines with Kafka and automated deployments with Airflow and Jenkins.</p>
+        <div class="tags"><span class="tg">SSIS</span><span class="tg">Power BI</span><span class="tg">Kafka</span><span class="tg">Airflow</span><span class="tg">Stakeholder Mgmt</span></div>
+      </div>
+
+      <div class="stage rv">
+        <div class="stage-node"></div>
+        <div class="stage-tag">Source <span class="yrs">2017 — 2019</span></div>
+        <h3>Administrative Manager &amp; Database Administrator</h3>
+        <div class="stage-co">Padmavati Hospitals · Hyderabad, India</div>
+        <p class="d">My first management role — responsible for staff, vendors, budgets, compliance, and clinical operations at a multi-specialty hospital. Built the cross-functional coordination, stakeholder management, and decision-making instincts that underpin every leadership role since.</p>
+        <div class="tags"><span class="tg">People Management</span><span class="tg">Operations</span><span class="tg">Budgets</span><span class="tg">Compliance</span><span class="tg">SQL Server</span></div>
+      </div>
     </div>
-
-    <div class="exp rv">
-        <div class="exp-d">2023 — 2025</div>
-        <div class="exp-b">
-            <h3>Data Engineer & Team Lead</h3>
-            <div class="exp-co">TD Bank · Toronto</div>
-            <p>Managed a team of data engineers while serving as de facto product owner for Athena — TD's enterprise data platform across Databricks, Snowflake, and Synapse. Made prioritization decisions across competing business units. Built three mission-critical KPIs from scratch that the bank still uses today. Delivered 30%+ pipeline optimization. Established governance best practices and mentored junior engineers through code reviews and architecture guidance.</p>
-            <div class="tags"><span class="tg">Team Lead</span><span class="tg">Snowflake</span><span class="tg">Databricks</span><span class="tg">PySpark</span><span class="tg">KPI Design</span><span class="tg">Mentoring</span></div>
-        </div>
-    </div>
-
-    <div class="exp rv">
-        <div class="exp-d">2019 — 2021</div>
-        <div class="exp-b">
-            <h3>BI Engineer & Business Development Analyst</h3>
-            <div class="exp-co">Byju's · Hyderabad, India</div>
-            <p>Owned the analytics lifecycle end-to-end — requirements gathering, dimensional modeling, executive dashboards, and ETL delivery. Worked directly with stakeholders to define priorities and timelines. Built real-time streaming pipelines with Kafka and automated deployments with Airflow and Jenkins.</p>
-            <div class="tags"><span class="tg">SSIS</span><span class="tg">Power BI</span><span class="tg">Kafka</span><span class="tg">Airflow</span><span class="tg">Stakeholder Mgmt</span></div>
-        </div>
-    </div>
-
-    <div class="exp rv">
-        <div class="exp-d">2017 — 2019</div>
-        <div class="exp-b">
-            <h3>Administrative Manager & Database Administrator</h3>
-            <div class="exp-co">Padmavati Hospitals · Hyderabad, India</div>
-            <p>My first management role — responsible for staff, vendors, budgets, compliance, and clinical operations at a multi-specialty hospital. Built the cross-functional coordination, stakeholder management, and decision-making instincts that underpin every leadership role since.</p>
-            <div class="tags"><span class="tg">People Management</span><span class="tg">Operations</span><span class="tg">Budgets</span><span class="tg">Compliance</span><span class="tg">SQL Server</span></div>
-        </div>
-    </div>
-</div>
-```
-
+  </div>
 </section>
 
-<section id="impact">
-    <div class="w">
-        <div class="sl rv">Impact</div>
-        <h2 class="sh rv">What I've delivered</h2>
-        <p class="ss rv">Outcomes that matter — teams built, products shipped, decisions made.</p>
-        <div class="imp-g rv">
-            <div class="im"><div class="im-n">3 Teams</div><h4>Unified into One CoE</h4><p>Consolidated separate groups, set standards, and built a delivery culture from scratch.</p></div>
-            <div class="im"><div class="im-n">3,000+</div><h4>Users at Scale</h4><p>Enterprise analytics platform taken from pilot to bank-wide production adoption.</p></div>
-            <div class="im"><div class="im-n">3 KPIs</div><h4>Created from Zero</h4><p>CES, LEI, FCR — metrics that changed how a major bank measures performance.</p></div>
-            <div class="im"><div class="im-n">30%+</div><h4>Faster Pipelines</h4><p>PySpark optimization across core ETL — delivered measurable cost and time savings.</p></div>
-            <div class="im"><div class="im-n">Copilot</div><h4>AI Shipped Safely</h4><p>Made the call to launch, built the governance framework, got it adopted as enterprise policy.</p></div>
-            <div class="im"><div class="im-n">2</div><h4>Ventures Launched</h4><p>Built and shipped two live products independently — AI and healthcare domains.</p></div>
-        </div>
+<section id="impact" class="band">
+  <div class="w">
+    <div class="eyebrow rv">Measures</div>
+    <h2 class="sh rv">What I've delivered — and with whom</h2>
+    <p class="ss rv">Honest attribution: some outcomes were mine, some were my team's. Both matter to how I'll manage.</p>
+    <div class="imp-g rv">
+      <div class="im"><div class="im-h"><div class="im-n">3 KPIs</div><span class="im-arrow">■ I built</span></div><h4>Created from Zero at TD</h4><p>CES, LEI, FCR — designed and shipped metrics the bank still uses to measure customer experience.</p></div>
+      <div class="im"><div class="im-h"><div class="im-n">30%+</div><span class="im-arrow">■ I delivered</span></div><h4>Faster Pipelines</h4><p>PySpark optimization across core ETL — measurable cost and runtime savings.</p></div>
+      <div class="im"><div class="im-h"><div class="im-n">Copilot</div><span class="im-arrow">■ I designed</span></div><h4>Governance Framework</h4><p>Designed the Copilot enablement and governance framework the CoE adopted for safe AI rollout.</p></div>
+      <div class="im"><div class="im-h"><div class="im-n">3,000+</div><span class="im-arrow">▲ team outcome</span></div><h4>Users at Scale</h4><p>Platform adoption from 250-user pilot to bank-wide production — an enablement effort I contributed to as Technical Lead.</p></div>
+      <div class="im"><div class="im-h"><div class="im-n">Standards</div><span class="im-arrow">▲ with the CoE</span></div><h4>Review &amp; Approval Process</h4><p>Helped shape the semantic model rules and review process that keep bank-wide reporting trustworthy.</p></div>
+      <div class="im"><div class="im-h"><div class="im-n">2</div><span class="im-arrow">■ built solo</span></div><h4>Ventures Launched</h4><p>Conceived, built, and shipped two live products end-to-end — AI and healthcare domains.</p></div>
     </div>
+  </div>
 </section>
 
 <section id="projects">
-    <div class="w">
-        <div class="sl rv">Ventures</div>
-        <h2 class="sh rv">Built independently</h2>
-        <p class="ss rv">Products I conceived, designed, and shipped outside of corporate work.</p>
-        <div class="proj-g">
-            <div class="pr rv">
-                <span class="pr-tag">AI · SaaS · Live</span>
-                <h3>PromptCue</h3>
-                <div class="pr-url">thepromptcue.com</div>
-                <p>AI prompt generation platform for marketers, developers, and business professionals. Full product lifecycle ownership — requirements, design, API integration, and deployment. Built on Claude AI API with Apify-powered data backend.</p>
-                <div class="tags" style="margin-bottom:1rem"><span class="tg">Claude API</span><span class="tg">Apify</span><span class="tg">Product Design</span><span class="tg">Full Stack</span></div>
-                <a href="https://www.thepromptcue.com" target="_blank" rel="noopener noreferrer" class="pr-link">Visit Site <svg class="i" style="width:14px;height:14px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-            </div>
-            <div class="pr rv">
-                <span class="pr-tag">Healthcare · Concierge · Live</span>
-                <h3>HealPath Global</h3>
-                <div class="pr-url">healpathglobal.com</div>
-                <p>Healthcare concierge platform connecting patients with JCI-accredited hospitals. End-to-end medical travel coordination. Patient-first service design. Incorporated in Ontario as MedBridge Healthcare Concierge Inc.</p>
-                <div class="tags" style="margin-bottom:1rem"><span class="tg">Healthcare</span><span class="tg">Product</span><span class="tg">Ontario Inc.</span><span class="tg">Patient Journey</span></div>
-                <a href="https://www.healpathglobal.com" target="_blank" rel="noopener noreferrer" class="pr-link">Visit Site <svg class="i" style="width:14px;height:14px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-            </div>
-        </div>
+  <div class="w">
+    <div class="eyebrow rv">Ventures</div>
+    <h2 class="sh rv">Built independently</h2>
+    <p class="ss rv">Products I conceived, designed, and shipped outside of corporate work.</p>
+    <div class="proj-g">
+      <div class="pr rv">
+        <span class="pr-tag">AI · SaaS · Live</span>
+        <h3>PromptCue</h3>
+        <div class="pr-url">thepromptcue.com</div>
+        <p>AI prompt generation platform for marketers, developers, and business professionals. Full product lifecycle ownership — requirements, design, API integration, and deployment. Built on Claude AI API with Apify-powered data backend.</p>
+        <div class="tags" style="margin-bottom:1.1rem"><span class="tg">Claude API</span><span class="tg">Apify</span><span class="tg">Product Design</span><span class="tg">Full Stack</span></div>
+        <a href="https://www.thepromptcue.com" target="_blank" rel="noopener noreferrer" class="pr-link">Visit site <svg class="i" style="width:13px;height:13px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+      <div class="pr rv">
+        <span class="pr-tag">Healthcare · Concierge · Live</span>
+        <h3>HealPath Global</h3>
+        <div class="pr-url">healpathglobal.com</div>
+        <p>Healthcare concierge platform connecting patients with JCI-accredited hospitals. End-to-end medical travel coordination. Patient-first service design. Incorporated in Ontario as MedBridge Healthcare Concierge Inc.</p>
+        <div class="tags" style="margin-bottom:1.1rem"><span class="tg">Healthcare</span><span class="tg">Product</span><span class="tg">Ontario Inc.</span><span class="tg">Patient Journey</span></div>
+        <a href="https://www.healpathglobal.com" target="_blank" rel="noopener noreferrer" class="pr-link">Visit site <svg class="i" style="width:13px;height:13px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
     </div>
+  </div>
 </section>
 
-<section id="skills">
-    <div class="w">
-        <div class="sl rv">Technical</div>
-        <h2 class="sh rv">Stack</h2>
-        <p class="ss rv">I still write code — but I also decide what gets built and why.</p>
-        <div class="sk-g rv">
-            <div class="sk"><h3>Platforms & Cloud</h3><ul><li>Snowflake</li><li>Azure Synapse</li><li>Databricks</li><li>Microsoft Fabric</li><li>Azure Data Factory</li><li>Azure / AWS / GCP</li></ul></div>
-            <div class="sk"><h3>Languages</h3><ul><li>SQL / T-SQL (Advanced)</li><li>Python</li><li>PySpark / SparkSQL</li><li>DAX / Power Query M</li><li>R</li><li>Kafka / Event Hub</li></ul></div>
-            <div class="sk"><h3>Leadership & Product</h3><ul><li>Team Management & Coaching</li><li>Product Roadmap Ownership</li><li>Agile / Scrum / Sprint Planning</li><li>Power BI / Tableau</li><li>CI/CD / DevOps / Git</li><li>Governance / Purview / RBAC</li></ul></div>
-        </div>
+<section id="skills" class="band">
+  <div class="w">
+    <div class="eyebrow rv">Technical</div>
+    <h2 class="sh rv">Stack</h2>
+    <p class="ss rv">Deep hands-on skills — the foundation I'll manage from, not away from.</p>
+    <div class="sk-g rv">
+      <div class="sk"><h3>Platforms &amp; Cloud</h3><ul><li>Snowflake</li><li>Azure Synapse</li><li>Databricks</li><li>Microsoft Fabric</li><li>Azure Data Factory</li><li>Azure / AWS / GCP</li></ul></div>
+      <div class="sk"><h3>Languages</h3><ul><li>SQL / T-SQL (Advanced)</li><li>Python</li><li>PySpark / SparkSQL</li><li>DAX / Power Query M</li><li>R</li><li>Kafka / Event Hub</li></ul></div>
+      <div class="sk"><h3>Leadership &amp; Product</h3><ul><li>Team Management &amp; Coaching</li><li>Product Roadmap Ownership</li><li>Agile / Scrum / Sprint Planning</li><li>Power BI / Tableau</li><li>CI/CD / DevOps / Git</li><li>Governance / Purview / RBAC</li></ul></div>
     </div>
+  </div>
 </section>
 
 <section id="education">
-    <div class="w">
-        <div class="sl rv">Education</div>
-        <h2 class="sh rv">Background</h2>
-        <div style="margin-bottom:2rem"></div>
-        <div class="edu-g rv">
-            <div class="ed"><h3>PG Diploma — Data Analytics for Business</h3><span>St. Clair College · Windsor, ON · Canada</span></div>
-            <div class="ed"><h3>Bachelor of Technology</h3><span>KL University · India</span></div>
-        </div>
+  <div class="w">
+    <div class="eyebrow rv">Education</div>
+    <h2 class="sh rv">Background</h2>
+    <div style="margin-bottom:2.25rem"></div>
+    <div class="edu-g rv">
+      <div class="ed"><h3>PG Diploma — Data Analytics for Business</h3><span>St. Clair College · Windsor, ON · Canada</span></div>
+      <div class="ed"><h3>Bachelor of Technology</h3><span>KL University · India</span></div>
     </div>
+  </div>
 </section>
 
 <section id="contact">
-    <div class="w">
-        <div class="ct">
-            <div class="sl rv">Contact</div>
-            <h2 class="sh rv">Let's talk</h2>
-            <p class="ss rv" style="max-width:100%">I'm always looking for the next leadership challenge — whether it's building a team, owning a product, or shaping a data strategy. Let's connect.</p>
-            <div class="ct-btns rv">
-                <a href="https://www.linkedin.com/in/manohar-c-74a0b225a" target="_blank" rel="noopener noreferrer" class="btn btn-g">
-                    <svg class="i"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                    LinkedIn
-                </a>
-                <a href="mailto:manoharch0698@gmail.com" class="btn btn-o">
-                    <svg class="i"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                    Email
-                </a>
-            </div>
-            <div class="ct-em rv"><a href="mailto:manoharch0698@gmail.com">manoharch0698@gmail.com</a> · Toronto, ON · 519-992-8680</div>
-        </div>
+  <div class="w">
+    <div class="ct">
+      <div class="eyebrow rv">Contact</div>
+      <h2 class="sh rv">Let's talk</h2>
+      <p class="ss rv">I'm looking for my first formal people-management role — BI/Analytics Manager, Product Owner, or Data Engineering Manager. If you're building a team, let's talk.</p>
+      <div class="ct-btns rv">
+        <a href="https://www.linkedin.com/in/manohar-c-74a0b225a" target="_blank" rel="noopener noreferrer" class="btn btn-g">
+          <svg class="i"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="mailto:manoharch0698@gmail.com" class="btn btn-o">
+          <svg class="i"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Email
+        </a>
+      </div>
+      <div class="ct-em rv"><a href="mailto:manoharch0698@gmail.com">manoharch0698@gmail.com</a> · Toronto, ON · 519-992-8680</div>
     </div>
+  </div>
 </section>
 
-<footer><p>&copy; 2026 Manohar Chekka · iammanohar.com</p></footer>
+<footer>&copy; 2026 Manohar Chekka · iammanohar.com · model refreshed 2026-06</footer>
 
 <script>
+/* nav */
 var n=document.getElementById('nav');
-window.onscroll=function(){n.classList.toggle('s',window.scrollY>80)};
-try{var els=document.querySelectorAll('.rv');var ob=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('v');ob.unobserve(en.target)}})},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});els.forEach(function(el){ob.observe(el)})}catch(e){var a=document.querySelectorAll('.rv');for(var i=0;i<a.length;i++){a[i].classList.add('v')}}
-document.querySelectorAll('.nav-l a').forEach(function(a){a.addEventListener('click',function(){document.querySelector('.nav-l').classList.remove('open')})});
+window.addEventListener('scroll',function(){n.classList.toggle('s',window.scrollY>60)},{passive:true});
+document.querySelectorAll('.nav-l a').forEach(function(a){
+  a.addEventListener('click',function(){document.querySelector('.nav-l').classList.remove('open')})
+});
+
+var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* scroll reveal + KPI activation */
+try{
+  var ob=new IntersectionObserver(function(e){
+    e.forEach(function(en){
+      if(en.isIntersecting){en.target.classList.add('v');ob.unobserve(en.target);
+        if(en.target.classList.contains('kpis')){
+          en.target.querySelectorAll('.kpi').forEach(function(k,idx){
+            setTimeout(function(){k.classList.add('v')},idx*140);
+          });
+          startCounters(en.target);
+        }
+      }
+    })
+  },{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.rv').forEach(function(el){ob.observe(el)});
+}catch(e){
+  document.querySelectorAll('.rv').forEach(function(el){el.classList.add('v')});
+  document.querySelectorAll('.kpi').forEach(function(k){k.classList.add('v')});
+  startCounters(document);
+}
+
+/* animated counters */
+function startCounters(scope){
+  scope.querySelectorAll('.cnt').forEach(function(el){
+    var target=parseInt(el.getAttribute('data-n'),10);
+    var comma=el.getAttribute('data-f')==='comma';
+    if(reduced){el.textContent=fmt(target);return}
+    var dur=1300,t0=null;
+    function fmt(v){return comma?v.toLocaleString('en-CA'):String(v)}
+    function step(ts){
+      if(!t0)t0=ts;
+      var p=Math.min((ts-t0)/dur,1);
+      p=1-Math.pow(1-p,3); /* ease-out cubic */
+      el.textContent=fmt(Math.round(target*p));
+      if(p<1)requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  });
+}
+
+/* typing console */
+(function(){
+  var lines=[
+    {p:"DAX>",     t:"SELECTEDVALUE(Career[Next_Role]) -- \"BI / Analytics Manager\""},
+    {p:"sql>",     t:"SELECT role FROM career WHERE ready_to_manage = TRUE; -- 1 row"},
+    {p:"pyspark>", t:"df.repartition(\"etl\").optimize()  # 30%+ faster at TD"},
+    {p:"python>",  t:"ventures = [build(\"PromptCue\"), build(\"HealPath\")]  # shipped solo"},
+    {p:"adf>",     t:"pipeline.run(\"snowflake -> databricks -> powerbi\")  # status: PROD"},
+    {p:"DAX>",     t:"CALCULATE([KPIs_Built], Employer[Name]=\"TD Bank\") -- 3"},
+    {p:"sql>",     t:"GRANT mentorship TO bi_developers; -- across the bank"},
+    {p:"pyspark>", t:"spark.read.table(\"athena.kpis\")  # CES · LEI · FCR"}
+  ];
+  var el=document.getElementById('typer');
+  var pEl=document.getElementById('typerPrompt');
+  if(!el)return;
+  if(reduced){pEl.textContent=lines[0].p;el.textContent=lines[0].t;return}
+  var li=0,ci=0,deleting=false;
+  function tick(){
+    var s=lines[li].t;
+    pEl.textContent=lines[li].p;
+    if(!deleting){
+      ci++;el.textContent=s.slice(0,ci);
+      if(ci===s.length){deleting=true;setTimeout(tick,2100);return}
+      setTimeout(tick,34+Math.random()*40);
+    }else{
+      ci-=3;if(ci<0)ci=0;
+      el.textContent=s.slice(0,ci);
+      if(ci===0){deleting=false;li=(li+1)%lines.length;setTimeout(tick,420);return}
+      setTimeout(tick,14);
+    }
+  }
+  setTimeout(tick,1400);
+})();
+
+/* interactive schema: hover highlights join, tooltip; click navigates */
+(function(){
+  var tip=document.getElementById('schemaTip');
+  document.querySelectorAll('.schema .nd-g').forEach(function(g){
+    var link=document.getElementById(g.getAttribute('data-link'));
+    g.addEventListener('mouseenter',function(){
+      g.classList.add('on');if(link)link.classList.add('on');
+      tip.textContent=g.getAttribute('data-tip');tip.classList.add('show');
+    });
+    g.addEventListener('mouseleave',function(){
+      g.classList.remove('on');if(link)link.classList.remove('on');
+      tip.classList.remove('show');
+    });
+    g.addEventListener('click',function(){
+      var go=g.getAttribute('data-go');
+      if(go)document.querySelector(go).scrollIntoView({behavior:reduced?'auto':'smooth'});
+    });
+  });
+})();
+
+/* cursor spotlight on cards */
+document.querySelectorAll('.im,.pr').forEach(function(c){
+  c.addEventListener('mousemove',function(ev){
+    var r=c.getBoundingClientRect();
+    c.style.setProperty('--mx',(ev.clientX-r.left)+'px');
+    c.style.setProperty('--my',(ev.clientY-r.top)+'px');
+  });
+});
+
+/* duplicate ticker content for seamless loop */
+(function(){
+  var t=document.getElementById('tickerIn');
+  if(t)t.innerHTML+=t.innerHTML;
+})();
 </script>
 
 </body>
